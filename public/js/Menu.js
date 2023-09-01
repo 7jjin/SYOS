@@ -4,9 +4,9 @@ const nav = document.querySelector('nav');
 
 menuButton.addEventListener('click', () => {
   console.log('clicked');
-  nav.style.display = 'block';
+  nav.style.transform = 'translateX(0%)';
 });
 
 closeButton.addEventListener('click', () => {
-  nav.style.display = 'none';
+    nav.style.transform = 'translateX(-120%)';
 });
