@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>SignIn</title>
+    <link rel="stylesheet" href="../css/menu.css" />
+    <link rel="stylesheet" href="../css/signin.css" />
+  </head>
+  <body>
+    <header>
+      <svg
+        class="menu-button"
+        width="40px"
+        height="40px"
+        focusable="false"
+        viewBox="0 0 24 24"
+      >
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+      </svg>
+    </header>
+
+    <!-- navBar -->
+    <nav>
+      <svg
+        class="menu-button close"
+        xmlns="http://www.w3.org/2000/svg"
+        width="40px"
+        height="40px"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+      <ul class="main-menu">
+        <li>Home</li>
+        <li>Board</li>
+        <li>Recommend</li>
+        <li>MyPage</li>
+        <li class="divider"><div class="under-line"></div></li>
+      </ul>
+      <ul class="sub-menu">
+        <li>About</li>
+        <li>Contact</li>
+        <li>LogIn</li>
+      </ul>
+    </nav>
+
+    <!-- signin -->
+
+    <main class="signIn">
+      <div class="welcome">SignIn to SYOS</div>
+
+      <div class="signInDiv">
+        <div class="emailDiv">
+          <input type="text" id="email" placeholder="Email" />
+          <div class="emailValid"></div>
+        </div>
+        <div class="pwDiv">
+          <input type="password" id="pw" placeholder="Password" />
+          <div class="pwValid"><a href="/findpw">forgot?</a></div>
+        </div>
+        <div class="signInBtnDiv">
+          <button type="button" id="signInBtn">SignIn</button>
+        </div>
+      </div>
+
+      <div class="signUp">
+        Don't have an Account?&nbsp;<a href="/signup">SignUp</a>
+      </div>
+
+      <!-- <div class="google">
+        <button type="button" id="googleBtn">
+          <img src="/public/images/Google.jpg" alt="google" />
+          <span>Sign in with Google</span>
+        </button>
+      </div> -->
+    </main>
+
+    <!-- signin -->
+
+    <script src="../js/menu.js"></script>
+    <script src="../js/signin.js"></script>
+  </body>
+</html>

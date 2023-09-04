@@ -1,0 +1,89 @@
+main Div 높이 main.signUp {
+  height: 70vh;
+}
+
+/* 모든 요소 가운데 정렬 */
+main.signUp > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Welcome 문구 */
+main.signUp > div.welcome {
+  height: 15vh;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+/* id,pw div */
+main > .signUpDiv {
+  flex-direction: column;
+  align-items: center;
+  height: 25vh;
+  margin-top: 50px;
+}
+
+main > .signUpDiv > div {
+  height: 25vh;
+  margin-bottom: 10px;
+  background-color: white;
+  border: none;
+  border-bottom: 2px solid #000000;
+}
+
+/* input 태그 */
+main > .signUpDiv > div > input {
+  background-color: transparent;
+  border: none;
+  font-size: 18px;
+  margin-top: 30px;
+  width: 360px;
+  opacity: 0.5;
+}
+
+/* 회원가입 버튼 div */
+main > .signUpDiv > .signUpBtnDiv {
+  height: 20vh;
+}
+
+/* 회원가입 버튼 */
+main > .signUpDiv > .signUpBtnDiv > button {
+  background-color: black;
+  color: white;
+  border: none;
+  margin-top: 30px;
+  font-size: 18px;
+  height: 30px;
+  width: 352px;
+  text-decoration: none;
+}
+
+main > .signUpDiv > .emailDiv,
+main > .signUpDiv > .nickNameDiv,
+main > .signUpDiv > .pwDiv,
+main > .signUpDiv > .rePwDiv {
+  display: flex;
+  align-items: center;
+}
+
+main > .signUpDiv > .emailDiv > input,
+main > .signUpDiv > .nickNameDiv > input,
+main > .signUpDiv > .pwDiv > input,
+main > .signUpDiv > .rePwDiv > input {
+  width: 268px;
+}
+
+main > .signUpDiv > .emailDiv > .emailValid,
+main > .signUpDiv > .nickNameDiv > .nickNameValid,
+main > .signUpDiv > .pwDiv > .pwValid,
+main > .signUpDiv > .rePwDiv > .rePwValid {
+  opacity: 0;
+  color: red;
+  font-size: 15px;
+  width: 80px;
+  height: 5px;
+  line-height: 30px;
+  text-align: right;
+  border-radius: 50%;
+}
