@@ -3,7 +3,6 @@ const closeButton = document.querySelector('.menu-button.close');
 const nav = document.querySelector('nav');
 
 menuButton.addEventListener('click', () => {
-  console.log('clicked');
   nav.style.transform = 'translateX(0%)';
 });
 
