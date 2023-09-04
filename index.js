@@ -13,6 +13,7 @@ app.use('image', express.static(__dirname + '/public/image'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/public', express.static(__dirname + '/public'))
 
 //router
 const router = require("./routes");
