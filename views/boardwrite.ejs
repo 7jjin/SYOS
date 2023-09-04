@@ -8,92 +8,8 @@
         integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>boardwrite</title>
-    <style>
-        .navbar {
-            display: flex;
-
-        }
-
-        .title {
-            text-align: center;
-            font-size: 40px;
-            font-weight: 600;
-        }
-
-        .postContent {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-
-        .postName {
-            display: flex;
-            justify-content: flex-start;
-            margin: 10px 0px;
-        }
-
-
-        .postImage>img {
-            width: 630px;
-            height: 380px;
-        }
-
-        .postText {
-            display: flex;
-            justify-content: flex-start;
-            margin: 20px 0px;
-        }
-
-        .comments {
-            display: flex;
-            margin-top: 20px;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .comment {
-            height: 40px;
-            color: black;
-            line-height: 33px;
-        }
-
-
-        .commentsInput {
-            width: 480px;
-            outline: none;
-            border: 1px solid #bababa;
-            height: 36px;
-            border-radius: 11px;
-        }
-
-        .comments>button {
-            display: inline-block;
-            position: relative;
-            height: 40px;
-            border: 1px solid #000000;
-            border-radius: 11px;
-            padding-left: 12px;
-            padding-right: 12px;
-            line-height: 0;
-            color: white;
-            background-color: black;
-            cursor: pointer;
-        }
-
-        input::placeholder {
-            opacity: 0.6;
-        }
-
-        #commentList {
-            list-style: none;
-            padding: 0px;
-        }
-
-        #commentList>li {
-            margin: 25px 0px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/boardwrite.css" />
 </head>
 
 <body>
@@ -136,25 +52,9 @@
         </div>
 
     </div>
-
-    <script>
-        function addComment() {
-            const comments = document.getElementById('comments');
-            const commentText = comments.value;
-
-            if (commentText.trim() === '') {
-                alert('Please enter comments.');
-                return;
-            }
-
-            const commentList = document.getElementById('commentList');
-            const commentItem = document.createElement('li');
-            commentItem.textContent = commentText;
-            commentList.appendChild(commentItem);
-
-            comments.value = '';
-        }
-    </script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/boardwrite.js"></script>
+    
 </body>
 
 </html>

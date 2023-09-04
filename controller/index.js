@@ -1,27 +1,34 @@
-const { User } = require("../models"); // index.js 생략
-const bcrypt = require("bcrypt");
+const { User } = require('../models'); // index.js 생략
+const bcrypt = require('bcrypt');
 const saltNumber = 10;
 
 // 메인 페이지 이동
 const main = (req, res) => {
-  res.render("index");
+  res.render('index');
 };
 
 // 회원가입 페이지 이동
 const signup = (req, res) => {
-  res.render("signup");
+  res.render('signup');
 };
 
 // 로그인 페이지 이동
 const signin = (req, res) => {
-  res.render("signin");
+  res.render('signin');
 };
 
 // 비밀번호 찾기 페이지 이동
 const findpw = (req, res) => {
-  res.render("findPw");
+  res.render('findPw');
 };
 
+const posts = (req, res) => {
+  res.render('board');
+};
+
+const post_write = (req, res) => {
+  res.render('boardwrite');
+};
 //로그인
 const post_signin = async (req, res) => {
   console.log(req.body);
@@ -71,7 +78,7 @@ const post_emailCheck = async (req, res) => {
     },
   });
 
-  console.log("이메일 중복 체크 : ", result);
+  console.log('이메일 중복 체크 : ', result);
 
   if (result == null) {
     res.json({ result: true });
@@ -89,7 +96,7 @@ const post_nickName = async (req, res) => {
     },
   });
 
-  console.log("닉네임 중복 체크 : ", result);
+  console.log('닉네임 중복 체크 : ', result);
 
   if (result == null) {
     res.json({ result: true });
@@ -103,6 +110,8 @@ module.exports = {
   signup,
   signin,
   findpw,
+  posts,
+  post_write,
 
   post_signin,
   post_signup,
