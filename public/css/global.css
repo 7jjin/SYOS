@@ -1,11 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Raleway:wght@100&display=swap');
+
 * {
-  font-family: sans-serif;
+  font-family: 'EB Garamond', serif;
 }
 
 body {
   margin: 8px 0;
 }
-
 
 /* header */
 #main-header {
@@ -36,7 +37,6 @@ body {
 
 .menu-button {
   margin: 2rem;
-  margin-top: 1rem;
   cursor: pointer;
 }
 
@@ -70,10 +70,10 @@ ul {
   display: flex;
   justify-content: flex-end;
   align-items: end;
-  margin: 0 8vw 100px 0; 
+  margin: 0 8vw 100px 0;
 }
 
-#footer-logo{
+#footer-logo {
   height: 50px;
   font-size: 50px;
   font-weight: bold;
@@ -85,7 +85,7 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  color: #CBCBCB;
+  color: #cbcbcb;
   font-size: 16px;
   margin-right: 3rem;
 }
@@ -98,5 +98,44 @@ ul {
   margin-right: 1rem;
 }
 
+/* responsive */
+@media (max-width: 768px) {
+  #main-header {
+    margin-bottom: 40px;
+  }
 
+  #logo {
+    font-size: 60px;
+  }
 
+  .main-menu li {
+    margin-bottom: 1vw;
+    font-size: 2rem;
+  }
+
+  .sub-menu li {
+    font-size: 1.5rem;
+    margin-bottom: 0.6vw;
+  }
+  .under-line {
+    margin: 3vh 0;
+  }
+  #footer-logo {
+    height: 50px;
+    font-size: 50px;
+    margin-right: 2rem;
+  }
+
+  #description {
+    font-size: 16px;
+    margin-right: 2rem;
+  }
+
+  .description-text {
+    margin-bottom: 1px;
+  }
+
+  .footer-sns {
+    margin-right: 1rem;
+  }
+}
