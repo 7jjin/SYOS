@@ -1,27 +1,19 @@
 const express = require("express");
 const app = express();
 const PORT = 8000;
+const db = require("./models");
 
 app.set("view engine", "ejs");
 
-app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/image"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //router
-app.get("/", (req, res) => {
-  res.render("index");
-});
+const router = require("./routes");
+app.use("/", router);
 
-app.get("/Recommend", (req, res) => {
-  res.render("Recommend");
-});
-
-app.get("/test", (req, res) => {
-  res.render("test");
-});
-
-app.listen(PORT, () => {
-  console.log(`http://localhost:${PORT}`);
+db.sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => {
+    console.log(`http://localhost:${PORT}`);
+  });
 });

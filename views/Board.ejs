@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>board</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/board.css" />
 </head>
+
 <body>
-    
+    <!-- 헤더 -->
+    <nav class="header">
+        <div class="title">SYOS</div>
+    </nav>
+
+    <!-- board -->
+    <div class="boardPage">
+        <div class="boardPageIn">
+
+            <!-- ShareYourOwnMood! 문구 -->
+
+            <div class="boardMainText">
+                <div>ShareYourOwnMood!</div>
+            </div>
+
+            <div class="moodContainer">
+
+                <!-- mood 선택 버튼 -->
+
+                <div class="moodHeader">
+                    <span>
+                        <label class="moodModern">
+                            <input type="checkbox" class="moodCheckBox">
+                            <span class="modern">modern</span>
+                        </label>
+                    </span>
+                    <span>
+                        <label class="moodNatural">
+                            <input type="checkbox" class="moodCheckBox">
+                            <span class="natural">natural</span>
+                        </label>
+                    </span>
+                    <span>
+                        <label class="moodGame">
+                            <input type="checkbox" class="moodCheckBox">
+                            <span class="game">game</span>
+                        </label>
+                    </span>
+                    <span>
+                        <label class="moodStudyOffice">
+                            <input type="checkbox" class="moodCheckBox">
+                            <span class="studyOffice">study&office</span>
+                        </label>
+                    </span>
+                </div>
+
+
+                <!-- 무드 이미지 -->
+                <div>
+                    <div class="moodImage">
+                        <div class="moodItemWrap">
+                            <div class="moodItem">
+                                <img src="/public/images/desk.jpg" alt="">
+                            </div>
+                            <div class="moodItem"></div>
+                            <div class="moodItem"></div>
+
+                        </div>
+                        <div class="moodItemWrap">
+                            <div class="moodItem"></div>
+                            <div class="moodItem"></div>
+                            <div class="moodItem"></div>
+                        </div>
+                        <div class="moodItemWrap">
+                            <div class="moodItem"></div>
+                            <div class="moodItem"></div>
+                            <div class="moodItem"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../js/menu.js"></script>
+        <script src="../js/board.js"></script>
 </body>
+
 </html>
