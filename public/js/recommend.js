@@ -34,7 +34,7 @@ function createPost() {
   newPost.className = "post1";
   newPost.innerHTML = `
     <div class="post-text" >
-        <image src="/image/desk.jpg" alt="책상" style="height:100%">
+        <image src="/images/desk.jpg" alt="책상" style="height:100%">
         <div class="hidden-box">
             <div class="text-box">
                 <span>desk: 국내 최고 목수가 만든 책상</span>
