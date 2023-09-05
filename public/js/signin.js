@@ -35,10 +35,10 @@ signInBtn.addEventListener("click", async function signin() {
 
   switch (result) {
     case "1":
-      alert("존재하지 않는 이메일입니다.");
+      alert("There is no user.");
       break;
     case "2":
-      alert("비밀번호가 틀렸습니다.");
+      alert("Wrong password.");
       break;
     case "3":
       // jwt 저장
