@@ -61,23 +61,51 @@ function createPost() {
   postContainer.appendChild(newPost);
 }
 
-// 이미지 올리기
-const formsFile = document.forms["upload-image-form"];
-const button = document.querySelector(".search");
-const uploadImageForm = document.querySelector(".upload-image-form");
-const uploadImageWrapper = document.querySelector(".upload-image-wrapper");
-const btnUpload = document.querySelector(".btn-upload");
-const inputImage = document.querySelector("#input-image");
+// 웹캠 설정 부분 시작
 
-inputImage.addEventListener("change", () => {
-  const selectFile = inputImage.files[0]; // input에서 선택된 파일
-  if (selectFile) {
-    const imageUrl = URL.createObjectURL(selectFile);
-    uploadImageForm.style.backgroundImage = `url('${imageUrl}')`;
-    uploadImageForm.style.backgroundSize = "cover";
-    uploadImageForm.style.backgroundRepeat = "no-repeat";
-    uploadImageForm.style.borderRadius = "20px";
-    uploadImageWrapper.style.border = "none";
-    btnUpload.innerHTML = "";
+const per = document.querySelectorAll(".per");
+const URL = "https://teachablemachine.withgoogle.com/models/Is29DJcYn/";
+
+let model, webcam, labelContainer, maxPredictions;
+let data = [];
+
+// 이미지 모델을 분석 및 웹캠 설정
+async function init() {
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+
+  model = await tmImage.load(modelURL, metadataURL);
+  maxPredictions = model.getTotalClasses();
+
+  //
+  const flip = true;
+  webcam = new tmImage.Webcam(700, 400, flip); // 높이, 너비, 상태
+  await webcam.setup();
+  await webcam.play();
+  window.requestAnimationFrame(loop);
+
+  // 웹캠에 화면 출력
+  document.getElementById("webcam-container").appendChild(webcam.canvas);
+
+  // 5초 후에 웹캠을 멈추는 함수
+  setTimeout(() => {
+    webcam.stop();
+  }, 5000);
+}
+
+// 웹캠이 동작 할 동안 계속 화면을 업데이트 시켜주는 함수
+async function loop() {
+  webcam.update();
+  await predict();
+  window.requestAnimationFrame(loop);
+}
+
+// 웹캠을 분석해서 그에 맞는 결과를 출력해주는 함수
+async function predict() {
+  const prediction = await model.predict(webcam.canvas);
+  for (let i = 0; i < maxPredictions; i++) {
+    // 결과값을 백분위로 분석해서 각각의 카테고리에 추가
+    const classPrediction = `${prediction[i].probability.toFixed(1) * 100}%`;
+    per[i].childNodes[1].innerHTML = classPrediction;
   }
-});
+}
