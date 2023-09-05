@@ -1,56 +1,64 @@
-const { User } = require('../models'); // index.js 생략
-const bcrypt = require('bcrypt');
+const { User } = require("../models"); // index.js 생략
+const bcrypt = require("bcrypt");
 const saltNumber = 10;
+const jwt = require("jsonwebtoken");
+const SECRET = "secretkey";
 
 // 메인 페이지 이동
 const main = (req, res) => {
-  res.render('index');
+  res.render("index");
 };
 
 // 회원가입 페이지 이동
 const signup = (req, res) => {
-  res.render('signup');
+  res.render("signup");
 };
 
 // 로그인 페이지 이동
 const signin = (req, res) => {
-  res.render('signin');
+  res.render("signin");
 };
 
 // 비밀번호 찾기 페이지 이동
 const findpw = (req, res) => {
-  res.render('findPw');
+  res.render("findPw");
 };
 
 const posts = (req, res) => {
-  res.render('board');
+  res.render("board");
 };
 
 const post_write = (req, res) => {
-  res.render('boardwrite');
+  res.render("boardwrite");
 };
 //로그인
 const post_signin = async (req, res) => {
-  console.log(req.body);
-  // 로그인 구현 해야 함
-  // const { userid, pw } = req.body;
-  // const result = await User.findOne({
-  //   where: {
-  //     userid,
-  //   },
-  // });
+  const { email, pw } = req.body;
 
-  // if (result == null) {
-  //   res.json({ result: "1" });
-  // } else {
-  //   const dbPw = result.dataValues.pw;
+  // 이메일로 유저가 존재하는지 먼저 확인
+  const result = await User.findOne({
+    where: {
+      email,
+    },
+  });
 
-  //   if (comparePassword(pw, dbPw)) {
-  //     res.json({ result: "3", data: result.dataValues });
-  //   } else {
-  //     res.json({ result: "2" });
-  //   }
-  // }
+  if (result == null) {
+    // 유저 존재 X
+    res.send({ result: "1" });
+  } else {
+    if (comparePassword(pw, result.password)) {
+      // 로그인 성공
+      const token = jwt.sign(
+        { user_id: result.user_id, nickName: result.nickname },
+        SECRET
+      );
+      console.log("token : ", token);
+      res.json({ result: "3", nickName: result.nickname, token });
+    } else {
+      // 비밀번호 틀림
+      res.send({ result: "2" });
+    }
+  }
 };
 
 // 회원가입
@@ -78,7 +86,7 @@ const post_emailCheck = async (req, res) => {
     },
   });
 
-  console.log('이메일 중복 체크 : ', result);
+  console.log("이메일 중복 체크 : ", result);
 
   if (result == null) {
     res.json({ result: true });
@@ -96,7 +104,7 @@ const post_nickName = async (req, res) => {
     },
   });
 
-  console.log('닉네임 중복 체크 : ', result);
+  console.log("닉네임 중복 체크 : ", result);
 
   if (result == null) {
     res.json({ result: true });
