@@ -76,7 +76,6 @@ function createPost(post_id, user_id, title, content, image, category, liked, cr
 axios({
     method: "POST",
     url: "/posts",
-    data,
 }).then((res) => {
     res.data.data.forEach((item) => {
         createPost(
