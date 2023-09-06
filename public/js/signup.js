@@ -189,7 +189,7 @@ signUpBtn.addEventListener("click", async function signup() {
     });
 
     if (res.data.result) {
-      alert("회원가입 성공!!!");
+      alert("Welcome to SYOS");
       location.href = "/signin";
     }
   }

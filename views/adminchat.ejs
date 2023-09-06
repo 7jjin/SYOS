@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin-Chat</title>
+  </head>
+
+  <body>
+    <ol id="lists"></ol>
+    <form id="room">
+      <input type="text" id="roomName" placeholder="채팅방 이름입력" />
+      <button>입력</button>
+    </form>
+    <br /><br /><br />
+    <div id="chat-wrapper">
+      <div id="chat-header">
+        <div id="chat-header-logo">SYOS</div>
+        <div id="chat-header-text">문의하기</div>
+      </div>
+      <div id="chat-box"></div>
+      <form id="chat-form">
+        <input type="text" id="reply" placeholder="메세지를 입력하세요..." />
+        <button id="reply-btn">입력</button>
+      </form>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      const socket = io();
+      const roomForm = document.querySelector('#room');
+      const chatForm = document.querySelector('#chat-form');
+      const chatBox = document.querySelector('#chat-box');
+      let myName = 'admin';
+
+      //첫 로드 때 룸리스트 불러오기
+      document.addEventListener('DOMContentLoaded', () => {
+        socket.emit('getRoomList');
+      });
+
+      // 새로운 사람 들어올거나 나갈 때마다 룸리스트 최신화
+      socket.on('roomList', (roomLists) => {
+        console.log(roomLists);
+        const lists = document.querySelector('#lists');
+        lists.textContent = '';
+        roomLists.forEach((roomList) => {
+          const li = document.createElement('li');
+          li.textContent = `${roomList}`;
+          lists.appendChild(li);
+        });
+      });
+     
+      // 채팅방 나갈때 공지 표시
+      socket.on('notice', (res) => {
+        const div = document.createElement('div');
+        div.id = 'notice';
+        if (res.leave) {
+          div.innerText = '사용자가 채팅방을 나갔습니다.';
+          chatBox.appendChild(div);
+        }
+        
+      });
+
+      // admin 입장
+      roomForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const roomName = roomForm.querySelector('#roomName');
+        if (roomName.value === '') {
+          alert('방이름을 적어주세요.');
+          return;
+        }
+        socket.emit('create', roomName.value);
+      });
+
+      // 메세지 보내기
+      chatForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const message = document.querySelector('#reply');
+        const msg = {
+          id: 'admin',
+          message: message.value,
+        };
+        socket.emit('sendMessage', msg);
+        message.value = '';
+      });
+
+      //메세지 띄우기
+      socket.on('newMessage', (message, id) => {
+        const div = document.createElement('div');
+        div.innerText = message;
+        div.classList.add('chat');
+        if (myName === id) {
+          div.classList.add('my-chat');
+        } else {
+          div.classList.add('other-chat');
+        }
+        chatBox.appendChild(div);
+      });
+    </script>
+  </body>
+</html>

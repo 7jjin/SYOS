@@ -1,12 +1,12 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 const Model = (sequelize) => {
   return sequelize.define("user", {
     user_id: {
-      type: DataTypes.BIGINT(20),
+      type: Sequelize.UUID,
+      defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     password: {
       type: DataTypes.STRING,
