@@ -11,6 +11,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <header id="main-header">
@@ -197,20 +204,28 @@
         <div id="chat-header-logo">SYOS</div>
         <div id="chat-header-text">문의하기</div>
       </div>
-      <div id="chat-box">
-        <div class="chat other-chat">
-          안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
-          궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+      <div id="chat-box-wrapper">
+        <div id="chat-box">
+          <div class="chat other-chat">
+            안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+            궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+          </div>
+          <div id="btn1" class="chat chat-button" onclick="clickBtn1()">데스크 셋업 추천? 💻</div>
+          <div id="btn2" class="chat chat-button" onclick="clickBtn2()">SYOS에게 바라는 점 📝</div>
+          <div id="connect" class="chat chat-button" onclick="clickConnectButton()">상담원 연결하기 👨‍👩‍👧‍👦</div>
         </div>
-        <div id="btn1" class="chat chat-button">데스크 셋업 추천? 💻</div>
-        <div id="btn2" class="chat chat-button">SYOS에게 바라는 점 📝</div>
-        <div id="connect" class="chat chat-button">상담원 연결하기 👨‍👩‍👧‍👦</div>
       </div>
       <form id="chat-form">
-        <input type="text" id="reply" placeholder="메세지를 입력하세요..." disabled/>
+        <input
+          type="text"
+          id="reply"
+          placeholder="메세지를 입력하세요..."
+          disabled
+        />
         <button id="reply-btn">입력</button>
       </form>
     </div>
+
     <div id="chat-button">S</div>
 
     <footer id="main-footer">
