@@ -5,8 +5,8 @@
 }
 .upload-image-wrapper{
     margin: 0 auto;
-    width: 60%;
-    height: 400px;
+    width: 40%;
+    height: 300px;
     border:1px solid black;
     border-radius: 20px;
 }
@@ -42,12 +42,13 @@
 
 .result-box{
     height: 150px;
+    margin-bottom: 50px;
 }
 .result-box-wrapper{
     width: 80%;
     padding-top: 30px;
-    /* display: flex; */
-    display: none;
+    display: flex;
+    /* display: none; */
     margin: 0 auto;
     justify-content: space-around;
 }
@@ -64,8 +65,11 @@
     border: 2px solid black;
     padding: 10px 20px;
     border-radius: 20px;
-
+    transition: box-shadow 0.3s ease-out;
 } 
+.moden-span:hover,.office-span:hover,.study-span:hover,.natural-span:hover{
+    box-shadow: 0px 0px 7px 0px black;
+}
 .per{
     text-align: center;
     margin-top: 15px;
@@ -73,9 +77,20 @@
     font-weight: 500;
 }
 
+.recommend-title{
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 30px;
+}
 
 /* recommend-post */
+.recommend-posts{
+    margin-top: 20px;
+    padding-bottom: 70px;
+    display: none;
+}
 .recommend-post-wrapper{
+    display: flex;
     width: 80%;
     margin:0 auto;
 }
@@ -91,25 +106,49 @@
     outline:none;
 }
 .posts-box{
+    width: 60%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-top: 20px;
 }
+.move-box{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.move-box-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.move-box-inner p,.move-box-inner i{
+    font-size: 50px;
+}
 
 .post1{
     border: 1px solid black;
     border-radius: 20px;
-    width: 23%;
+    width: 48%;
     height: 280px;
     margin-bottom: 30px;
     position: relative;
     overflow: hidden;
 }
+#webcam-container{
+    width: 100%;
+    height: 100%;
+}
+canvas{
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+}
 .post-text{
     height: 100%;
 }
-.post1 image{
+.post1 img{
     width: 100%;
     height: 100%;
 }
@@ -131,11 +170,13 @@
 .text-box{
     height: 100%;
     color: black;
+    font-size: 20px;
     font-weight: 600;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
+
 .post-bar{
     position: absolute;
     display: flex;

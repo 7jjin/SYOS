@@ -23,12 +23,16 @@
     <header id="main-header">
       <svg
         class="menu-button"
-        width="40px"
-        height="40px"
-        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="36"
+        height="36"
         viewBox="0 0 24 24"
       >
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+        <path
+          d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
+        ></path>
       </svg>
       <span id="logo">SYOS</span>
       <span style="width: 40px; margin: 2rem"></span>
@@ -210,9 +214,19 @@
             안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
             궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
           </div>
-          <div id="btn1" class="chat chat-button" onclick="clickBtn1()">데스크 셋업 추천? 💻</div>
-          <div id="btn2" class="chat chat-button" onclick="clickBtn2()">SYOS에게 바라는 점 📝</div>
-          <div id="connect" class="chat chat-button" onclick="clickConnectButton()">상담원 연결하기 👨‍👩‍👧‍👦</div>
+          <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+            데스크 셋업 추천? 💻
+          </div>
+          <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+            SYOS에게 바라는 점 📝
+          </div>
+          <div
+            id="connect"
+            class="chat chat-button"
+            onclick="clickConnectButton()"
+          >
+            상담원 연결하기 👨‍👩‍👧‍👦
+          </div>
         </div>
       </div>
       <form id="chat-form">

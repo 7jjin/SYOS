@@ -1,5 +1,7 @@
 const { User, Post } = require("../models"); // index.js 생략
 const bcrypt = require("bcrypt");
+
+const saltNumber = 10;
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
@@ -17,6 +19,17 @@ const GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
 // 메인 페이지 이동
 const main = (req, res) => {
   res.render("index");
+};
+
+// 추천 페이지 이동
+const recommend = (req, res) => {
+  res.render("recommend");
+};
+
+const post_recommend = (req, res) => {
+  Post.findAll({}).then((result) => {
+    res.json({ data: result });
+  });
 };
 
 // 회원가입 페이지 이동
@@ -217,6 +230,7 @@ const post_nickName = async (req, res) => {
 // 소셜 로그인
 module.exports = {
   main,
+  recommend,
   signup,
   signin,
   findpw,
@@ -231,6 +245,7 @@ module.exports = {
   post_signup,
   post_emailCheck,
   post_nickName,
+  post_recommend,
 };
 
 // 암호화
