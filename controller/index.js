@@ -1,7 +1,6 @@
 const { User, Post } = require("../models"); // index.js 생략
 const bcrypt = require("bcrypt");
 
-const saltNumber = 10;
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
 
