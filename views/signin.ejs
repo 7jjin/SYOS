@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>SignIn</title>
-    <link rel="stylesheet" href="../css/menu.css" />
+    <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/signin.css" />
   </head>
   <body>
-    <header>
+    <header id="main-header">
       <svg
         class="menu-button"
         width="40px"
@@ -19,10 +19,13 @@
       >
         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
       </svg>
+      <span id="logo">SYOS</span>
+      <span style="width: 40px; margin: 2rem"></span>
     </header>
 
     <!-- navBar -->
-    <nav>
+
+    <nav id="main-nav">
       <svg
         class="menu-button close"
         xmlns="http://www.w3.org/2000/svg"
@@ -67,16 +70,47 @@
         </div>
       </div>
 
+      <div class="google">
+        <button type="button" id="googleBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="25"
+            height="26"
+            viewBox="0 0 25 26"
+            fill="none"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M24.5 13.2841C24.5 12.3977 24.4205 11.5455 24.2727 10.7273H12.5V15.5625H19.2273C18.9375 17.125 18.0568 18.4489 16.733 19.3352V22.4716H20.7727C23.1364 20.2955 24.5 17.0909 24.5 13.2841Z"
+              fill="#4285F4"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.5 25.5C15.875 25.5 18.7046 24.3807 20.7728 22.4716L16.733 19.3352C15.6137 20.0852 14.1819 20.5284 12.5 20.5284C9.24436 20.5284 6.48868 18.3295 5.50573 15.375H1.32959V18.6136C3.38641 22.6989 7.61368 25.5 12.5 25.5Z"
+              fill="#34A853"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M5.50568 15.3751C5.25568 14.6251 5.11364 13.824 5.11364 13.0001C5.11364 12.1762 5.25568 11.3751 5.50568 10.6251V7.38647H1.32955C0.482954 9.07397 0 10.9831 0 13.0001C0 15.0172 0.482954 16.9262 1.32955 18.6137L5.50568 15.3751Z"
+              fill="#FBBC05"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M12.5 5.47159C14.3353 5.47159 15.983 6.10227 17.2785 7.34091L20.8637 3.75568C18.6989 1.73864 15.8694 0.5 12.5 0.5C7.61368 0.5 3.38641 3.30114 1.32959 7.38636L5.50573 10.625C6.48868 7.67045 9.24436 5.47159 12.5 5.47159Z"
+              fill="#EA4335"
+            />
+          </svg>
+          <div class="googleText">&nbsp;Sign in with Google</div>
+        </button>
+      </div>
+
       <div class="signUp">
         Don't have an Account?&nbsp;<a href="/signup">SignUp</a>
       </div>
-
-      <!-- <div class="google">
-        <button type="button" id="googleBtn">
-          <img src="/public/images/Google.jpg" alt="google" />
-          <span>Sign in with Google</span>
-        </button>
-      </div> -->
     </main>
 
     <!-- signin -->

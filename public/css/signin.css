@@ -1,5 +1,9 @@
-main Div 높이 main.signUp {
-  height: 70vh;
+main.signIn {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 모든 요소 가운데 정렬 */
@@ -14,18 +18,18 @@ main.signIn > div.welcome {
   height: 15vh;
   font-size: 35px;
   font-weight: bold;
+  margin-top: 17px;
 }
 
 /* id,pw div */
 main > .signInDiv {
   flex-direction: column;
   align-items: center;
-  height: 25vh;
-  margin-top: 50px;
+  height: 20vh;
 }
 
 main > .signInDiv > div {
-  height: 25vh;
+  height: 20vh;
   margin-bottom: 10px;
   background-color: white;
   border: none;
@@ -45,6 +49,7 @@ main > .signInDiv > div > input {
 /* 로그인 버튼 div */
 main > .signInDiv > .signInBtnDiv {
   height: 20vh;
+  border: none;
 }
 
 /* 로그인 버튼 */
@@ -91,4 +96,38 @@ main > .signInDiv > .pwDiv > .pwValid {
 
 main.signIn a {
   color: black;
+}
+
+main.signIn > div.google {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  line-height: 30px;
+  width: 352px;
+  margin-top: 30px;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.25),
+    0px 0px 0px 0px rgba(0, 0, 0, 0.08);
+}
+
+main.signIn > div.google button {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+}
+
+main.signIn > div.google div.googleText {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+main.signIn > div.signUp {
+  margin-top: 30px;
 }

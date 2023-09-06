@@ -4,27 +4,73 @@
   font-weight: 600;
 }
 
-.postContent {
+.post-contentbox {
+  /* border: 1px solid #989898; */
+  padding-top: 25px;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 100px;
+  margin-bottom: 100px;
+}
+
+.post-content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.postName {
+.post-header {
   display: flex;
-  justify-content: flex-start;
-  margin: 10px 0px;
+  justify-content: space-between;
+  margin: 16px 0px;
+  align-items: center;
 }
 
-.postImage > img {
+.header-name {
+  font-size: 30px;
+}
+
+.header-md {
+  display: flex;
+}
+
+.header-md>div {
+  margin: 0px 5px;
+}
+
+.post-image > img {
   width: 630px;
   height: 380px;
+  border: 1px solid #989898;
 }
 
-.postText {
+.post-text {
   display: flex;
   justify-content: flex-start;
   margin: 20px 0px;
+}
+
+.post-text>span {
+  font-size: 20px;
+}
+
+.hr-1 {
+  border-top: 1px solid #eeeeee;
+}
+
+.post-res {
+  display: flex;
+}
+
+.post-res>span {
+  font-size: 30px;
+  margin-right: 9px;
+  margin-left: 11px;
+  margin-top: 5px;
+}
+
+.post-text>span {
+  padding-left: 12px;
 }
 
 .comments {
@@ -34,14 +80,10 @@
   align-items: center;
 }
 
-.comment {
-  height: 40px;
-  color: black;
-  line-height: 33px;
-}
 
-.commentsInput {
-  width: 480px;
+
+.comments-input {
+  width: 547px;
   outline: none;
   border: 1px solid #bababa;
   height: 36px;
@@ -60,17 +102,55 @@
   color: white;
   background-color: black;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 input::placeholder {
   opacity: 0.6;
+  font-size: 16px;
 }
 
-#commentList {
+input[type="text"] {
+  padding-left: 15px;
+}
+
+.comments-text {
+  margin: 20px 0px;
+}
+
+
+.comments-text>span {
+  font-size: 22px;
+    font-weight: 600;
+}
+
+#comment-list {
   list-style: none;
-  padding: 0px;
+  padding: 2px;
 }
 
-#commentList > li {
-  margin: 25px 0px;
+.comment-box {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  margin: 22px 0px;
+}
+
+.user-name {
+  margin-bottom: 9px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .post-image > img {
+    width: 630px;
+    height: 380px;
+    border: 1px solid #989898;
+}
+}
+
+@media screen and (max-width: 450px) {
+  
 }
