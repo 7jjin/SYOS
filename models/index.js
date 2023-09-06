@@ -12,6 +12,7 @@ const sequelize = new Sequelize(
 );
 
 db.User = require("./User")(sequelize);
+db.Post = require("./Post")(sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

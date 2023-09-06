@@ -1,4 +1,4 @@
-const { User } = require('../models'); // index.js 생략
+const { User, Post } = require('../models'); // index.js 생략
 const bcrypt = require('bcrypt');
 const saltNumber = 10;
 
@@ -22,13 +22,22 @@ const findpw = (req, res) => {
   res.render('findPw');
 };
 
+// board 페이지 이동
 const posts = (req, res) => {
   res.render('board');
 };
 
+const post_posts = (req, res) => {
+  Post.findAll({}).then((result) => {
+    res.json({ data: result });
+  })
+}
+
+//board 상세 페이지 이동
 const post_write = (req, res) => {
   res.render('boardwrite');
 };
+
 //로그인
 const post_signin = async (req, res) => {
   console.log(req.body);
@@ -111,6 +120,7 @@ module.exports = {
   signin,
   findpw,
   posts,
+  post_posts,
   post_write,
 
   post_signin,

@@ -7,6 +7,15 @@
     <title>board</title>
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/board.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -42,70 +51,56 @@
     </nav>
 
     <!-- board -->
-    <div class="boardPage">
+    <div class="board-Page">
         <div class="boardPageIn">
 
             <!-- ShareYourOwnMood! 문구 -->
 
-            <div class="boardMainText">
+            <div class="board-text">
                 <div>ShareYourOwnMood!</div>
             </div>
 
-            <div class="moodContainer">
+            <div class="mood-container">
 
                 <!-- mood 선택 버튼 -->
 
-                <div class="moodHeader">
-                    <span>
-                        <label class="moodModern">
-                            <input type="checkbox" class="moodCheckBox">
-                            <span class="modern">modern</span>
-                        </label>
-                    </span>
-                    <span>
-                        <label class="moodNatural">
-                            <input type="checkbox" class="moodCheckBox">
-                            <span class="natural">natural</span>
-                        </label>
-                    </span>
-                    <span>
-                        <label class="moodGame">
-                            <input type="checkbox" class="moodCheckBox">
-                            <span class="game">game</span>
-                        </label>
-                    </span>
-                    <span>
-                        <label class="moodStudyOffice">
-                            <input type="checkbox" class="moodCheckBox">
-                            <span class="studyOffice">study&office</span>
-                        </label>
-                    </span>
+                <div class="mood-header">
+                    <button class="button modern">modern</button>
+                    <button class="button natural">natural</button>
+                    <button class="button game">game</button>
+                    <button class="button studyoffice">study&office</button>
+                    <button class="button mood-write">write</button>
                 </div>
 
+                <!-- 드롭다운 -->
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        All
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">like</a></li>
+                        <li><a class="dropdown-item" href="#">recent</a></li>
+                        <li><a class="dropdown-item" href="#">old</a></li>
+                    </ul>
+                </div>
 
                 <!-- 무드 이미지 -->
-                <div>
-                    <div class="moodImage">
-                        <div class="moodItemWrap">
-                            <div class="moodItem">
-                                <img src="../images/desk.jpg" alt="">
-                            </div>
-                            <div class="moodItem"></div>
-                            <div class="moodItem"></div>
-
+                <div class="mood-box">
+                    <div class="mood-itemwrap" id="mood-itemwrap">
+                        <div class="mood-item">
+                            <img src="../images/desk.jpg" alt="desk">
                         </div>
-                        <div class="moodItemWrap">
-                            <div class="moodItem"></div>
-                            <div class="moodItem"></div>
-                            <div class="moodItem"></div>
+                        <div class="mood-item">
+                            <img src="../images/desk.jpg" alt="desk">
                         </div>
-                        <div class="moodItemWrap">
-                            <div class="moodItem"></div>
-                            <div class="moodItem"></div>
-                            <div class="moodItem"></div>
+                        <div class="mood-item">
+                            <img src="../images/desk.jpg" alt="desk">
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 

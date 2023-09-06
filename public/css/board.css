@@ -4,92 +4,108 @@
   font-weight: 600;
 }
 
-.boardMainText > div {
+.board-text > div {
   font-size: 87px;
   font-weight: 400;
   text-align: left;
   margin-top: 30px;
+  margin-left: 30px;
 }
 
-.moodContainer {
+.mood-container {
   position: relative;
   top: 50px;
 }
 
-.moodHeader {
+.mood-header {
   display: flex;
   margin: 0px 500px;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.moodModern,
-.moodNatural,
-.moodGame,
-.moodStudyOffice {
+.dropdown {
+  display: flex;
+  margin: 27px 300px;
+  justify-content: flex-start;
+}
+
+.dropdown-toggle {
+  background-color: white !important;
+  color: black !important;
+  border: none !important;
+}
+
+.mood-box {
+  margin-top: 52px;
+  margin-bottom: 150px;
+}
+
+
+.button {
   display: inline-block;
   position: relative;
-  height: 34px;
+  height: 39px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin: 0px 30px;
+  line-height: 0;
+  color: white;
+  background-color: black;
+  cursor: pointer;
+  font-size: 21px;
+  line-height: 35px;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: black;
+  background-color: white;
   border: 1px solid #4d4d4d;
-  border-radius: 15px;
-  padding-left: 12px;
-  padding-right: 12px;
+}
+
+
+.mood-write {
+  display: inline-block;
+  position: relative;
+  height: 39px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin: 0px 30px;
   line-height: 0;
   color: black;
   background-color: white;
   cursor: pointer;
-}
-
-.moodModern:hover,
-.moodNatural:hover,
-.moodGame:hover,
-.moodStudyOffice:hover {
-  color: white;
-  background-color: black;
-}
-
-.moodCheckBox {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 0px;
-  height: 0px;
-  opacity: 0;
-}
-
-.modern,
-.natural,
-.game,
-.studyOffice {
-  font-size: 15px;
-  line-height: 32px;
+  font-size: 21px;
+  line-height: 35px;
   vertical-align: middle;
-  white-space: nowrap;
-  cursor: inherit;
+  cursor: pointer;
 }
 
-.moodImage {
-  margin-top: 50px;
-  margin-bottom: 250px;
-}
 
-.moodItemWrap {
+.mood-itemwrap {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   margin: 0px 200px;
 }
 
-.moodItem {
+.mood-item {
   width: 300px;
   height: 300px;
   flex-direction: column;
   margin: 2px;
   background-color: #000000;
-  -webkit-filter: blur(0);
-  filter: blur(0);
-  -webkit-transition: 0.3s ease-in-out;
   transition: 0.3s ease-in-out;
   animation-name: fadeIn;
+  opacity: 0;
+  animation: fadeIn 2s 0s forwards;
+  overflow: hidden;
+  position: relative;
 }
 
 @keyframes fadeIn {
@@ -102,45 +118,48 @@
   }
 }
 
-.moodItem:hover {
-  -webkit-filter: blur(2px);
-  filter: blur(2px);
+
+.mood-item:hover img {
+  transform: scale(1.1);
+  
 }
 
-.moodItem > img {
+.mood-item > img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  transition: transform 0.3s ease-in-out;
 }
 
+
 @media screen and (max-width: 1200px) {
-  .moodHeader {
+  .mood-header {
     display: flex;
     justify-content: center;
     margin: 0px 400px;
   }
 
-  .moodModern,
-  .moodNatural,
-  .moodGame,
-  .moodStudyOffice {
+  .modern,
+  .natural,
+  .game,
+  .studyoffice {
     margin: 0px 10px;
   }
 
-  .moodItemWrap {
+  .mood-itemwrap {
     display: flex;
     margin: 0px;
   }
 
-  .moodItem {
+  .mood-item {
     width: 230px;
     height: 230px;
     margin: 1px;
   }
 
-  .boardMainText > div {
+  .board-text > div {
     font-size: 70px;
     text-align: center;
     margin-top: 20px;
@@ -149,30 +168,30 @@
 }
 
 @media screen and (max-width: 768px) {
-  .moodHeader {
+  .mood-header {
     margin: 0px 40px;
     justify-content: center;
   }
 
-  .moodModern,
-  .moodNatural,
-  .moodGame,
-  .moodStudyOffice {
-    margin: 0px 10px;
+  .modern,
+  .natural,
+  .game,
+  .studyoffice {
+    margin: 0px 6px;
   }
 
-  .moodItemWrap {
+  .mood-itemwrap {
     display: flex;
     margin: 0px;
   }
 
-  .moodItem {
+  .mood-item {
     width: 150px;
     height: 150px;
     margin: 1px;
   }
 
-  .boardMainText > div {
+  .board-text > div {
     font-size: 46px;
     text-align: center;
     margin-top: 20px;
@@ -180,30 +199,30 @@
 }
 
 @media screen and (max-width: 450px) {
-  .moodHeader {
+  .mood-header {
     margin: 0px 40px;
     justify-content: center;
   }
 
-  .moodModern,
-  .moodNatural,
-  .moodGame,
-  .moodStudyOffice {
+  .mood-modern,
+  .mood-natural,
+  .mood-game,
+  .mood-studyoffice {
     margin: 0px 8px;
   }
 
-  .moodItemWrap {
+  .mood-itemwrap {
     display: flex;
     margin: 0px;
   }
 
-  .moodItem {
+  .mood-item {
     width: 130px;
     height: 130px;
     margin: 1px;
   }
 
-  .boardMainText > div {
+  .board-text > div {
     font-size: 43px;
     text-align: center;
     margin-top: 20px;

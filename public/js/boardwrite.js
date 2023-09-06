@@ -7,7 +7,7 @@ function addComment() {
     return;
   }
 
-  const commentList = document.getElementById('commentList');
+  const commentList = document.getElementById('comment-list');
   const commentItem = document.createElement('li');
   commentItem.textContent = commentText;
   commentList.appendChild(commentItem);
