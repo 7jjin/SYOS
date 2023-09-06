@@ -1,5 +1,9 @@
-main Div 높이 main.signUp {
-  height: 70vh;
+main.signUp {
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* 모든 요소 가운데 정렬 */
@@ -45,6 +49,7 @@ main > .signUpDiv > div > input {
 /* 회원가입 버튼 div */
 main > .signUpDiv > .signUpBtnDiv {
   height: 20vh;
+  border: none;
 }
 
 /* 회원가입 버튼 */

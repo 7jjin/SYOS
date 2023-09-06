@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inputDnD {
+            .form-control-file {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                min-height: 6em;
+                outline: none;
+                visibility: hidden;
+                cursor: pointer;
+                background-color: #c61c23;
+                box-shadow: 0 0 5px solid currentColor;
+
+                &:before {
+                    content: attr(data-title);
+                    position: absolute;
+                    top: 0.5em;
+                    left: 0;
+                    width: 100%;
+                    min-height: 6em;
+                    line-height: 2em;
+                    padding-top: 1.5em;
+                    opacity: 1;
+                    visibility: visible;
+                    text-align: center;
+                    border: 0.25em dashed currentColor;
+                    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+                    overflow: hidden;
+                }
+
+                &:hover {
+                    &:before {
+                        border-style: solid;
+                        box-shadow: inset 0px 0px 0px 0.25em currentColor;
+                    }
+                }
+            }
+        }
+
+        body {
+            background-color: #f7f7f9;
+        }
+
+        #uploaded-image {
+            max-width: 100%;
+            max-height: 300px;
+            /* 이미지의 최대 높이를 조절할 수 있습니다. */
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container p-y-1">
+        <div class="row m-b-1">
+            <div class="col-sm-6 offset-sm-3">
+                <button type="button" class="btn btn-primary btn-block"
+                    onclick="document.getElementById('inputFile').click()">Add Image</button>
+                <div class="form-group inputDnD">
+                    <label class="sr-only" for="inputFile">File Upload</label>
+                    <input type="file" class="form-control-file text-primary font-weight-bold" id="inputFile"
+                        accept="/image/*" onchange="readUrl(this)" data-title="Drag and drop a file">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>Teachable Machine Image Model</div>
+    <button type="button" onclick="init()">Start</button>
+    <button type="button" onclick="predict()">구별</button>
+    <div id="webcam-container"></div>
+    <div id="label-container"></div>
+    <div id="uploaded-image-container">
+        <img id="uploaded-image" src="" alt="Uploaded Image">
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script type="text/javascript">
+        // More API functions here:
+        // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
+
+        // the link to your model provided by Teachable Machine export panel
+        const URL = "https://teachablemachine.withgoogle.com/models/VCab8OL_L/";
+
+        let model, webcam, labelContainer, maxPredictions;
+
+        // Load the image model and setup the webcam
+        async function init() {
+            const modelURL = URL + "model.json";
+            const metadataURL = URL + "metadata.json";
+
+            // load the model and metadata
+            // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
+            // or files from your local hard drive
+            // Note: the pose library adds "tmImage" object to your window (window.tmImage)
+            model = await tmImage.load(modelURL, metadataURL);
+            maxPredictions = model.getTotalClasses();
+
+
+            // append elements to the DOM
+            labelContainer = document.getElementById("label-container");
+            for (let i = 0; i < maxPredictions; i++) { // and class labels
+                labelContainer.appendChild(document.createElement("div"));
+            }
+        }
+
+        // run the webcam image through the image model
+        async function predict() {
+            let image = document.getElementById("uploaded-image");
+
+            // predict can take in an image, video or canvas html element
+            const prediction = await model.predict(image, false)
+            for (let i = 0; i < maxPredictions; i++) {
+                const classPrediction =
+                    prediction[i].className + ": " + prediction[i].probability.toFixed(2);
+                labelContainer.childNodes[i].innerHTML = classPrediction;
+            }
+
+        }
+
+
+
+
+    </script>
+
+
+
+    <script>
+        function readUrl(input) {
+            if (input.files && input.files[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    let imgData = e.target.result;
+                    let imgName = input.files[0].name;
+                    input.setAttribute("data-title", imgName);
+                    document.getElementById("uploaded-image").src = imgData; // 이미지를 표시
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+</body>
+
+</html>
