@@ -20,6 +20,9 @@ app.use(express.json());
 const router = require("./routes");
 app.use("/", router);
 
+const admin = require("./routes/admin");
+app.use("/admin", admin);
+
 const socketRouter = require('./routes/socket');
 socketRouter(io);
 
