@@ -32,4 +32,10 @@ router.post("/signup/emailCheck", controller.post_emailCheck);
 // 닉네임 중복 체크
 router.post("/signup/nickNameCheck", controller.post_nickName);
 
+// 구글 로그인
+router.get("/signin/google", controller.google_signin);
+
+// 액세스 토큰 받기
+router.get("/signin/google/redirect", controller.google_redirect);
+
 module.exports = router;
