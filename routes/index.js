@@ -17,6 +17,9 @@ router.get("/findpw", controller.findpw);
 // 전체 게시물
 router.get("/posts", controller.posts);
 
+// 전체 게시물
+router.post('/posts', controller.post_posts);
+
 // 게시물 상세
 router.get("/posts/write", controller.post_write);
 

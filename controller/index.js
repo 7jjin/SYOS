@@ -34,10 +34,17 @@ const findpw = (req, res) => {
   res.render("findPw");
 };
 
+
 // 전체 게시물
 const posts = (req, res) => {
   res.render("board");
 };
+
+const post_posts = (req, res) => {
+  Post.findAll({}).then((result) => {
+    res.json({ data: result });
+  })
+}
 
 // 구글 로그인 페이지로 이동
 const google_signin = (req, res) => {
@@ -214,6 +221,8 @@ module.exports = {
   signin,
   findpw,
   posts,
+  post_posts,
+  post_write,
   google_signin,
   google_redirect,
 
