@@ -1,7 +1,7 @@
 "use strict";
 
 const Sequelize = require("sequelize");
-const env = process.env.NODE_ENV || "development";
+const env = process.env.NODE_ENV || "test";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 const sequelize = new Sequelize(
@@ -12,6 +12,7 @@ const sequelize = new Sequelize(
 );
 
 db.User = require("./User")(sequelize);
+db.Post = require("./Post")(sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
