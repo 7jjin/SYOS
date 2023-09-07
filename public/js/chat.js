@@ -11,6 +11,7 @@ let tempId = Math.random().toString(16).slice(2);
 chatButton.addEventListener('click', () => {
   if (!isOpen) {
     chatWrapper.style.animation = 'openChat 0.5s forwards';
+    chatWrapper.style.zIndex = '999';
   } else {
     // 채팅방 나가기
     socket.emit('leaveRoom');
@@ -27,6 +28,7 @@ chatButton.addEventListener('click', () => {
     `;
 
     chatWrapper.style.animation = 'closeChat 0.5s forwards';
+    chatWrapper.style.zIndex = '1';
   }
   isOpen = !isOpen;
 });
