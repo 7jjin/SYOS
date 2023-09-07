@@ -11,6 +11,9 @@ router.get("/recommend", controller.recommend);
 // 모든 포스트 내보내기
 router.post("/recommend", controller.post_recommend);
 
+// 포스트 업로드 페이지
+router.get("/uploadPost", controller.post_upload);
+
 // 회원가입 페이지 이동
 router.get("/signup", controller.signup);
 
