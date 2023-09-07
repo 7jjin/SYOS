@@ -20,6 +20,7 @@
   border-radius: 99999px;
   padding: 1.3rem 3rem;
   margin: 3rem 0 4rem 0;
+  cursor: pointer
 }
 
 .swiper {
@@ -108,6 +109,8 @@
   border-radius: 99999px;
   padding: 1.3rem 3rem;
   margin: 3rem 0 4rem 0;
+  cursor: pointer;
+  z-index: 2;
 }
 
 #best-wrapper {
