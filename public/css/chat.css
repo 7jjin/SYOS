@@ -46,6 +46,8 @@
 }
 
 #chat-wrapper {
+  pointer-events: none;
+  display: none;
   width: 400px;
   height: 600px;
   opacity: 0;

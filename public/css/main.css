@@ -132,6 +132,7 @@
   box-sizing: border-box;
   padding: 4rem;
   opacity: 0;
+  cursor: pointer;
 }
 
 .best-box > * {
@@ -157,13 +158,6 @@
   background-size: cover;
   background-position: center;
   border-radius: 20px;
-}
-
-#best-img1 {
-  background-image: url('../images/best1.jpg');
-}
-#best-img2 {
-  background-image: url('../images/best2.jpg');
 }
 
 .best-info {
