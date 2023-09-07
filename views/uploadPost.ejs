@@ -1,25 +1,21 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="../css/uploadPost.css">
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/Recommend.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
-    <title>Recommend</title>
+
+
+
 </head>
 
 <body>
-
-
     <header id="main-header">
         <svg class="menu-button" width="40px" height="40px" focusable="false" viewBox="0 0 24 24">
             <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
@@ -56,74 +52,23 @@
 
 
 
-
-    <!-- file-upload-section -->
-    <h2 class="upload-title">Show your desk!</h2>
-    <section class="upload-image-wrapper">
-        <div name="upload-image-form" class="upload-image-form" onclick="init()">
-            <div id="webcam-container"></div>
+    <form method="post">
+        <div class="title-box wrapper-box">
+            <p class="title">제목</p>
+            <input type="text" name="title" placeholder="제목을 적어주세요">
         </div>
-        <div id="label-container"></div>
-    </section>
-
-
-
-
-    <!-- result-box-section -->
-    <section class="result-box">
-        <div class="result-box-wrapper">
-            <div class="moden-box result">
-                <div class="moden-span">
-                    <span>Moden</span>
-                </div>
-                <div class="moden-per per">
-                    <span>0%</span>
-                </div>
-            </div>
-            <div class="office-box result">
-                <div class="office-span">
-                    <span>Natural</span>
-                </div>
-                <div class="office-per per">
-                    <span>0%</span>
-                </div>
-            </div>
-            <div class="study-box result">
-                <div class="study-span">
-                    <span>Game</span>
-                </div>
-                <div class="study-per per">
-                    <span>0%</span>
-                </div>
-            </div>
-            <div class="natural-box result">
-                <div class="natural-span">
-                    <span>Study&office</span>
-                </div>
-                <div class="natural-per per">
-                    <span>0%</span>
-                </div>
-            </div>
+        <div class="writer-box wrapper-box">
+            <p class="writer">작성자</p>
+            <input type="text" name="name" placeholder="이름을 적어주세요.">
         </div>
-    </section>
-
-    <!-- recommend-posts-section -->
-
-    <section class="recommend-posts">
-        <h1 class="recommend-title">Recommend</h1>
-        <div class="recommend-post-wrapper">
-
-            <div class="posts-box">
-
-            </div>
-            <div class="move-box">
-                <div class="move-box-inner">
-                    <p>More posts</p>
-                    <i class="fa-solid fa-right-long fa-fade" style="color: #000000;"></i>
-                </div>
-            </div>
+        <div class="image-box wrapper-box">
+            <p class="image">이미지</p>
+            <input type="file" name="image" class="image">
         </div>
-    </section>
+
+        <textarea id="mytextarea">Hello, World!</textarea>
+
+    </form>
 
     <!-- footer -->
     <footer id="main-footer">
@@ -151,9 +96,8 @@
             </path>
         </svg>
     </footer>
-
     <script src="../js/menu.js"></script>
-    <script src="../js/recommend.js"></script>
+    <script src="../js/uploadPost.js"></script>
 </body>
 
 </html>

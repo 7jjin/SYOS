@@ -60,6 +60,10 @@ const post_recommend = (req, res) => {
   });
 };
 
+const post_upload = (req, res) => {
+  res.render("uploadPost");
+};
+
 // 회원가입 페이지 이동
 const signup = (req, res) => {
   res.render("signup");
@@ -75,7 +79,6 @@ const findpw = (req, res) => {
   res.render("findPw");
 };
 
-
 // 전체 게시물
 const posts = (req, res) => {
   res.render("board");
@@ -84,8 +87,8 @@ const posts = (req, res) => {
 const post_posts = (req, res) => {
   Post.findAll({}).then((result) => {
     res.json({ data: result });
-  })
-}
+  });
+};
 
 // 구글 로그인 페이지로 이동
 const google_signin = (req, res) => {
@@ -259,6 +262,7 @@ const post_nickName = async (req, res) => {
 module.exports = {
   main,
   recommend,
+  post_upload,
   signup,
   signin,
   findpw,

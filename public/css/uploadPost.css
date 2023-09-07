@@ -1,0 +1,36 @@
+p{
+    margin:0;
+}
+
+.wrapper-title{
+    text-align: center;
+    font-weight: 700;
+}
+
+.writer,.title{
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.wrapper-box{
+    margin-bottom: 30px;
+}
+
+form{
+    width: 80%;
+    margin:0 auto;
+}
+
+input{
+    width: 97%;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 3%;
+  background-color: rgb(233, 233, 233);
+}
+.image{
+    background-color: white;
+}
