@@ -5,12 +5,14 @@ const controller = require("../controller");
 // 메인 페이지 이동
 router.get("/", controller.main);
 
-
 // 추천 페이지 이동
 router.get("/recommend", controller.recommend);
 
 // 모든 포스트 내보내기
 router.post("/recommend", controller.post_recommend);
+
+// 포스트 업로드 페이지
+router.post("/uploadPost", controller.uploadPost);
 
 // 회원가입 페이지 이동
 router.get("/signup", controller.signup);
@@ -25,8 +27,7 @@ router.get("/findpw", controller.findpw);
 router.get("/posts", controller.posts);
 
 // 전체 게시물
-router.post('/posts', controller.post_posts);
-
+router.post("/posts", controller.post_posts);
 
 // 게시물 상세
 router.get("/posts/write", controller.post_write);
@@ -48,6 +49,5 @@ router.get("/signin/google", controller.google_signin);
 
 // 액세스 토큰 받기
 router.get("/signin/google/redirect", controller.google_redirect);
-
 
 module.exports = router;
