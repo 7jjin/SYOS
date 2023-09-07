@@ -60,11 +60,11 @@
   cursor: pointer;
 }
 
-.button:hover {
+/* .button:hover {
   color: black;
   background-color: white;
   border: 1px solid #4d4d4d;
-}
+} */
 
 
 .mood-write {
@@ -99,7 +99,6 @@
   height: 300px;
   flex-direction: column;
   margin: 2px;
-  background-color: #000000;
   transition: 0.3s ease-in-out;
   animation-name: fadeIn;
   opacity: 0;
@@ -121,7 +120,13 @@
 
 .mood-item:hover img {
   transform: scale(1.1);
+  -webkit-filter: blur(2px);
+	filter: blur(2px);
+}
   
+
+.mood-item.invisible {
+  display: none;
 }
 
 .mood-item > img {
