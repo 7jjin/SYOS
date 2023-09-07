@@ -31,7 +31,7 @@ const post_recommend = (req, res) => {
   });
 };
 
-const uploadPost = (req, res) => {
+const post_upload = (req, res) => {
   res.render("uploadPost");
 };
 
@@ -233,7 +233,7 @@ const post_nickName = async (req, res) => {
 module.exports = {
   main,
   recommend,
-  uploadPost,
+  post_upload,
   signup,
   signin,
   findpw,
