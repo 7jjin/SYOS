@@ -35,7 +35,6 @@ const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
 const recommendPost = document.querySelector(".recommend-posts");
 
 const result = document.querySelectorAll(".result");
-console.log();
 
 // 웹캠 설정 부분 시작
 
@@ -49,6 +48,11 @@ let data = [];
 async function init() {
   const modelURL = URL + "model.json";
   const metadataURL = URL + "metadata.json";
+  console.log("a");
+  const uploadImageForm = document.querySelector(".upload-image-form");
+  const loading = document.createElement("div");
+  loading.className = "loading";
+  uploadImageForm.appendChild(loading);
 
   model = await tmImage.load(modelURL, metadataURL);
   maxPredictions = model.getTotalClasses();
@@ -58,6 +62,7 @@ async function init() {
   webcam = new tmImage.Webcam(700, 400, flip); // 높이, 너비, 상태
   await webcam.setup();
   await webcam.play();
+  uploadImageForm.removeChild(loading);
   window.requestAnimationFrame(loop);
 
   // 웹캠에 화면 출력
@@ -175,14 +180,15 @@ const studyBox = document.querySelector(".study-box");
 const naturalBox = document.querySelector(".natural-box");
 
 modenBox.addEventListener("click", function () {
-  modenBox.firstElementChild.style.backgroundColor = "beige";
-  // 'post1' 클래스를 가진 요소들을 숨깁니다.
+  clickColor(modenBox);
+
+  // 'post1' 클래스를 가진 포스트들을 숨깁니다.
   const postElements = document.querySelectorAll(".post1");
   postElements.forEach((element) => {
     element.style.display = "none";
   });
 
-  // 'type0' 클래스를 가진 요소들만 표시합니다.
+  // 'type0' 클래스를 가진 포스트들만 표시합니다.
   const modenPosts = document.querySelectorAll(".type0");
   modenPosts.forEach((element, index) => {
     if (index < 4) element.style.display = "block";
@@ -191,13 +197,14 @@ modenBox.addEventListener("click", function () {
 
 // 'office-box result'를 클릭할 때
 officeBox.addEventListener("click", function () {
-  // 'post1' 클래스를 가진 요소들을 숨깁니다.
+  clickColor(officeBox);
+  // 'post1' 클래스를 가진 포스트들을 숨깁니다.
   const postElements = document.querySelectorAll(".post1");
   postElements.forEach((element) => {
     element.style.display = "none";
   });
 
-  // 'type1' 클래스를 가진 요소들만 표시합니다.
+  // 'type1' 클래스를 가진 포스트들만 표시합니다.
   const officePosts = document.querySelectorAll(".type1");
   officePosts.forEach((element, index) => {
     if (index < 4) element.style.display = "block";
@@ -206,13 +213,14 @@ officeBox.addEventListener("click", function () {
 
 // 'study-box result'를 클릭할 때
 studyBox.addEventListener("click", function () {
-  // 'post1' 클래스를 가진 요소들을 숨깁니다.
+  clickColor(studyBox);
+  // 'post1' 클래스를 가진 포스트들을 숨깁니다.
   const postElements = document.querySelectorAll(".post1");
   postElements.forEach((element) => {
     element.style.display = "none";
   });
 
-  // 'type2' 클래스를 가진 요소들만 표시합니다.
+  // 'type2' 클래스를 가진 포스트들만 표시합니다.
   const officePosts = document.querySelectorAll(".type2");
   officePosts.forEach((element, index) => {
     if (index < 4) element.style.display = "block";
@@ -221,16 +229,25 @@ studyBox.addEventListener("click", function () {
 
 // 'natural-box result'를 클릭할 때
 naturalBox.addEventListener("click", function () {
-  // 'post1' 클래스를 가진 요소들을 숨깁니다.
+  clickColor(naturalBox);
+  // 'post1' 클래스를 가진 포스트들을 숨깁니다.
   const postElements = document.querySelectorAll(".post1");
   postElements.forEach((element) => {
     element.style.display = "none";
   });
 
-  // 'type3' 클래스를 가진 요소들만 표시합니다.
+  // 'type3' 클래스를 가진 포스트들만 표시합니다.
   const officePosts = document.querySelectorAll(".type3");
   officePosts.forEach((element, index) => {
     if (index < 4) element.style.display = "block";
   });
 });
+
+// 클릭된 버튼만 색 바뀌는 함수
+function clickColor(clicked) {
+  result.forEach((element) => {
+    element.firstElementChild.style.backgroundColor = "white";
+  });
+  clicked.firstElementChild.style.backgroundColor = "#213555";
+}
 /////////////////////////////////////////////////////////////////////////////////////////////

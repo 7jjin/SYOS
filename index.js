@@ -10,8 +10,8 @@ const multerS3 = require("multer-s3");
 app.set("view engine", "ejs");
 
 aws.config.update({
-  accessKeyId: "AKIA5467FJ355KMJHLHN",
-  secretAccessKey: "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",
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
   region: "ap-northeast-2",
 });
 
@@ -23,8 +23,8 @@ app.use(express.static(__dirname + "/public"));
 
 require("dotenv").config(); // .env 파일 사용
 
-const http = require('http');
-const SocketIO = require('socket.io');
+const http = require("http");
+const SocketIO = require("socket.io");
 const server = http.createServer(app);
 const io = SocketIO(server);
 
@@ -34,7 +34,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
 //router
 const router = require("./routes");
 app.use("/", router);
@@ -42,7 +41,7 @@ app.use("/", router);
 const admin = require("./routes/admin");
 app.use("/admin", admin);
 
-const socketRouter = require('./routes/socket');
+const socketRouter = require("./routes/socket");
 socketRouter(io);
 
 db.sequelize.sync({ force: false }).then(() => {
