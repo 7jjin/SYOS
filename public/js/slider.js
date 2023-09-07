@@ -1,4 +1,4 @@
-// slider setting
+// 슬라이더 설정
 const swiper = new Swiper('.swiper', {
   slidesPerView: 3,
   // slidesPerGroup: 7,
@@ -15,7 +15,7 @@ const swiper = new Swiper('.swiper', {
 });
 
 
-// scroll event 
+// 스크롤 이벤트
 function checkVisibility(element, className, threshold) {
   const rect = element.getBoundingClientRect();
   const windowHeight = window.innerHeight || document.documentElement.clientHeight;
@@ -35,4 +35,3 @@ addEventListener('scroll', function () {
   checkVisibility(bestBox1, 'fadeInLeft', 1);
   checkVisibility(bestBox2, 'fadeInRight', 1);
 });
-

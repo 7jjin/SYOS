@@ -16,8 +16,37 @@ const GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
 const GOOGLE_USERINFO_URL = "https://www.googleapis.com/oauth2/v2/userinfo";
 
 // 메인 페이지 이동
-const main = (req, res) => {
-  res.render("index");
+const main = async (req, res) => {
+  try {
+    const mostLikedPost = await Post.findOne({
+      attributes: ['post_id', 'title', 'image', 'liked', 'comment'],
+      order: [['liked', 'DESC']]
+    });
+
+    const mostCommentedPost = await Post.findOne({
+      attributes: ['post_id', 'title', 'image', 'comment', 'liked', 'comment'],
+      order: [['comment', 'DESC']],
+    });
+
+    console.log('가장 많이 좋아요 받은 포스트:', mostLikedPost);
+    console.log('가장 많은 댓글이 달린 포스트:', mostCommentedPost);
+
+    res.render("index", {
+      likeId: mostLikedPost.post_id,
+      // likeTitle: mostLikedPost.title,
+      likeImage: mostLikedPost.image,
+      likeLiked: mostLikedPost.liked,
+      likeComment: mostLikedPost.comment,
+      commentId: mostCommentedPost.post_id,
+      // commentTitle: mostCommentedPost.title,
+      commentImage: mostCommentedPost.image,
+      commentLiked: mostCommentedPost.liked,
+      commentComment: mostCommentedPost.comment
+    });
+  } 
+  catch (error) {
+    console.error();
+  }
 };
 
 // 추천 페이지 이동

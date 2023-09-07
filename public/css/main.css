@@ -20,6 +20,7 @@
   border-radius: 99999px;
   padding: 1.3rem 3rem;
   margin: 3rem 0 4rem 0;
+  cursor: pointer
 }
 
 .swiper {
@@ -108,13 +109,15 @@
   border-radius: 99999px;
   padding: 1.3rem 3rem;
   margin: 3rem 0 4rem 0;
+  cursor: pointer;
+  z-index: 2;
 }
 
 #best-wrapper {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  margin: 0 4rem 180px 4rem;
+  margin: 0 4rem 140px 4rem;
 }
 
 .best-box {
@@ -129,6 +132,7 @@
   box-sizing: border-box;
   padding: 4rem;
   opacity: 0;
+  cursor: pointer;
 }
 
 .best-box > * {
@@ -154,13 +158,6 @@
   background-size: cover;
   background-position: center;
   border-radius: 20px;
-}
-
-#best-img1 {
-  background-image: url('../images/best1.jpg');
-}
-#best-img2 {
-  background-image: url('../images/best2.jpg');
 }
 
 .best-info {

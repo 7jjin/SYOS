@@ -33,6 +33,11 @@ const Post = (sequelize) => {
       allowNull: false,
       defaultValue: 0,
     },
+    comment: {
+      type: DataTypes.INTEGER.UNSIGNED,
+      allowNull: false,
+      default: 0,
+    },
     category: {
       type: DataTypes.INTEGER,
       allowNull: false,

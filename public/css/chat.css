@@ -3,25 +3,36 @@
 .chat {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
 #reply {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
 .chat > a {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
+#chat-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
 #chat-header {
-  background-color: white;
-  position: fixed;
-  top: 0;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  background-color: transparent;
   width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   box-sizing: border-box;
   padding: 1.5rem;
-  border-radius: 24px;
 }
+
 #chat-header-logo {
   font-size: 24px;
   font-weight: bold;
@@ -35,6 +46,8 @@
 }
 
 #chat-wrapper {
+  pointer-events: none;
+  display: none;
   width: 400px;
   height: 600px;
   opacity: 0;
@@ -46,7 +59,6 @@
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  z-index: 999;
   border-radius: 24px;
   box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
     rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0, 0.15) 0px 8px 30px;
@@ -112,6 +124,11 @@
   border-radius: 16px;
 }
 
+#reply:focus {
+  outline: none;
+}
+
+
 #reply-btn {
   display: none;
 }
@@ -173,7 +190,7 @@
 
   to {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, 10%, 0);
   }
 }
 
