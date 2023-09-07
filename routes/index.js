@@ -21,7 +21,7 @@ router.get("/signup", controller.signup);
 router.get("/signin", controller.signin);
 
 // 비밀번호 찾기 페이지 이동
-router.get("/findpw", controller.findpw);
+router.get("/resetPw", controller.resetPw);
 
 // 전체 게시물
 router.get("/posts", controller.posts);
@@ -49,5 +49,8 @@ router.get("/signin/google", controller.google_signin);
 
 // 액세스 토큰 받기
 router.get("/signin/google/redirect", controller.google_redirect);
+
+// 비밀번호 재설정
+router.post("/resetPw", controller.post_resetPw);
 
 module.exports = router;

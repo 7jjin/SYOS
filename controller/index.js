@@ -1,5 +1,6 @@
 const { User, Post } = require("../models"); // index.js 생략
 const bcrypt = require("bcrypt");
+const { smtpTransport } = require("../config/email"); // 이메일 전송
 
 const jwt = require("jsonwebtoken");
 const axios = require("axios");
@@ -75,8 +76,8 @@ const signin = (req, res) => {
 };
 
 // 비밀번호 찾기 페이지 이동
-const findpw = (req, res) => {
-  res.render("findPw");
+const resetPw = (req, res) => {
+  res.render("resetPw");
 };
 
 // 전체 게시물
@@ -258,6 +259,50 @@ const post_nickName = async (req, res) => {
   }
 };
 
+const RandomNumber = (min, max) => {
+  const ranNum = Math.floor(Math.random() * (max - min + 1)) + min;
+  return ranNum;
+};
+
+const post_resetPw = async (req, res) => {
+  const { email } = req.body;
+
+  // 이메일로 유저가 존재하는지 먼저 확인
+  const findUser = await User.findOne({
+    where: {
+      email,
+    },
+  });
+
+  // 유저가 존재하지 않을 경우
+  if (findUser == null) {
+    res.json({ result: "1" });
+  } else if (findUser.password == "google") {
+    // 비밀번호가 'google'일 경우
+    res.json({ result: "2" });
+  } else {
+    // 인증번호 이메일로 전송
+    const ranNum = RandomNumber(100000, 999999);
+    const mailOptions = {
+      from: "jaejae990921@naver.com",
+      to: email,
+      subject: "[SYOS] 비밀번호 재설정 인증 번호입니다.",
+      html: `<h1> [SYOS] 인증번호입니다. </h1><br /><h3>인증번호 : ${ranNum}</h3>`,
+    };
+
+    smtpTransport.sendMail(mailOptions, (error, responses) => {
+      if (error) {
+        // 이메일 전송 실패
+        console.log(error);
+        res.json({ result: "3" });
+      } else {
+        res.json({ result: "4", ranNum });
+      }
+      smtpTransport.close();
+    });
+  }
+};
+
 // 소셜 로그인
 module.exports = {
   main,
@@ -265,7 +310,7 @@ module.exports = {
   post_upload,
   signup,
   signin,
-  findpw,
+  resetPw,
   posts,
   post_posts,
   post_write,
@@ -278,6 +323,7 @@ module.exports = {
   post_emailCheck,
   post_nickName,
   post_recommend,
+  post_resetPw,
 };
 
 // 암호화
