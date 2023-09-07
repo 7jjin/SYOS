@@ -35,8 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
 function createPost(post_id, user_id, title, content, image, category, liked, createAt, updateAt) {
     const postContainer = document.querySelector(".mood-box");
     const newPost = document.createElement("div");
+    newPost.className = `mood type${category}`
     newPost.className = "mood-itemwrap";
     newPost.innerHTML = `
+    <div class="mood-item">
+        <img src='${IMG + image}' alt="">
+    </div>
+    <div class="mood-item">
+        <img src='${IMG + image}' alt="">
+    </div>
     <div class="mood-item">
         <img src='${IMG + image}' alt="">
     </div>
@@ -44,34 +51,45 @@ function createPost(post_id, user_id, title, content, image, category, liked, cr
     postContainer.appendChild(newPost);
 }
 
+//mood 카테고리 버튼 눌렀을 때 기능
+const button = document.querySelectorAll(".button");
 
-// mood 버튼 실행 시 화면 전환
-// function start() {
-//     const button = document.querySelectorAll('.button')
-//     const storeItems = document.querySelectorAll('.mood-box')
+const modernBox = document.querySelector(".modern");
+const naturalBox = document.querySelector(".natural");
+const gameBox = document.querySelector(".game");
+const studyofficeBox = document.querySelector(".study");
 
+button.forEach(function (button) {
+    button.addEventListener("click", function () {
+        // 클릭된 버튼의 스타일을 변경
+        button.style.backgroundColor = "white";
+        button.style.color = "black";
 
-//     button.forEach(b => b.addEventListener('click', (e) => {
-//         e.preventDefault()
-//         const filter = e.target.dataset.filter
+    });
+});
 
-//         storeItems.forEach(i => {
-//             if (filter === 'all') {
-//                 i.style.display = 'block';
+// //카테고리 버튼 모두 가져옴 
+// const categoryBtn = document.querySelector(".mood-header");
+// //카테고리별 아이템들 가져옴
+// const items = document.querySelectorAll(".mood-item");
 
-//             } else {
-//                 if (i.classList.contains(filter)) {
-//                     i.style.display = 'block';
+// categoryBtn.addEventListener("click", (e) => {
+//     const filter = e.target.dataset.filter;
+//     console.log(filter); //e.target값 확인
 
-//                 }
-//                 else {
-//                     i.style.display = 'none';
-//                 }
-//             }
-//         })
-//     })
-//     )
-// }
+//     if (filter == null) {
+//         return;
+//     }
+// });
+
+// items.forEach((item) => {
+//     if (filter === "*" || filter === item.dataset.type) {
+//         item.classList.remove("invisible");
+//     } else {
+//         item.classList.add("invisible");
+//     }
+// })
+
 
 axios({
     method: "POST",
