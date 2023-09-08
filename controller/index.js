@@ -43,7 +43,7 @@ const main = async (req, res) => {
       commentLiked: mostCommentedPost.liked,
       commentComment: mostCommentedPost.comment
     });
-  } 
+  }
   catch (error) {
     console.error();
   }

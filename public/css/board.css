@@ -40,7 +40,6 @@
   margin-bottom: 150px;
 }
 
-
 .button {
   display: inline-block;
   position: relative;
@@ -60,11 +59,11 @@
   cursor: pointer;
 }
 
-/* .button:hover {
+.button.active {
   color: black;
   background-color: white;
   border: 1px solid #4d4d4d;
-} */
+}
 
 
 .mood-write {
@@ -94,7 +93,15 @@
   margin: 0px 200px;
 }
 
-.mood-item {
+.mood-itemwrap .active {
+  display: block;
+}
+
+.mood-itemwrap .hide {
+  display: none;
+}
+
+.item-box {
   width: 300px;
   height: 300px;
   flex-direction: column;
@@ -107,6 +114,7 @@
   position: relative;
 }
 
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -118,18 +126,18 @@
 }
 
 
-.mood-item:hover img {
+.item-box:hover img {
   transform: scale(1.1);
   -webkit-filter: blur(2px);
 	filter: blur(2px);
 }
   
 
-.mood-item.invisible {
+.item-box.invisible {
   display: none;
 }
 
-.mood-item > img {
+.item-box > img {
   position: absolute;
   top: 0;
   left: 0;
@@ -233,3 +241,5 @@
     margin-top: 20px;
   }
 }
+
+
