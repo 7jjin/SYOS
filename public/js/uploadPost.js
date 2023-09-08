@@ -10,12 +10,15 @@ const carmeraIcon = document.querySelector(".upload-image i");
 const carmeraTitle = document.querySelector(".upload-image p");
 const linkTag = document.querySelector(".add-link-wrapper");
 
+let IsfileUpload = true;
+
 imageInput.addEventListener("change", function (event) {
   // 파일을 경로
   const file = this.files[0];
 
   // 경로가 있다면 (사진을 올렸을 경우) 실행
   if (file) {
+    console.log(IsfileUpload);
     const reader = new FileReader();
     reader.onload = function (e) {
       const imageUrl = e.target.result;
@@ -31,6 +34,8 @@ imageInput.addEventListener("change", function (event) {
     reader.readAsDataURL(file);
   } else {
     // 경로가 없을 경우 (사진이 없을 경우)
+    IsfileUpload = false;
+    console.log(IsfileUpload);
     uploadImageLabel.style.backgroundImage = "none";
     carmeraIcon.style.display = "block";
     carmeraTitle.style.display = "block";
@@ -43,7 +48,9 @@ function mousemove() {
   const mouseFollower = uploadImage.querySelector(".mouse-follower"); // uploadImage 내에서 검색
   // 클릭한 좌표를 저장할 변수
   let clickedX, clickedY;
-
+  if (!IsfileUpload) {
+    mouseFollower.style.display = "none";
+  }
   uploadImage.addEventListener("mouseenter", () => {
     // 마우스가 들어왔을 때
     mouseFollower.style.display = "block";
@@ -63,10 +70,10 @@ function mousemove() {
     clickedX = offsetX;
     clickedY = offsetY;
   });
-
   uploadImage.addEventListener("click", () => {
     // 클릭한 좌표 출력
     console.log("Clicked at (top, left):", clickedY, clickedX);
+    mouseFollower.style.display = "none";
   });
 
   uploadImage.addEventListener("mouseleave", () => {
@@ -75,6 +82,4 @@ function mousemove() {
   });
 }
 
-function addLink() {
-  console.log("a");
-}
+function addLink() {}
