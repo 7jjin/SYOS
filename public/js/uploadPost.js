@@ -28,6 +28,7 @@ imageInput.addEventListener("change", function (event) {
       carmeraIcon.style.display = "none";
       carmeraTitle.style.display = "none";
 
+      imageInput.disabled = true;
       // 링크 태그 on
       linkTag.style.display = "block";
     };
