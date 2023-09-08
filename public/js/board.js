@@ -1,8 +1,10 @@
 
 //S3 이미지 경로 
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+//const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`
+const IMG = 'http://localhost:8000';
 
-// 무한 스크롤 기능
+
+//무한 스크롤 기능
 document.addEventListener("DOMContentLoaded", function () {
     const postContainer = document.querySelector(".mood-box");
     let lastPost = document.querySelector(".mood-itemwrap:last-child");
@@ -31,14 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(lastPost); // 초기에 마지막 포스트를 관찰 시작
 });
 
-// 스크롤이 마지막에 도달할 때 이미지 추가
+
+// // 스크롤이 마지막에 도달할 때 이미지 추가
 function createPost(post_id, user_id, title, content, image, category, liked, createAt, updateAt) {
     const postContainer = document.querySelector(".mood-box");
     const newPost = document.createElement("div");
-    newPost.className = `mood type${category}`
+    console.log(image)
+    // newPost.className = `mood type${category}`
     newPost.className = "mood-itemwrap";
     newPost.innerHTML = `
-    <div class="mood-item">
+    <div class="mood-item" >
         <img src='${IMG + image}' alt="">
     </div>
     <div class="mood-item">
@@ -51,51 +55,65 @@ function createPost(post_id, user_id, title, content, image, category, liked, cr
     postContainer.appendChild(newPost);
 }
 
-//mood 카테고리 버튼 눌렀을 때 기능
-const button = document.querySelectorAll(".button");
 
-const modernBox = document.querySelector(".modern");
-const naturalBox = document.querySelector(".natural");
-const gameBox = document.querySelector(".game");
-const studyofficeBox = document.querySelector(".study");
+//카테고리 버튼 
+const button = document.querySelectorAll('.button');
+const itemBox = document.querySelectorAll('.item-box');
+console.log(button, itemBox)
+for (let i = 0; i < button.length; i++) {
+    button[i].addEventListener('click', function () {
+        console.log(i)
+        for (let j = 0; j < button.length; j++) {
+            button[j].classList.remove('active');
+        }
+        this.classList.add('active');
 
-button.forEach(function (button) {
-    button.addEventListener("click", function () {
-        // 클릭된 버튼의 스타일을 변경
-        button.style.backgroundColor = "white";
-        button.style.color = "black";
+        let dataFilter = this.getAttribute('data-filter');
+        console.log("datafileter", dataFilter)
+        for (let k = 0; k < itemBox.length; k++) {
+            itemBox[k].classList.remove('active');
+            itemBox[k].classList.add('hide');
 
-    });
-});
 
-// //카테고리 버튼 모두 가져옴 
-// const categoryBtn = document.querySelector(".mood-header");
-// //카테고리별 아이템들 가져옴
-// const items = document.querySelectorAll(".mood-item");
-
-// categoryBtn.addEventListener("click", (e) => {
-//     const filter = e.target.dataset.filter;
-//     console.log(filter); //e.target값 확인
-
-//     if (filter == null) {
-//         return;
-//     }
-// });
-
-// items.forEach((item) => {
-//     if (filter === "*" || filter === item.dataset.type) {
-//         item.classList.remove("invisible");
-//     } else {
-//         item.classList.add("invisible");
-//     }
-// })
+            if (itemBox[k].getAttribute('data-item') == dataFilter ||
+                dataFilter == "all") {
+                itemBox[k].classList.remove('hide');
+                itemBox[k].classList.add('active');
+            }
+        }
+    })
+}
 
 
 axios({
     method: "POST",
     url: "/posts",
 }).then((res) => {
-    res.data.data.forEach((item) => {
+    const postData = res.data.data;
+    // // 좋아요 순으로 정렬
+    // function sortByLikes(posts) {
+    //     return posts.sort((a, b) => b.liked - a.liked);
+    // }
+
+    // // 최신순으로 정렬
+    // function sortByDate(posts) {
+    //     return posts.sort((a, b) => new Date(b.createAt) - new Date(a.createAt));
+    // }
+
+    // // 오래된 순으로 정렬
+    // function sortByOldest(posts) {
+    //     return posts.sort((a, b) => new Date(a.createAt) - new Date(b.createAt));
+    // }
+
+    // document.getElementById('latest').addEventListener('click', filterByLatest);
+    // document.getElementById('oldest').addEventListener('click', filterByOldest);
+    // document.getElementById('most-like').addEventListener('click', filterByLikes);
+
+    // const postsSortedByLikes = sortByLikes([...postData]);
+    // const postsSortedByDate = sortByDate([...postData]);
+    // const postsSortedByOldest = sortByOldest([...postData]);
+
+    postData.forEach((item) => {
         createPost(
             item.post_id,
             item.user_id,
@@ -109,7 +127,10 @@ axios({
         );
 
     });
-});
+})
+    .catch((error) => {
+        console.error(error);
+    });
 
 
 
