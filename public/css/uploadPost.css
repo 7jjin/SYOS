@@ -87,3 +87,49 @@ label p {
     transform: translate(-50%, -50%);
     pointer-events: none;
 }
+
+
+
+
+
+
+
+
+
+/* CSS for the click point */
+.point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red; /* 점의 색상을 원하는 색상으로 변경하세요 */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* CSS for the product info box */
+  .product-info {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9); /* 박스 배경색을 원하는 색상으로 변경하세요 */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999; /* 다른 요소 위에 나타나도록 설정 */
+  }
+  
+  /* CSS for product name input */
+  .product-info input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* CSS for product link input */
+  .product-info input[type="text"] {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
