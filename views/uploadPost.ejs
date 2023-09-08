@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../css/uploadPost.css">
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 
@@ -17,11 +20,13 @@
 
 <body>
     <header id="main-header">
-        <svg class="menu-button" width="40px" height="40px" focusable="false" viewBox="0 0 24 24">
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+        <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36"
+            viewBox="0 0 24 24">
+            <path
+                d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
+            </path>
         </svg>
-        <span id="logo">SYOS</span>
-        <span style="width: 40px; margin: 2rem"></span>
+        <span id="logo" onclick="location.href = '/'">SYOS</span>
     </header>
 
     <!-- navBar -->
@@ -63,7 +68,18 @@
         </div>
         <div class="image-box wrapper-box">
             <p class="image">이미지</p>
-            <input type="file" name="image" class="image">
+            <div class="upload-image">
+                <label for="image">
+                    <i class="fa-solid fa-camera" style="color: #828c94;"></i>
+                    <p>사진을 끌어다 놓으세요</p>
+                </label>
+                <input type="file" name="image" class="image" id="image">
+                <div class="add-link-wrapper">
+                    <div class="add-link" onclick="mousemove()">상품 링크 추가</div>
+                </div>
+                <div class="mouse-follower" onclick="addLink()"></div><!-- 마우스를 따라다니는 원 -->
+            </div>
+
         </div>
 
         <textarea id="mytextarea">Hello, World!</textarea>
