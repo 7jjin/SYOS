@@ -12,15 +12,18 @@
     <header id="main-header">
       <svg
         class="menu-button"
-        width="40px"
-        height="40px"
-        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="36"
+        height="36"
         viewBox="0 0 24 24"
       >
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+        <path
+          d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
+        ></path>
       </svg>
-      <span id="logo">SYOS</span>
-      <span style="width: 40px; margin: 2rem"></span>
+      <span id="logo" onclick="location.href = '/'">SYOS</span>
     </header>
 
     <!-- navBar -->
@@ -38,16 +41,17 @@
         />
       </svg>
       <ul class="main-menu">
-        <li>Home</li>
-        <li>Board</li>
-        <li>Recommend</li>
-        <li>MyPage</li>
+        <li onclick="location.href = '/'">Home</li>
+        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/recommend'">Recommend</li>
+        <!-- mypage 엔드포인트에 param 추가해야함-->
+        <li onclick="location.href = '/mypage'">MyPage</li>
         <li class="divider"><div class="under-line"></div></li>
       </ul>
       <ul class="sub-menu">
         <li>About</li>
         <li>Contact</li>
-        <li>LogIn</li>
+        <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
       </ul>
     </nav>
 

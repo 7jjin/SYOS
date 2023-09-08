@@ -32,6 +32,12 @@ router.post("/posts", controller.post_posts);
 // 게시물 상세
 router.get("/posts/write", controller.post_write);
 
+// 마이페이지
+router.get("/mypage", controller.mypage);
+
+// 마이페이지
+router.get("/mypage/:user_id", controller.mypage_user_id);
+
 // 회원가입
 router.post("/signup", controller.post_signup);
 
@@ -52,6 +58,9 @@ router.get("/signin/google/redirect", controller.google_redirect);
 
 // 비밀번호 재설정
 router.post("/resetPw", controller.post_resetPw);
+
+// 비밀번호 재설정 patch
+router.patch("/resetPw", controller.patch_resetPw);
 
 // 게시물 상세 페이지 데이터 가져오기
 router.post('/posts/write', controller.post_write_data);

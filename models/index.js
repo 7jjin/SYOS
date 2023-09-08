@@ -27,6 +27,10 @@ db.Comment.belongsTo(db.User,{foreignKey: 'user_id'});
 db.Post.hasMany(db.Comment, { foreignKey: 'post_id' });
 db.Comment.belongsTo(db.Post, { foreignKey: 'post_id' });
 
+// // 1:N 관계
+db.User.hasMany(db.Post, { foreignKey: "user_id" });
+db.Post.belongsTo(db.User, { foreignKey: "user_id" });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

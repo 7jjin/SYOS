@@ -63,4 +63,42 @@ authBtn.addEventListener("click", () => {
 });
 
 // 비밀번호 변경 버튼 클릭
-submit.addEventListener("click", () => {});
+submit.addEventListener("click", async () => {
+  // 비밀번호 유효성 검사
+  if (pwCheck()) {
+    const pwValue = pw.value;
+
+    const res = await axios({
+      method: "patch",
+      url: "/resetPw",
+      data: {
+        email: email.value,
+        pw: pwValue,
+      },
+    });
+
+    const { result } = res.data;
+
+    if (result) {
+      alert("Password changed successfully.");
+      window.location.href = "/signin";
+    }
+  }
+});
+
+function pwCheck() {
+  let pwValue = pw.value; // 비밀번호 값
+  let pwRegExp = /^[\w!@#$%^*+=-]{8,16}$/; // 영어 대소문자, 숫자, 특수문자 8~16자리
+
+  if (pwValue == "") {
+    pw.focus();
+    return false;
+  }
+
+  if (!pwRegExp.test(pwValue)) {
+    pw.focus();
+    return false;
+  } else {
+    return true;
+  }
+}

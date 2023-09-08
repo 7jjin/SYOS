@@ -25,12 +25,12 @@ const main = async (req, res) => {
     });
 
     const mostCommentedPost = await Post.findOne({
-      attributes: ['post_id', 'title', 'image', 'comment', 'liked', 'comment'],
-      order: [['comment', 'DESC']],
+      attributes: ["post_id", "title", "image", "comment", "liked", "comment"],
+      order: [["comment", "DESC"]],
     });
 
-    console.log('가장 많이 좋아요 받은 포스트:', mostLikedPost);
-    console.log('가장 많은 댓글이 달린 포스트:', mostCommentedPost);
+    console.log("가장 많이 좋아요 받은 포스트:", mostLikedPost);
+    console.log("가장 많은 댓글이 달린 포스트:", mostCommentedPost);
 
     res.render('index', {
       likeId: mostLikedPost.post_id,
@@ -88,6 +88,35 @@ const post_posts = (req, res) => {
   Post.findAll({}).then((result) => {
     res.json({ data: result });
   });
+};
+
+// 마이페이지
+const mypage = (req, res) => {
+  // jwt 토큰으로 유저 정보 가져오기
+  const [bearer, token] = req.headers.authorization.split(" ");
+  if (bearer === "Bearer") {
+    try {
+      const decoded = jwt.verify(token, SECRET);
+      const { user_id } = decoded;
+      res.json({ user_id });
+    } catch (err) {
+      res.render("signin");
+    }
+  } else {
+    res.render("signin");
+  }
+};
+
+const mypage_user_id = async (req, res) => {
+  const { user_id } = req.params;
+
+  const result = await User.findOne({
+    where: {
+      user_id,
+    },
+  });
+
+  res.render("myPage", { user: result });
 };
 
 // 구글 로그인 페이지로 이동
@@ -370,6 +399,27 @@ const post_resetPw = async (req, res) => {
   }
 };
 
+const patch_resetPw = async (req, res) => {
+  // 비밀번호 변경 patch
+  const { email, pw } = req.body;
+
+  // bcrypt 암호화
+  const hashPw = bcryptPassword(pw);
+
+  const result = await User.update(
+    {
+      password: hashPw,
+    },
+    {
+      where: {
+        email,
+      },
+    }
+  );
+
+  res.json({ result: true });
+};
+
 // 소셜 로그인
 module.exports = {
   main,
@@ -383,6 +433,8 @@ module.exports = {
   post_write,
   google_signin,
   google_redirect,
+  mypage,
+  mypage_user_id,
 
   post_write_data,
   post_signin,
@@ -391,6 +443,7 @@ module.exports = {
   post_nickName,
   post_recommend,
   post_resetPw,
+  patch_resetPw,
 };
 
 // 암호화
