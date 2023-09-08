@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>SignUp</title>
+    <title>Reset Password</title>
     <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/signup.css" />
+    <link rel="stylesheet" href="../css/resetPw.css" />
   </head>
   <body>
     <header id="main-header">
@@ -55,37 +55,32 @@
       </ul>
     </nav>
 
-    <!-- signup -->
+    <!-- resetPw -->
 
-    <main class="signUp">
-      <div class="welcome">Welcome to SYOS!</div>
+    <main class="resetPw">
+      <div class="welcome">Reset Password</div>
 
-      <div class="signUpDiv">
+      <div class="allDiv">
         <div class="emailDiv">
           <input type="text" id="email" placeholder="Email" />
-          <div class="emailValid"></div>
+          <button type="button" id="send">Send</button>
         </div>
+
+        <div class="authDiv">
+          <input type="text" id="authNum" placeholder="Authentication number" />
+          <button type="button" id="auth">Authentication</button>
+        </div>
+
         <div class="pwDiv">
           <input type="password" id="pw" placeholder="Password" />
-          <div class="pwValid"></div>
-        </div>
-        <div class="rePwDiv">
-          <input type="password" id="rePw" placeholder="Re-enter Password" />
-          <div class="rePwValid">Mismatched</div>
-        </div>
-        <div class="nickNameDiv">
-          <input type="text" id="nickName" placeholder="NickNmae" />
-          <div class="nickNameValid">Duplicate</div>
-        </div>
-        <div class="signUpBtnDiv">
-          <button type="button" id="signUpBtn">SignUp</button>
+          <button type="button" id="submit">submit</button>
         </div>
       </div>
     </main>
 
-    <!-- signup -->
+    <!-- resetPw -->
 
     <script src="../js/menu.js"></script>
-    <script src="../js/signup.js"></script>
+    <script src="../js/resetPw.js"></script>
   </body>
 </html>

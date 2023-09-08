@@ -1,0 +1,13 @@
+main.myPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 800px;
+    background-color: skyblue;
+}
+
+main.myPage > div.profileDiv {
+    width: 80%;
+    height: 200px;
+    background-color: yellow;
+}

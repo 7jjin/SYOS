@@ -1,4 +1,4 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes, Sequelize } = require("sequelize");
 
 const Post = (sequelize) => {
   return sequelize.define("post", {
@@ -9,7 +9,7 @@ const Post = (sequelize) => {
       autoIncrement: true,
     },
     user_id: {
-      type: DataTypes.BIGINT(20),
+      type: Sequelize.UUID,
       allowNull: false,
     },
     title: {

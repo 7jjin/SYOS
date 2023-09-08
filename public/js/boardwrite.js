@@ -14,3 +14,17 @@ function addComment() {
 
   comments.value = '';
 }
+
+
+// axios로 필요한 데이터 요청
+const token = localStorage.getItem('token');
+
+axios({
+  method: 'POST',
+  url: '/posts/write',
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+}).then(res => {
+  console.log(res);
+});

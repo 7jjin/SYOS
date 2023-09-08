@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>SignUp</title>
+    <title>MyPage</title>
     <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/signup.css" />
+    <link rel="stylesheet" href="../css/mypage.css" />
   </head>
   <body>
     <header id="main-header">
@@ -55,37 +55,66 @@
       </ul>
     </nav>
 
-    <!-- signup -->
+    <!-- myPage -->
 
-    <main class="signUp">
-      <div class="welcome">Welcome to SYOS!</div>
+    <main class="myPage">
+      <div class="profileDiv">
+        <div class="profileImg">
+          <img src="../img/profile.png" alt="profile" />
+        </div>
+        <div class="profileInfo">
+          <div class="profileName"><%= user.nickname %></div>
+          <div class="profileId"><%= user.user_id %></div>
+        </div>
+      </div>
 
-      <div class="signUpDiv">
-        <div class="emailDiv">
-          <input type="text" id="email" placeholder="Email" />
-          <div class="emailValid"></div>
-        </div>
-        <div class="pwDiv">
-          <input type="password" id="pw" placeholder="Password" />
-          <div class="pwValid"></div>
-        </div>
-        <div class="rePwDiv">
-          <input type="password" id="rePw" placeholder="Re-enter Password" />
-          <div class="rePwValid">Mismatched</div>
-        </div>
-        <div class="nickNameDiv">
-          <input type="text" id="nickName" placeholder="NickNmae" />
-          <div class="nickNameValid">Duplicate</div>
-        </div>
-        <div class="signUpBtnDiv">
-          <button type="button" id="signUpBtn">SignUp</button>
-        </div>
+      <div class="myPost">
+        <!-- 내가 쓴 게시물 -->
+      </div>
+
+      <div class="myComment">
+        <!-- 내가 댓글 단 게시물 -->
+      </div>
+
+      <div class="내가 좋아요 누른 게시물">
+        <!--  -->
       </div>
     </main>
 
-    <!-- signup -->
+    <!-- myPage -->
+
+    <!-- footer -->
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <footer id="main-footer">
+      <div id="footer-logo">SYOS</div>
+      <div id="description">
+        <div class="desc-text">@2023 SYOS</div>
+        <div>Desktop Setup Sharing Platform</div>
+      </div>
+      <div id="footer-icon-wrapper">
+        <i class="fa-brands fa-twitter footer-sns"></i>
+        <i class="fa-brands fa-instagram footer-sns"></i>
+        <i class="fa-brands fa-facebook footer-sns"></i>
+      </div>
+    </footer>
+
+    <!-- footer -->
 
     <script src="../js/menu.js"></script>
-    <script src="../js/signup.js"></script>
+    <script src="../js/myPage.js"></script>
+    <script>
+      // js에 ejs 변수 넘겨서 user_id 저장
+      let id = "<%= user.user_id %>";
+      saveId(id);
+    </script>
   </body>
 </html>
