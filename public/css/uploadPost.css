@@ -1,13 +1,16 @@
 p{
     margin:0;
 }
+.tox-notifications-container{
+    display: none;
+}
 
 .wrapper-title{
     text-align: center;
     font-weight: 700;
 }
 
-.writer,.title{
+.writer,.title,.image{
     font-weight: 700;
     margin-bottom: 10px;
 }
@@ -17,7 +20,7 @@ p{
 }
 
 form{
-    width: 80%;
+    width: 50%;
     margin:0 auto;
 }
 
@@ -29,8 +32,58 @@ input{
   border-radius: 15px;
   outline: none;
   padding-left: 3%;
-  background-color: rgb(233, 233, 233);
+  background-color: rgb(247, 249, 250);
 }
-.image{
+#image{
     background-color: white;
+    display: none;
+}
+
+.upload-image label{
+
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 249, 250);
+    border-radius: 15px;
+}
+label i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+label p {
+    font-size: 16px;
+    font-weight: 600;
+}
+.add-link-wrapper{
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+    left: 50%;
+    cursor: pointer;
+    transform: translate(-50%);
+}
+
+.add-link-wrapper:hover{
+    background-color: #fffed2;
+}
+.upload-image {
+    position: relative;
+}
+
+.mouse-follower {
+    width: 20px; /* 원의 너비 */
+    height: 20px; /* 원의 높이 */
+    background-color: #828c94; /* 원의 배경 색상 */
+    border-radius: 50%; /* 원 모양으로 만들기 */
+    position: absolute; /* 절대 위치 지정 */
+    display: none; /* 초기에는 표시하지 않음 */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
 }
