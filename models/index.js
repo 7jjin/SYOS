@@ -14,6 +14,10 @@ const sequelize = new Sequelize(
 db.User = require("./User")(sequelize);
 db.Post = require("./Post")(sequelize);
 
+// // 1:N 관계
+db.User.hasMany(db.Post, { foreignKey: "user_id" });
+db.Post.belongsTo(db.User, { foreignKey: "user_id" });
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
