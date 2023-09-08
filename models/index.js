@@ -23,7 +23,7 @@ db.Post.hasMany(db.Like, { foreignKey: 'post_id' });
 db.Like.belongsTo(db.Post, { foreignKey: 'post_id' });
 
 db.User.hasMany(db.Comment, {foreignKey: 'user_id'});
-db.Comment.belongsTo(db.User,{foreighKey: 'user_id'});
+db.Comment.belongsTo(db.User,{foreignKey: 'user_id'});
 db.Post.hasMany(db.Comment, { foreignKey: 'post_id' });
 db.Comment.belongsTo(db.Post, { foreignKey: 'post_id' });
 

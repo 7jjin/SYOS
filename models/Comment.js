@@ -1,6 +1,6 @@
 const { DataTypes, Sequelize } = require('sequelize');
 
-const Post = (sequelize) => {
+const Comment = (sequelize) => {
   return sequelize.define('comment', {
     comment_id: {
       type: Sequelize.UUID,
@@ -23,4 +23,4 @@ const Post = (sequelize) => {
   });
 };
 
-module.exports = Post;
+module.exports = Comment;
