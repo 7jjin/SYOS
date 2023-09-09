@@ -25,12 +25,12 @@ const main = async (req, res) => {
     });
 
     const mostCommentedPost = await Post.findOne({
-      attributes: ["post_id", "title", "image", "comment", "liked", "comment"],
-      order: [["comment", "DESC"]],
+      attributes: ['post_id', 'title', 'image', 'comment', 'liked', 'comment'],
+      order: [['comment', 'DESC']],
     });
 
-    console.log("가장 많이 좋아요 받은 포스트:", mostLikedPost);
-    console.log("가장 많은 댓글이 달린 포스트:", mostCommentedPost);
+    console.log('가장 많이 좋아요 받은 포스트:', mostLikedPost);
+    console.log('가장 많은 댓글이 달린 포스트:', mostCommentedPost);
 
     res.render('index', {
       likeId: mostLikedPost.post_id,
@@ -93,17 +93,17 @@ const post_posts = (req, res) => {
 // 마이페이지
 const mypage = (req, res) => {
   // jwt 토큰으로 유저 정보 가져오기
-  const [bearer, token] = req.headers.authorization.split(" ");
-  if (bearer === "Bearer") {
+  const [bearer, token] = req.headers.authorization.split(' ');
+  if (bearer === 'Bearer') {
     try {
       const decoded = jwt.verify(token, SECRET);
       const { user_id } = decoded;
       res.json({ user_id });
     } catch (err) {
-      res.render("signin");
+      res.render('signin');
     }
   } else {
-    res.render("signin");
+    res.render('signin');
   }
 };
 
@@ -116,7 +116,7 @@ const mypage_user_id = async (req, res) => {
     },
   });
 
-  res.render("myPage", { user: result });
+  res.render('myPage', { user: result });
 };
 
 // 구글 로그인 페이지로 이동
@@ -221,19 +221,21 @@ const post_write_data = async (req, res) => {
       where: { post_id },
     });
     const commentNickname = [];
-    for(let i=0; i<comments.length; i++){
+    for (let i = 0; i < comments.length; i++) {
       let result = await User.findOne({
         attributes: ['nickname'],
-        where: { user_id: comments[i].user_id }
+        where: { user_id: comments[i].user_id },
       });
-      commentNickname.push(result.nickname); 
+      commentNickname.push(result.nickname);
     }
     // 현재 사용자의 좋아여 여부 확인
     const [bearer, token] = req.headers.authorization.split(' ');
     let currentUserId;
+    let currentUserNickname;
     if (bearer === 'Bearer') {
       const decoded = jwt.verify(token, SECRET);
       currentUserId = decoded.user_id;
+      currentUserNickname = decoded.nickName;
     }
     const isHeart = await Like.findAll({
       where: { post_id, user_id: currentUserId },
@@ -246,6 +248,7 @@ const post_write_data = async (req, res) => {
       comments,
       commentNickname,
       isHeart,
+      currentUserNickname,
     });
   } catch (error) {
     console.error(error);
@@ -253,7 +256,33 @@ const post_write_data = async (req, res) => {
   }
 };
 
+// 좋아요 눌렀을 때
+const post_write_heart = async (req, res) => {
+  const { isHeart } = req.body;
+  const post_id = 11;
+  const post = await Post.findOne({
+    attributes: ['liked'],
+    where: { post_id },
+  });
+  let liked = post.liked;
+  if (!isHeart) {
+    liked -= 1;
+  } else {
+    liked += 1;
+  }
+  await Post.update(
+    {
+      liked,
+    },
+    {
+      where: { post_id },
+    }
+  );
+  res.json({ heartNum: liked });
+};
 
+// 댓글 눌렀을 때
+const post_write_comment = async (req, res) => {};
 
 //로그인
 const post_signin = async (req, res) => {
@@ -430,6 +459,8 @@ module.exports = {
   post_recommend,
   post_resetPw,
   patch_resetPw,
+  post_write_heart,
+  post_write_comment,
 };
 
 // 암호화

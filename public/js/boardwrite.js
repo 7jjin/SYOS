@@ -17,6 +17,9 @@ function addComment() {
 
 
 const heart = document.querySelector('.fa-heart');
+const heartNum = document.querySelector('#heart-number');
+const commentNum = document.querySelector('#comment-number');
+let nickName;
 
 // axios로 필요한 데이터 요청
 const token = localStorage.getItem('token');
@@ -31,14 +34,13 @@ const fetchData = async () => {
     });
     console.log(res);
     // 데이터 불러와서 렌더링
-    const nickName = document.querySelector('.header-nickname');
+    const writerNickname = document.querySelector('.header-nickname');
     const postImage = document.querySelector('.post-img');
-    const heartNum = document.querySelector('#heart-number');
-    const commentNum = document.querySelector('#comment-number');
     const postContent = document.querySelector('#post-content');
     const commentList = document.querySelector('#comment-list');
-    nickName.textContent = `${res.data.nickName}`;
+    writerNickname.textContent = `${res.data.nickName}`;
     postImage.src = res.data.postData.image;
+    nickName=res.data.currentUserNickname;
 
     if(res.data.isHeart){
       heart.classList.remove('fa-regular');
@@ -72,7 +74,30 @@ const fetchData = async () => {
 fetchData();
 
 
+
 // 좋아요 누를 때 UI 변경 및 DB 업데이트
-heart.addEventListener('click', () => {
-  
+heart.addEventListener('click', async () => {
+  let isHeart;
+  if (heart.classList.contains('fa-solid')){
+    heart.classList.remove('fa-solid');
+    heart.classList.add('fa-regular');
+    heart.style.color = '';
+    isHeart = false;
+  } else {
+    heart.classList.remove('fa-regular');
+    heart.classList.add('fa-solid');
+    heart.style.color = '#ec4141';
+    isHeart = true;
+  }
+  const res = await axios({
+    method: 'PATCH',
+    url: '/posts/write/heart',
+    data: {isHeart}, 
+  });
+  const number = res.data.heartNum;
+  heartNum.textContent = `${number}`;
 });
+
+
+
+
