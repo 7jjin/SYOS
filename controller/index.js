@@ -44,7 +44,6 @@ const main = async (req, res) => {
       commentLiked: mostCommentedPost.liked,
       commentComment: mostCommentedPost.comment,
     });
-
   } catch (error) {
     console.error();
   }
@@ -206,62 +205,46 @@ const post_write = (req, res) => {
 const post_write_data = async (req, res) => {
   // 일단 고정 게시물
   const post_id = 11;
-
   try {
-    // 해당게시글의 모든 정보와 작성자의 닉네임까지 가져오기
     const postData = await Post.findOne({
       where: { post_id },
+      include: [{ model: User, attributes: ['nickname'] }],
     });
-    console.log('postdata: ', postData);
-    // userid 가져오기
+    // 게시글 정보가 없을 경우 예외처리
+    if (!postData) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
     const user_id = postData.user_id;
-    console.log('user_id', user_id);
-    // 작성자 닉네임 가져오기
-    const nickName = await User.findOne({
-      attributes: ['nickname'],
-      where: { user_id },
-    });
-    console.log('nickName: ', nickName);
-    // const postData = await Post.findOne({
-    //   where: { post_id },
-    //   include: [{ model: User, attributes: ['nickname'] }],
-    // });
-    // // 게시글 정보가 없을 경우 예외처리
-    // if (!postData) {
-    //   return res.status(404).json({ error: 'Post not found' });
-    // }
-    // console.log('postdata: ', postData);
-    // const user_id = postData.user_id;
-    // const nickName = postData.User.nickname;
-    // console.log('user_id', user_id);
-    // console.log('nickName: ', nickName);
+    const nickName = postData.user.nickname;
     // 게시글 id에 해당하는 모든 댓글들 가져오기
     const comments = await Comment.findAll({
       where: { post_id },
     });
-    console.log(comments);
-
+    const commentNickname = [];
+    for(let i=0; i<comments.length; i++){
+      let result = await User.findOne({
+        attributes: ['nickname'],
+        where: { user_id: comments[i].user_id }
+      });
+      commentNickname.push(result.nickname); 
+    }
     // 현재 사용자의 좋아여 여부 확인
     const [bearer, token] = req.headers.authorization.split(' ');
     let currentUserId;
     if (bearer === 'Bearer') {
       const decoded = jwt.verify(token, SECRET);
       currentUserId = decoded.user_id;
-      console.log(currentUserId);
     }
     const isHeart = await Like.findAll({
       where: { post_id, user_id: currentUserId },
     });
-    if (!isHeart) {
-      // 좋아요 안 누른거임
-    }
-    console.log('isHeart', isHeart);
 
     return res.json({
       postData,
       user_id,
       nickName,
       comments,
+      commentNickname,
       isHeart,
     });
   } catch (error) {
@@ -269,6 +252,8 @@ const post_write_data = async (req, res) => {
     return res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
 
 //로그인
 const post_signin = async (req, res) => {
