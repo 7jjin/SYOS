@@ -10,9 +10,10 @@ p{
     font-weight: 700;
 }
 
-.writer,.title,.image{
+.writer,.title,.image ,.content,.upload-tag{
     font-weight: 700;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 
 .wrapper-box{
@@ -102,12 +103,20 @@ label p {
 /* CSS for the click point */
 .point {
     position: absolute;
-    width: 10px;
-    height: 10px;
-    background-color: red; /* 점의 색상을 원하는 색상으로 변경하세요 */
+    width: 20px; /* 원의 크기 조절 */
+    height: 18px; /* 원의 크기 조절 */
+    background-color: #39f; /* 원의 색상을 원하는 색상으로 변경하세요 */
     border-radius: 50%;
     transform: translate(-50%, -50%);
-  }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold; /* 텍스트 굵기 조절 */
+    color: white; /* 텍스트 색상 설정 */
+    font-size: 14px; /* 텍스트 크기 설정 */
+  } 
+  
+
   
   /* CSS for the product info box */
   .product-info {
@@ -137,3 +146,44 @@ label p {
     border: 1px solid #ccc;
     border-radius: 3px;
   }
+
+  .product-innerbox{
+    margin-top: 15px;
+    border-bottom: 1px solid black;
+  }
+  .product-innerbox h4 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .product-innerbox p:last-child{
+    margin-bottom: 10px;
+  }
+
+  .tag-box-inner{
+    display: flex;
+  }
+  .tag-box .tag{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #a6a6a6;
+    cursor: pointer;
+  }
+  .tag.selected {
+    background-color: beige;
+    border-radius: 20%;
+}
+
+
+.upload-button{
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 700;
+    padding: 10px 25px;
+    display: flex;
+    margin: 20px auto;
+    font-size: 16px;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+}

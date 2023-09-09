@@ -3,7 +3,23 @@ tinymce.init({
   selector: '#mytextarea',
 });
 
-/////// upload할 이미지 미리보기
+// 클릭된 태그들만 색 변하는 함수
+const tags = document.querySelectorAll('.tag');
+tags.forEach((tag) => {
+  tag.addEventListener('click', () => {
+    // 선택한 태그의 클래스를 변경하여 스타일을 조절합니다.
+    tag.classList.toggle('selected');
+    console.log(tag);
+    // 다른 태그의 선택 상태를 해제합니다.
+    tags.forEach((otherTag) => {
+      if (otherTag !== tag) {
+        otherTag.classList.remove('selected');
+      }
+    });
+  });
+});
+
+///////////////////////////// upload할 이미지 미리보기
 const imageBox = document.querySelector('.image-box');
 const imageInput = document.getElementById('image');
 const uploadImageLabel = document.querySelector('.upload-image label');
@@ -47,12 +63,14 @@ imageInput.addEventListener('change', function (event) {
 /////////////////////////////////////////////////////
 
 // 클릭한 좌표를 저장할 변수
-let clickedX, clickedY;
+let clickedX, clickedY, realclickX, realclickY;
 // 클릭한 점과 제품명 및 링크를 입력할 div 요소
 const clickPoint = document.createElement('div');
 clickPoint.className = 'click-point';
 const productInfo = document.createElement('div');
 productInfo.className = 'product-info';
+const productNum = document.createElement('div');
+productNum.className = 'product-num';
 const productNameInput = document.createElement('input');
 productNameInput.type = 'text';
 productNameInput.className = 'product-name';
@@ -63,6 +81,7 @@ productLinkInput.className = 'product-link';
 productLinkInput.placeholder = '링크';
 
 let photoData = {};
+let index = 0;
 
 // 최대 3개의 점을 저장하는 배열
 let points = [];
@@ -71,7 +90,7 @@ let points = [];
 const completeButton = document.createElement('button');
 completeButton.type = 'button';
 completeButton.textContent = '완료';
-completeButton.addEventListener('click', displayProductInfo);
+// completeButton.addEventListener('click', displayProductInfo);
 
 function mousemove() {
   const mouseFollower = uploadImage.querySelector('.mouse-follower'); // uploadImage 내에서 검색
@@ -90,19 +109,25 @@ function mousemove() {
     const offsetX = e.clientX - rect.left; // 마우스의 상대적인 X 위치 계산
     const offsetY = e.clientY - rect.top; // 마우스의 상대적인 Y 위치 계산
 
-    mouseFollower.style.left = offsetX + 'px'; // 원의 중심으로 이동
-    mouseFollower.style.top = offsetY + 'px';
-
+    // 화면 크기에 대한 퍼센트로 변환
+    const widthPercent = (offsetX / rect.width) * 100;
+    const heightPercent = (offsetY / rect.height) * 100;
+    mouseFollower.style.left = widthPercent + '%'; // 원의 중심으로 이동
+    mouseFollower.style.top = heightPercent + '%';
     // 클릭한 좌표 저장
-    clickedX = offsetX;
-    clickedY = offsetY;
+    clickedX = widthPercent;
+    clickedY = heightPercent;
   });
   uploadImage.addEventListener('click', () => {
     if (points.length >= 3) {
       // 최대 3개의 점을 생성했을 경우 무시
+      alert('3개까지 가능합니다.');
+
       return;
     }
-    //console.log('Clicked at (top, left):', clickedY, clickedX);
+    realclickX = clickedX;
+    realclickY = clickedY;
+    console.log('Clicked at (top, left):', clickedY, clickedX);
     mouseFollower.style.display = 'none';
 
     // product-info 박스 초기화 시켜주기
@@ -112,14 +137,15 @@ function mousemove() {
 
     // 클릭한 좌표에 점 표시
     const point = document.createElement('div');
-    point.className = 'point';
-    point.style.left = clickedX + 'px';
-    point.style.top = clickedY + 'px';
+    point.className = `product${index} point`;
+    point.style.left = clickedX + '%';
+    point.style.top = clickedY + '%';
+    point.innerHTML = index + 1;
     uploadImage.appendChild(point);
 
     // 제품 정보 입력하는 div 박스 생성 및 위치 설정
-    productInfo.style.left = clickedX + 'px';
-    productInfo.style.top = clickedY + 'px';
+    productInfo.style.left = clickedX + '%';
+    productInfo.style.top = clickedY + '%';
     productInfo.appendChild(productNameInput);
     productInfo.appendChild(productLinkInput);
     productInfo.appendChild(completeButton); // 완료 버튼 추가
@@ -145,14 +171,21 @@ function mousemove() {
   // 완료 버튼을 클릭하면 제품 정보를 표시하고 폼 전송을 막음
   completeButton.addEventListener('click', (event) => {
     displayProductInfo();
-    console.log(points);
+    console.log(photoData);
     stopPropagation(event); // 완료 버튼을 클릭하면 점이 생기지 않게 막음
+    index++;
   });
   // 완료 버튼을 눌렀을 때 제품 정보를 표시하는 함수
   function displayProductInfo() {
     // 선택된 제품 정보 가져오기
     const productName = productNameInput.value;
     const productLink = productLinkInput.value;
+    photoData[index] = {
+      productName: productNameInput.value,
+      productLink: productLinkInput.value,
+      top: realclickY,
+      left: realclickX,
+    };
     console.log(productName);
     console.log(productLink);
 
@@ -165,15 +198,32 @@ function mousemove() {
     productInfoBox.className = 'product-info-box';
 
     // 제품명과 링크를 표시
-    productInfoBox.innerHTML = `<p>제품명: ${productName}</p><p>링크: ${productLink}</p>`;
+    productInfoBox.innerHTML = `
+    <div class="product-innerbox"> 
+    <h4>⚫ 제품 ${index + 1}</h4>
+    <p>제품명: ${productName}</p>
+    <p>링크: ${productLink}</p>
+    </div>
+    `;
 
     // 이미지 아래에 제품 정보를 추가
     imageBox.appendChild(productInfoBox);
 
     // 제품 정보 입력하는 div 박스 숨김
     productInfo.style.display = 'none';
-
-    // // 완료 버튼 숨김
-    // completeButton.style.display = 'none';
   }
+}
+
+/// 폼 전송하기
+
+function uploadPost() {
+  const content = document.querySelector('#tinymce p');
+  console.log(tinyMCE.get('mytextarea').getContent());
+  const form = document.forms['upload-post'];
+  // const data = {
+  //   title: form.title.value,
+  //   name: form.name.value,
+  //   content: content.value,
+  // };
+  // console.log(data);
 }
