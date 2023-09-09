@@ -65,4 +65,10 @@ router.patch("/resetPw", controller.patch_resetPw);
 // 게시물 상세 페이지 데이터 가져오기
 router.post('/posts/write', controller.post_write_data);
 
+// 좋아요 누름
+router.patch('/posts/write/heart', controller.post_write_heart);
+
+// 댓글 입력
+router.patch('/posts/write/comment', controller.post_write_comment);
+
 module.exports = router;
