@@ -67,18 +67,22 @@
             <input type="text" name="name" placeholder="이름을 적어주세요.">
         </div>
         <div class="image-box wrapper-box">
-            <p class="image">이미지</p>
-            <div class="upload-image">
-                <label for="image">
-                    <i class="fa-solid fa-camera" style="color: #828c94;"></i>
-                    <p>사진을 끌어다 놓으세요</p>
-                </label>
-                <input type="file" name="image" class="image" id="image">
+            <div class="inner-box">
+                <p class="image">이미지</p>
+                <div class="upload-image">
+                    <label for="image">
+                        <i class="fa-solid fa-camera" style="color: #828c94;"></i>
+                        <p>사진을 끌어다 놓으세요</p>
+                    </label>
+                    <input type="file" name="image" class="image" id="image">
+
+                    <div class="mouse-follower"></div><!-- 마우스를 따라다니는 원 -->
+                </div>
                 <div class="add-link-wrapper">
                     <div class="add-link" onclick="mousemove()">상품 링크 추가</div>
                 </div>
-                <div class="mouse-follower"></div><!-- 마우스를 따라다니는 원 -->
             </div>
+
 
         </div>
 
