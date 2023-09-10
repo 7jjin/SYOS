@@ -79,8 +79,14 @@
               <img class="post-img" src="../images/postdesk.jpg" alt="" />
             </div>
             <div class="post-res">
-              <span><i class="fa-regular fa-heart"></i><span id="heart-number"></span></span>
-              <span><i class="fa-regular fa-comment fa-flip-horizontal"></i><span id="comment-number"></span></span>
+              <span
+                ><i class="fa-regular fa-heart"></i
+                ><span id="heart-number"></span
+              ></span>
+              <span
+                ><i class="fa-regular fa-comment fa-flip-horizontal"></i
+                ><span id="comment-number"></span
+              ></span>
             </div>
 
             <div class="post-text">
@@ -103,15 +109,14 @@
               <button type="submit" onclick="addComment(event)">Enter</button>
             </form>
 
-            <ul id="comment-list">
-            </ul>
+            <ul id="comment-list"></ul>
           </div>
         </div>
       </div>
     </div>
 
     <!-- chat -->
-    <!-- <div id="chat-wrapper">
+    <div id="chat-wrapper">
       <div id="chat-content">
         <div id="chat-header">
           <div id="chat-header-logo">SYOS</div>
@@ -150,7 +155,8 @@
       </form>
     </div>
 
-    <div id="chat-button">S</div> -->
+    <div id="chat-button">S</div>
+    
     <!-- footer -->
     <footer id="main-footer">
       <div id="footer-logo">SYOS</div>
@@ -165,6 +171,7 @@
       </div>
     </footer>
 
+    <div id="post_id" style="display: none;"><%= post_id %></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="../js/menu.js"></script>

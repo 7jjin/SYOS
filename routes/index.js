@@ -30,6 +30,8 @@ router.get("/posts", controller.posts);
 router.post("/posts", controller.post_posts);
 
 // 게시물 상세
+router.get("/posts/:post_id", controller.post_detail);
+
 router.get("/posts/write", controller.post_write);
 
 // 마이페이지

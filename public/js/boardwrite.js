@@ -1,7 +1,10 @@
 const heart = document.querySelector('.fa-heart');
 const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');
-let userId;
+const idBox = document.getElementById('post_id');
+const post_id = idBox.textContent;
+
+let user_id;
 let nickName;
 
 // axios로 필요한 데이터 요청
@@ -14,6 +17,9 @@ const fetchData = async () => {
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      data: {
+        post_id,
+      }
     });
     console.log(res);
     // 데이터 불러와서 렌더링
@@ -24,7 +30,7 @@ const fetchData = async () => {
     writerNickname.textContent = `${res.data.nickName}`;
     postImage.src = res.data.postData.image;
     nickName = res.data.currentUserNickname;
-    userId = res.data.currentUserId;
+    user_id = res.data.currentUserId;
 
     if (res.data.isHeart.length !== 0) {
       heart.classList.remove('fa-regular');
@@ -75,7 +81,7 @@ heart.addEventListener('click', async () => {
   const res = await axios({
     method: 'PATCH',
     url: '/posts/write/heart',
-    data: { isHeart, userId },
+    data: { post_id, isHeart, user_id },
   });
   const number = res.data.heartNum;
   heartNum.textContent = `${number}`;
@@ -101,7 +107,8 @@ const addComment = async(e) => {
     method: 'POST',
     url: '/posts/write/comment',
     data: {
-      user_id: userId,
+      post_id,
+      user_id,
       content,
     },
   });

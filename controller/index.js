@@ -196,15 +196,20 @@ const google_redirect = async (req, res) => {
   }
 };
 
-// 게시물 상세 -> 추후 게시물 작성으로 변경해야함!!
+// 게시물 작성
 const post_write = (req, res) => {
-  const { post_id } = req.params;
-  res.render('boardwrite', { post_id });
+
 };
+
+// 게시물 상세
+const post_detail = (req, res) => {
+  const {post_id} = req.params;
+  res.render('boardwrite', {post_id});
+}
 
 const post_write_data = async (req, res) => {
   // 일단 고정 게시물
-  const post_id = 11;
+  const { post_id } = req.body;
   try {
     const postData = await Post.findOne({
       where: { post_id },
@@ -260,8 +265,7 @@ const post_write_data = async (req, res) => {
 
 // 좋아요 눌렀을 때
 const post_write_heart = async (req, res) => {
-  const { isHeart, userId } = req.body;
-  const post_id = 11;
+  const { post_id, isHeart, user_id } = req.body;
   const post = await Post.findOne({
     attributes: ['liked'],
     where: { post_id },
@@ -270,33 +274,26 @@ const post_write_heart = async (req, res) => {
   if (!isHeart) {
     await Like.destroy({
       where: {
-        post_id,
-        user_id: userId,
+        post_id, user_id,
       },
     });
     liked -= 1;
   } else {
     await Like.create({
-      post_id,
-      user_id: userId,
+      post_id, user_id,
     });
     liked += 1;
   }
   await Post.update(
-    {
-      liked,
-    },
-    {
-      where: { post_id },
-    }
+    { liked },
+    { where: { post_id } }
   );
   res.json({ heartNum: liked });
 };
 
 // 댓글 추가
 const post_write_comment = async (req, res) => {
-  const post_id = 11;
-  const {user_id, content} = req.body;
+  const { post_id, user_id, content} = req.body;
   await Comment.create({
     post_id,
     user_id,
@@ -480,6 +477,7 @@ module.exports = {
   google_redirect,
   mypage,
   mypage_user_id,
+  post_detail,
 
   post_write_data,
   post_signin,
@@ -491,6 +489,7 @@ module.exports = {
   patch_resetPw,
   post_write_heart,
   post_write_comment,
+  
 };
 
 // 암호화
