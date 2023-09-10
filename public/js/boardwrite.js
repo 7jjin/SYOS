@@ -1,21 +1,3 @@
-// function addComment() {
-//   const comments = document.getElementById('comments');
-//   const commentText = comments.value;
-
-//   if (commentText.trim() === '') {
-//     alert('Please enter comments.');
-//     return;
-//   }
-
-//   const commentList = document.getElementById('comment-list');
-//   const commentItem = document.createElement('li');
-//   commentItem.textContent = commentText;
-//   commentList.appendChild(commentItem);
-
-//   comments.value = '';
-// }
-
-
 const heart = document.querySelector('.fa-heart');
 const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');
@@ -44,23 +26,23 @@ const fetchData = async () => {
     nickName = res.data.currentUserNickname;
     userId = res.data.currentUserId;
 
-    if(res.data.isHeart.length !== 0){
+    if (res.data.isHeart.length !== 0) {
       heart.classList.remove('fa-regular');
       heart.classList.add('fa-solid');
       heart.style.color = '#ec4141';
-    } 
+    }
 
     heartNum.textContent = res.data.postData.liked;
     commentNum.textContent = res.data.postData.comment;
     postContent.textContent = res.data.postData.content;
-    
+
     // 댓글 렌더링
-    for(let i=0; i<res.data.comments.length; i++){
+    for (let i = 0; i < res.data.comments.length; i++) {
       const commentBox = document.createElement('li');
       const commentWriter = document.createElement('div');
       const commentText = document.createElement('div');
       commentBox.classList.add('comment-box');
-      commentWriter.classList.add("user-name");
+      commentWriter.classList.add('user-name');
       commentText.classList.add('user-comment');
       commentWriter.textContent = `${res.data.commentNickname[i]}`;
       commentText.textContent = `${res.data.comments[i].content}`;
@@ -73,14 +55,13 @@ const fetchData = async () => {
   }
 };
 
+// 페이지 로드될 때 실행
 fetchData();
-
-
 
 // 좋아요 누를 때 UI 변경 및 DB 업데이트
 heart.addEventListener('click', async () => {
   let isHeart;
-  if (heart.classList.contains('fa-solid')){
+  if (heart.classList.contains('fa-solid')) {
     heart.classList.remove('fa-solid');
     heart.classList.add('fa-regular');
     heart.style.color = '';
@@ -94,14 +75,49 @@ heart.addEventListener('click', async () => {
   const res = await axios({
     method: 'PATCH',
     url: '/posts/write/heart',
-    data: {isHeart, userId}, 
+    data: { isHeart, userId },
   });
   const number = res.data.heartNum;
   heartNum.textContent = `${number}`;
 });
 
+// 댓글 입력
+async function addComment(e) {
+  e.preventDefault();
+  const comments = document.getElementById('comments');
+  const content = comments.value;
 
+  if (!nickName) {
+    alert('로그인이 필요합니다.');
+    comments.value = '';
+    return;
+  }
+  if (content.trim() === '') {
+    alert('Please enter comments.');
+    return;
+  }
 
-
-
-
+  const result = await axios({
+    method: 'POST',
+    url: '/posts/write/comment',
+    data: {
+      user_id: userId,
+      content,
+    },
+  });
+  if (result.data.result) {
+    const commentList = document.getElementById('comment-list');
+    const commentBox = document.createElement('li');
+    const commentWriter = document.createElement('div');
+    const commentText = document.createElement('div');
+    commentBox.classList.add('comment-box');
+    commentWriter.classList.add('user-name');
+    commentText.classList.add('user-comment');
+    commentWriter.textContent = nickName;
+    commentText.textContent = content;
+    commentBox.appendChild(commentWriter);
+    commentBox.appendChild(commentText);
+    commentList.appendChild(commentBox);
+    comments.value = '';
+  }
+}

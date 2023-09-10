@@ -93,15 +93,15 @@
               <span>Comments</span>
             </div>
 
-            <div class="comments">
+            <form class="comments">
               <input
                 type="text"
                 class="comments-input"
                 id="comments"
                 placeholder="Enter Comments"
               />
-              <button onclick="addComment()">Enter</button>
-            </div>
+              <button type="submit" onclick="addComment(event)">Enter</button>
+            </form>
 
             <ul id="comment-list">
             </ul>
@@ -111,7 +111,7 @@
     </div>
 
     <!-- chat -->
-    <div id="chat-wrapper">
+    <!-- <div id="chat-wrapper">
       <div id="chat-content">
         <div id="chat-header">
           <div id="chat-header-logo">SYOS</div>
@@ -150,7 +150,7 @@
       </form>
     </div>
 
-    <div id="chat-button">S</div>
+    <div id="chat-button">S</div> -->
     <!-- footer -->
     <footer id="main-footer">
       <div id="footer-logo">SYOS</div>

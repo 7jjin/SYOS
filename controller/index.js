@@ -219,6 +219,7 @@ const post_write_data = async (req, res) => {
     // 게시글 id에 해당하는 모든 댓글들 가져오기
     const comments = await Comment.findAll({
       where: { post_id },
+      order: [['createdAt', 'ASC']],
     });
     const commentNickname = [];
     for (let i = 0; i < comments.length; i++) {
@@ -270,15 +271,15 @@ const post_write_heart = async (req, res) => {
     await Like.destroy({
       where: {
         post_id,
-        user_id: userId
-      }
-    })
+        user_id: userId,
+      },
+    });
     liked -= 1;
   } else {
     await Like.create({
       post_id,
       user_id: userId,
-    })
+    });
     liked += 1;
   }
   await Post.update(
@@ -292,8 +293,26 @@ const post_write_heart = async (req, res) => {
   res.json({ heartNum: liked });
 };
 
-// 댓글 눌렀을 때
-const post_write_comment = async (req, res) => {};
+// 댓글 추가
+const post_write_comment = async (req, res) => {
+  const post_id = 11;
+  const {user_id, content} = req.body;
+  await Comment.create({
+    post_id,
+    user_id,
+    content
+  });
+  res.send({result: true});
+};
+
+// 댓글 수정
+const post_write_comment_edit = (req, res) => {
+
+};
+// 댓글 삭제
+const post_write_comment_delete = (req, res) => {
+
+};
 
 //로그인
 const post_signin = async (req, res) => {
