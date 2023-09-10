@@ -82,7 +82,7 @@ heart.addEventListener('click', async () => {
 });
 
 // 댓글 입력
-async function addComment(e) {
+const addComment = async(e) => {
   e.preventDefault();
   const comments = document.getElementById('comments');
   const content = comments.value;
