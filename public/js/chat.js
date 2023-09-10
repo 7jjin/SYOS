@@ -7,9 +7,11 @@ const socket = io();
 let isOpen = false;
 let tempId = Math.random().toString(16).slice(2);
 
+chatWrapper.style.pointerEvents = 'none'; 
 // 버튼 토글
 chatButton.addEventListener('click', () => {
   if (!isOpen) {
+    chatWrapper.style.pointerEvents = 'auto'; 
     chatWrapper.style.animation = 'openChat 0.5s forwards';
     chatWrapper.style.zIndex = '999';
   } else {
@@ -29,6 +31,7 @@ chatButton.addEventListener('click', () => {
 
     chatWrapper.style.animation = 'closeChat 0.5s forwards';
     chatWrapper.style.zIndex = '1';
+    chatWrapper.style.pointerEvents = 'none'; 
   }
   isOpen = !isOpen;
 });
