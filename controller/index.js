@@ -228,7 +228,7 @@ const post_write_data = async (req, res) => {
       });
       commentNickname.push(result.nickname);
     }
-    // 현재 사용자의 좋아여 여부 확인
+    // 현재 사용자의 좋아요 여부 확인
     const [bearer, token] = req.headers.authorization.split(' ');
     let currentUserId;
     let currentUserNickname;
@@ -248,6 +248,7 @@ const post_write_data = async (req, res) => {
       comments,
       commentNickname,
       isHeart,
+      currentUserId,
       currentUserNickname,
     });
   } catch (error) {
@@ -258,7 +259,7 @@ const post_write_data = async (req, res) => {
 
 // 좋아요 눌렀을 때
 const post_write_heart = async (req, res) => {
-  const { isHeart } = req.body;
+  const { isHeart, userId } = req.body;
   const post_id = 11;
   const post = await Post.findOne({
     attributes: ['liked'],
@@ -266,8 +267,18 @@ const post_write_heart = async (req, res) => {
   });
   let liked = post.liked;
   if (!isHeart) {
+    await Like.destroy({
+      where: {
+        post_id,
+        user_id: userId
+      }
+    })
     liked -= 1;
   } else {
+    await Like.create({
+      post_id,
+      user_id: userId,
+    })
     liked += 1;
   }
   await Post.update(

@@ -1,24 +1,25 @@
-function addComment() {
-  const comments = document.getElementById('comments');
-  const commentText = comments.value;
+// function addComment() {
+//   const comments = document.getElementById('comments');
+//   const commentText = comments.value;
 
-  if (commentText.trim() === '') {
-    alert('Please enter comments.');
-    return;
-  }
+//   if (commentText.trim() === '') {
+//     alert('Please enter comments.');
+//     return;
+//   }
 
-  const commentList = document.getElementById('comment-list');
-  const commentItem = document.createElement('li');
-  commentItem.textContent = commentText;
-  commentList.appendChild(commentItem);
+//   const commentList = document.getElementById('comment-list');
+//   const commentItem = document.createElement('li');
+//   commentItem.textContent = commentText;
+//   commentList.appendChild(commentItem);
 
-  comments.value = '';
-}
+//   comments.value = '';
+// }
 
 
 const heart = document.querySelector('.fa-heart');
 const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');
+let userId;
 let nickName;
 
 // axios로 필요한 데이터 요청
@@ -40,9 +41,10 @@ const fetchData = async () => {
     const commentList = document.querySelector('#comment-list');
     writerNickname.textContent = `${res.data.nickName}`;
     postImage.src = res.data.postData.image;
-    nickName=res.data.currentUserNickname;
+    nickName = res.data.currentUserNickname;
+    userId = res.data.currentUserId;
 
-    if(res.data.isHeart){
+    if(res.data.isHeart.length !== 0){
       heart.classList.remove('fa-regular');
       heart.classList.add('fa-solid');
       heart.style.color = '#ec4141';
@@ -92,11 +94,13 @@ heart.addEventListener('click', async () => {
   const res = await axios({
     method: 'PATCH',
     url: '/posts/write/heart',
-    data: {isHeart}, 
+    data: {isHeart, userId}, 
   });
   const number = res.data.heartNum;
   heartNum.textContent = `${number}`;
 });
+
+
 
 
 
