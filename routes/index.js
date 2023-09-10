@@ -69,6 +69,6 @@ router.post('/posts/write', controller.post_write_data);
 router.patch('/posts/write/heart', controller.post_write_heart);
 
 // 댓글 입력
-router.patch('/posts/write/comment', controller.post_write_comment);
+router.post('/posts/write/comment', controller.post_write_comment);
 
 module.exports = router;
