@@ -1,12 +1,11 @@
-const { DataTypes, Sequelize } = require("sequelize");
+const { DataTypes, Sequelize } = require('sequelize');
 
 const Post = (sequelize) => {
-  return sequelize.define("post", {
+  return sequelize.define('post', {
     post_id: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true,
     },
     user_id: {
       type: Sequelize.UUID,

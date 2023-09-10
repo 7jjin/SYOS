@@ -4,6 +4,35 @@ const { smtpTransport } = require('../config/email'); // 이메일 전송
 
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
+// const upload = require('../index.js').upload; // 이 부분을 추가
+
+///multer
+const multer = require('multer');
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
+
+aws.config.update({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: 'ap-northeast-2',
+});
+
+//aws s3 인스턴스 생성
+const s3 = new aws.S3();
+// multer설정 - aws
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'syos-test2',
+    acl: 'public-read', //파일접근권한 (public-read로 해야 업로드된 파일이 공개)
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+  }),
+});
 
 // 암호화 관련 정보
 const saltNumber = parseInt(process.env.SALT);
@@ -25,12 +54,12 @@ const main = async (req, res) => {
     });
 
     const mostCommentedPost = await Post.findOne({
-      attributes: ["post_id", "title", "image", "comment", "liked", "comment"],
-      order: [["comment", "DESC"]],
+      attributes: ['post_id', 'title', 'image', 'comment', 'liked', 'comment'],
+      order: [['comment', 'DESC']],
     });
 
-    console.log("가장 많이 좋아요 받은 포스트:", mostLikedPost);
-    console.log("가장 많은 댓글이 달린 포스트:", mostCommentedPost);
+    console.log('가장 많이 좋아요 받은 포스트:', mostLikedPost);
+    console.log('가장 많은 댓글이 달린 포스트:', mostCommentedPost);
 
     res.render('index', {
       likeId: mostLikedPost.post_id,
@@ -44,7 +73,6 @@ const main = async (req, res) => {
       commentLiked: mostCommentedPost.liked,
       commentComment: mostCommentedPost.comment,
     });
-
   } catch (error) {
     console.error();
   }
@@ -61,8 +89,13 @@ const post_recommend = (req, res) => {
   });
 };
 
-const post_upload = (req, res) => {
+// 게시물 작성 페이지
+const uploadPost = (req, res) => {
   res.render('uploadPost');
+};
+
+const post_uploadPost = (req, res) => {
+  console.log(req.body);
 };
 
 // 회원가입 페이지 이동
@@ -94,17 +127,17 @@ const post_posts = (req, res) => {
 // 마이페이지
 const mypage = (req, res) => {
   // jwt 토큰으로 유저 정보 가져오기
-  const [bearer, token] = req.headers.authorization.split(" ");
-  if (bearer === "Bearer") {
+  const [bearer, token] = req.headers.authorization.split(' ');
+  if (bearer === 'Bearer') {
     try {
       const decoded = jwt.verify(token, SECRET);
       const { user_id } = decoded;
       res.json({ user_id });
     } catch (err) {
-      res.render("signin");
+      res.render('signin');
     }
   } else {
-    res.render("signin");
+    res.render('signin');
   }
 };
 
@@ -117,7 +150,7 @@ const mypage_user_id = async (req, res) => {
     },
   });
 
-  res.render("myPage", { user: result });
+  res.render('myPage', { user: result });
 };
 
 // 구글 로그인 페이지로 이동
@@ -425,7 +458,8 @@ const patch_resetPw = async (req, res) => {
 module.exports = {
   main,
   recommend,
-  post_upload,
+  uploadPost,
+  post_uploadPost,
   signup,
   signin,
   resetPw,
@@ -445,6 +479,7 @@ module.exports = {
   post_recommend,
   post_resetPw,
   patch_resetPw,
+  upload,
 };
 
 // 암호화

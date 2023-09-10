@@ -2,6 +2,7 @@
 tinymce.init({
   selector: '#mytextarea',
 });
+let tagNum;
 
 // 클릭된 태그들만 색 변하는 함수
 const tags = document.querySelectorAll('.tag');
@@ -9,7 +10,15 @@ tags.forEach((tag) => {
   tag.addEventListener('click', () => {
     // 선택한 태그의 클래스를 변경하여 스타일을 조절합니다.
     tag.classList.toggle('selected');
-    console.log(tag);
+    if (tag.classList.contains('moden-tag')) {
+      tagNum = 0;
+    } else if (tag.classList.contains('natural-tag')) {
+      tagNum = 1;
+    } else if (tag.classList.contains('game-tag')) {
+      tagNum = 2;
+    } else if (tag.classList.contains('study-tag')) {
+      tagNum = 3;
+    }
     // 다른 태그의 선택 상태를 해제합니다.
     tags.forEach((otherTag) => {
       if (otherTag !== tag) {
@@ -90,7 +99,6 @@ let points = [];
 const completeButton = document.createElement('button');
 completeButton.type = 'button';
 completeButton.textContent = '완료';
-// completeButton.addEventListener('click', displayProductInfo);
 
 function mousemove() {
   const mouseFollower = uploadImage.querySelector('.mouse-follower'); // uploadImage 내에서 검색
@@ -218,12 +226,26 @@ function mousemove() {
 
 function uploadPost() {
   const content = document.querySelector('#tinymce p');
-  console.log(tinyMCE.get('mytextarea').getContent());
+  // console.log(tinyMCE.get('mytextarea').getContent());
   const form = document.forms['upload-post'];
-  // const data = {
-  //   title: form.title.value,
-  //   name: form.name.value,
-  //   content: content.value,
-  // };
-  // console.log(data);
+  console.log(form.image.files[0]);
+  const data = {
+    title: form.title.value,
+    name: form.name.value,
+    content: tinyMCE.get('mytextarea').getContent(),
+    category: tagNum,
+    image: form.image.files[0],
+    imageName: form.image.files[0].name,
+    photoData,
+  };
+  axios({
+    method: 'POST',
+    url: '/uploadPost',
+    data,
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  }).then((res) => {
+    console.log('res', res);
+  });
 }
