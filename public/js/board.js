@@ -58,19 +58,17 @@
 
 
 //카테고리 버튼 
-const button = document.querySelectorAll('.button');
-const itemBox = document.querySelectorAll('.item-box');
-console.log(button, itemBox)
+const button = document.querySelectorAll('.filter.button');
+const filter = document.querySelectorAll('.filter');
+console.log(button, filter)
 for (let i = 0; i < button.length; i++) {
     button[i].addEventListener('click', function () {
-        console.log(i)
         for (let j = 0; j < button.length; j++) {
             button[j].classList.remove('active');
         }
         this.classList.add('active');
 
         let dataFilter = this.getAttribute('data-filter');
-        console.log("datafileter", dataFilter)
         for (let k = 0; k < itemBox.length; k++) {
             itemBox[k].classList.remove('active');
             itemBox[k].classList.add('hide');
@@ -300,124 +298,14 @@ const LikedData = async () => {
 
 LikedData();
 
-// ALL 버튼 눌렀을 때 모든 게시물 불러오기 
-const allData = async () => {
+// // ALL 버튼 눌렀을 때 모든 게시물 불러오기 
+// const allData = async () => {
 
-    const all = document.getElementById("all");
-    all.addEventListener("click", async () => {
-        const res = await axios({
-            method: "POST",
-            url: "/board/all",
-        });
-
-        const container = document.getElementById("mood-itemwrap");
-        container.innerHTML = "";
-
-        for (let i = 0; i < res.data.length; i++) {
-            const postCreate = document.createElement("div");
-            const container = document.getElementById("mood-itemwrap");
-            postCreate.classList.add("item-box");
-
-            // 게시물과 post_id 연결 
-            postCreate.addEventListener('click', () => {
-                location.href = `/board/${res.data[i].post_id}`;
-            })
-
-            postCreate.innerHTML = `
-            
-            <img src="${res.data[i].image}" />
-
-            <div class="post-box" >
-                    <div class="text-box">
-                        <span> This is title: ${res.data[i].title}</span>
-                    </div>
-
-                    <div class="res-box">
-                        <div class="heart-box">
-                            <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
-                            <p class="liked">${res.data[i].liked}</p>
-                        </div>
-                    
-                        <div class="comment-box">
-                            <i class="fa-regular fa-comment" style="color: #000000;"></i>
-                            <p class="comment">${res.data[i].comment}</p>
-                        </div>
-                    </div>
-            </div>`;
-
-            container.appendChild(postCreate);
-        }
-
-        console.log(res);
-
-    });
-}
-
-allData();
-
-// modern 게시물 불러오기
-const modernData = async () => {
-
-    const modern = document.getElementById("modern");
-    modern.addEventListener("click", async () => {
-        const res = await axios({
-            method: "POST",
-            url: "/board/modern",
-        });
-
-        const container = document.getElementById("mood-itemwrap");
-        container.innerHTML = "";
-
-        for (let i = 0; i < res.data.length; i++) {
-            const postCreate = document.createElement("div");
-            const container = document.getElementById("mood-itemwrap");
-            postCreate.classList.add("item-box");
-
-            // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/board/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
-
-            postCreate.innerHTML = `
-            
-            <img src="${res.data[i].image}" />
-
-            <div class="post-box" >
-                    <div class="text-box">
-                        <span> This is title: ${res.data[i].title}</span>
-                    </div>
-
-                    <div class="res-box">
-                        <div class="heart-box">
-                            <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
-                            <p class="liked">${res.data[i].liked}</p>
-                        </div>
-                    
-                        <div class="comment-box">
-                            <i class="fa-regular fa-comment" style="color: #000000;"></i>
-                            <p class="comment">${res.data[i].comment}</p>
-                        </div>
-                    </div>
-            </div>`;
-
-            container.appendChild(postCreate);
-        }
-
-        console.log(res);
-
-    });
-}
-
-modernData();
-
-// modern - most liked 게시물 불러오기
-// const modernLikedData = async () => {
-
-//     const modernLiked = document.getElementById("modern");
-//     modernLiked.addEventListener("click", async () => {
+//     const all = document.getElementById("all");
+//     all.addEventListener("click", async () => {
 //         const res = await axios({
 //             method: "POST",
-//             url: "/posts/modern/liked",
+//             url: "/board/all",
 //         });
 
 //         const container = document.getElementById("mood-itemwrap");
@@ -427,8 +315,14 @@ modernData();
 //             const postCreate = document.createElement("div");
 //             const container = document.getElementById("mood-itemwrap");
 //             postCreate.classList.add("item-box");
-//             postCreate.innerHTML = `
 
+//             // 게시물과 post_id 연결 
+//             postCreate.addEventListener('click', () => {
+//                 location.href = `/board/${res.data[i].post_id}`;
+//             })
+
+//             postCreate.innerHTML = `
+            
 //             <img src="${res.data[i].image}" />
 
 //             <div class="post-box" >
@@ -441,7 +335,7 @@ modernData();
 //                             <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
 //                             <p class="liked">${res.data[i].liked}</p>
 //                         </div>
-
+                    
 //                         <div class="comment-box">
 //                             <i class="fa-regular fa-comment" style="color: #000000;"></i>
 //                             <p class="comment">${res.data[i].comment}</p>
@@ -457,180 +351,21 @@ modernData();
 //     });
 // }
 
-// modernLikedData();
+// allData();
 
-// natural 게시물 불러오기
-const naturalData = async () => {
 
-    const natural = document.getElementById("natural");
-    natural.addEventListener("click", async () => {
-        const res = await axios({
-            method: "POST",
-            url: "/board/natural",
+// 버튼 선택할 때마다 axios로 값 보내주기
+const filterButtons = document.querySelectorAll('input[name="filter"]');
+filterButtons.forEach((filter) => {
+    filter.addEventListener('change', async () => {
+        const posts = await axios({
+           method: 'POST',
+           url: '/board/filter',
+           data: {filter: filter.value} 
         });
-
-        const container = document.getElementById("mood-itemwrap");
-        container.innerHTML = "";
-
-        for (let i = 0; i < res.data.length; i++) {
-            const postCreate = document.createElement("div");
-            const container = document.getElementById("mood-itemwrap");
-            postCreate.classList.add("item-box");
-
-            // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/board/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
-
-            postCreate.innerHTML = `
-            
-            <img src="${res.data[i].image}" />
-
-            <div class="post-box" >
-                    <div class="text-box">
-                        <span> This is title: ${res.data[i].title}</span>
-                    </div>
-
-                    <div class="res-box">
-                        <div class="heart-box">
-                            <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
-                            <p class="liked">${res.data[i].liked}</p>
-                        </div>
-                    
-                        <div class="comment-box">
-                            <i class="fa-regular fa-comment" style="color: #000000;"></i>
-                            <p class="comment">${res.data[i].comment}</p>
-                        </div>
-                    </div>
-            </div>`;
-
-            container.appendChild(postCreate);
-        }
-
-        console.log(res);
-
-    });
-}
-
-naturalData();
-
-// game 게시물 불러오기
-const gameData = async () => {
-
-    const game = document.getElementById("game");
-    game.addEventListener("click", async () => {
-        const res = await axios({
-            method: "POST",
-            url: "/board/game",
-        });
-
-        const container = document.getElementById("mood-itemwrap");
-        container.innerHTML = "";
-
-        for (let i = 0; i < res.data.length; i++) {
-            const postCreate = document.createElement("div");
-            const container = document.getElementById("mood-itemwrap");
-            postCreate.classList.add("item-box");
-
-            // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/board/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
-
-            postCreate.innerHTML = `
-            
-            <img src="${res.data[i].image}" />
-
-            <div class="post-box" >
-                    <div class="text-box">
-                        <span> This is title: ${res.data[i].title}</span>
-                    </div>
-
-                    <div class="res-box">
-                        <div class="heart-box">
-                            <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
-                            <p class="liked">${res.data[i].liked}</p>
-                        </div>
-                    
-                        <div class="comment-box">
-                            <i class="fa-regular fa-comment" style="color: #000000;"></i>
-                            <p class="comment">${res.data[i].comment}</p>
-                        </div>
-                    </div>
-            </div>`;
-
-            container.appendChild(postCreate);
-        }
-
-        console.log(res);
-
-    });
-}
-
-gameData();
-
-
-// study&office 게시물 불러오기
-const studyofficeData = async () => {
-
-    const studyoffice = document.getElementById("studyoffice");
-    studyoffice.addEventListener("click", async () => {
-        const res = await axios({
-            method: "POST",
-            url: "/board/studyoffice",
-        });
-
-        const container = document.getElementById("mood-itemwrap");
-        container.innerHTML = "";
-
-        for (let i = 0; i < res.data.length; i++) {
-            const postCreate = document.createElement("div");
-            const container = document.getElementById("mood-itemwrap");
-            postCreate.classList.add("item-box");
-
-            // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/board/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
-
-            postCreate.innerHTML = `
-            
-            <img src="${res.data[i].image}" />
-
-            <div class="post-box" >
-                    <div class="text-box">
-                        <span> This is title: ${res.data[i].title}</span>
-                    </div>
-
-                    <div class="res-box">
-                        <div class="heart-box">
-                            <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
-                            <p class="liked">${res.data[i].liked}</p>
-                        </div>
-                    
-                        <div class="comment-box">
-                            <i class="fa-regular fa-comment" style="color: #000000;"></i>
-                            <p class="comment">${res.data[i].comment}</p>
-                        </div>
-                    </div>
-            </div>`;
-
-            container.appendChild(postCreate);
-        }
-
-        console.log(res);
-
-    });
-}
-
-studyofficeData();
-
-
-
-
-
-
-
+        // 결과값 받아오기
+    })
+});
 
 
 

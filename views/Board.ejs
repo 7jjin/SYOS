@@ -70,81 +70,57 @@
             <div class="mood-container">
 
                 <!-- mood 선택 버튼 -->
+                <div class="mood-header-1">
 
-                <div class="mood-header">
-                    <!-- <div class="mood-li">
-                        <span class="button active" id="all" data-filter="all">All</span>
-                    </div>
 
-                    <div class="mood-li">
-                        <span class="button modern" id="modern" data-filter="modern">modern</span>
-                    </div>
-
-                    <div class="mood-li">
-                        <span class="button natural" id="natural" data-filter="natural">natural</span>
-                    </div>
-
-                    <div class="mood-li">
-                        <span class="button game" id="game" data-filter="game">game</span>
-                    </div>
-
-                    <div class="mood-li">
-                        <span class="button studyoffice" id="studyoffice" data-filter="studyoffice">study&office</span>
-                    </div>
-
-                    <div class="mood-li">
-                        <span class="mood-write">write</span>
-                    </div> -->
-                    <div class="mood-li">
-                        <input type="radio" id="all" name="mood" value="all" class="button active" checked>
+                    <div class="filter button active">
+                        <input type="radio" id="all" name="filter" value="all" data-item="all" checked>
                         <label for="all">All</label>
                     </div>
 
-                    <div class="mood-li">
-                        <input type="radio" id="modern" name="mood" value="modern" class="button modern">
+                    <div class="filter button modern">
+                        <input type="radio" id="modern" name="filter" value="modern" data-item="modern">
                         <label for="modern">Modern</label>
                     </div>
 
-                    <div class="mood-li">
-                        <input type="radio" id="natural" name="mood" value="natural" class="button natural">
+                    <div class="filter button natural">
+                        <input type="radio" id="natural" name="filter" value="natural" data-item="natural">
                         <label for="natural">Natural</label>
                     </div>
 
-                    <div class="mood-li">
-                        <input type="radio" id="game" name="mood" value="game" class="button game">
+                    <div class="filter button game">
+                        <input type="radio" id="game" name="filter" value="game" data-item="game">
                         <label for="game">Game</label>
                     </div>
 
-                    <div class="mood-li">
-                        <input type="radio" id="studyoffice" name="mood" value="studyoffice" class="button studyoffice">
-                        <label for="studyoffice">Study & Office</label>
+                    <div class="filter button studyoffice">
+                        <input type="radio" id="studyoffice" name="filter" value="study" data-item="studyoffice">
+                        <label for="studyoffice">Study&Office</label>
                     </div>
-
-                    <div class="mood-li">
-                        <input type="radio" id="write" name="mood" value="write" class="mood-write">
-                        <label for="write">Write</label>
-                    </div>
-
 
                 </div>
 
-                <!-- 드롭다운 -->
-                <div class="dropdown">
-                    <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        sort
-                    </button> -->
-                    <!-- <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" id="most-like">Most liked</a></li>
-                        <li><a class="dropdown-item" id="latest">latest</a></li>
-                        <li><a class="dropdown-item" id="oldest">oldest</a></li>
-                    </ul> -->
-                    <select id="sort-select">
-                        <option value="most-like" id="most-like">Most liked</option>
-                        <option value="latest" id="latest">Latest</option>
-                        <option value="oldest" id="oldest">Oldest</option>
-                    </select>
+                <div class="mood-header-2">
 
+                    <div class="filter button latest">
+                        <input type="radio" id="latest" name="filter" value="latest">
+                        <label for="latest">latest</label>
+
+                    </div>
+
+                    <div class="filter button oldest">
+                        <input type="radio" id="oldest" name="filter" value="oldest">
+                        <label for="oldest">oldest</label>
+                    </div>
+
+                    <div class="filter button like">
+                        <input type="radio" id="like" name="filter" value="like">
+                        <label for="like">most-liked</label>
+                    </div>
+                </div>
+
+                <div class="write">
+                    <span class="mood-write">write</span>
                 </div>
 
                 <!-- 무드 이미지 -->

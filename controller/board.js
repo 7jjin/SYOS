@@ -154,7 +154,7 @@ exports.post_post_comment = async (req, res) => {
 };
 
 // 댓글 삭제
-exports.delete_post_comment = (req, res) => {};
+exports.delete_post_comment = (req, res) => { };
 
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
@@ -221,148 +221,24 @@ exports.post_all = async (req, res) => {
   res.json(boardData);
 };
 
-// modern 게시물
-exports.post_modern = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    where: {
-      category: 1,
-    },
-  });
-  res.json(boardData);
-};
 
-// modern - mosk liked 게시물
-// const post_modern_liked = async (req, res) => {
-//   const boardData = await Post.findAll({
-//     attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
-//     where: {
-//       category: 1
-//     },
-//     order: [['liked', 'DESC']],
-//   });
-//   res.json(boardData);
-// };
+// 게시물 필터
+exports.post_board_filter = async (req, res) => {
+  const {filter} = req.body;
+  if(filter === 'modern'){
+  
+  }else if (filter === 'natural'){
 
-// natural 게시물
-exports.post_natural = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    where: {
-      category: 2,
-    },
-  });
-  res.json(boardData);
-};
+  }else if (filter === 'game'){
+    
+  }else if (filter === 'study'){
 
-// game 게시물
-exports.post_game = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    where: {
-      category: 3,
-    },
-  });
-  res.json(boardData);
-};
+  }else if (filter === 'latest'){
 
-// studyoffice 게시물
-exports.post_studyoffice = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    where: {
-      category: 4,
-    },
-  });
-  res.json(boardData);
-};
+  }else if (filter === 'oldest'){
 
-// 최신순 페이지 이동
-exports.post_latest = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    order: [['createdAt', 'ASC']],
-  });
-  res.json(boardData);
-};
+  }else if (filter === 'like'){
+    
+  }
+}
 
-// 오래된순 페이지 이동
-exports.post_oldest = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    order: [['createdAt', 'DESC']],
-  });
-  res.json(boardData);
-};
-
-// 인기순 페이지 이동
-exports.post_liked = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    order: [['liked', 'DESC']],
-  });
-  res.json(boardData);
-};
-
-exports.post_edit = (req, res) => {
-  console.log(req.params);
-  res.render('postEdit', data);
-};
-
-exports.patch_post_edit = async (req, res) => {};
