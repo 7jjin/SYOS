@@ -163,6 +163,8 @@ exports.post_delete = async (req, res) => {
   res.send({ result: true });
 };
 
+exports.post_edit = async (req, res) => {};
+
 // 게시물 업로드 페이지
 exports.uploadPost = (req, res) => {
   res.render('uploadPost');
@@ -357,3 +359,10 @@ exports.post_liked = async (req, res) => {
   });
   res.json(boardData);
 };
+
+exports.post_edit = (req, res) => {
+  console.log(req.params);
+  res.render('postEdit', data);
+};
+
+exports.patch_post_edit = async (req, res) => {};

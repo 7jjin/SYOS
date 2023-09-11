@@ -1,35 +1,6 @@
 //S3 이미지 경로
 const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
 
-// // 무한 스크롤 기능 함수
-// document.addEventListener("DOMContentLoaded", function () {
-//   let lastPost = document.querySelector(".post1:last-child");
-//   let postContainer = document.querySelector(".posts-box");
-//   const options = {
-//     threshold: 0.8, // 80%이상 보일 경우 콜백
-//   };
-
-//   // Intersection Observer 콜백 함수
-//   function handleIntersection(entries, observer) {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
-//         observer.unobserve(document.querySelector(".typeundefined")); // class typeundefined가 나오면 무한 스크롤 중지
-//         // 새로운 포스트를 3개 추가
-//         for (let i = 0; i < 3; i++) {
-//           createPost();
-//         }
-//         // 기존 마지막 포스트 업데이트
-//         let postContainer = document.querySelector(".posts-box");
-//         console.log(postContainer.lastElementChild);
-//         lastPost = document.querySelector(".post1:last-child");
-//         observer.observe(postContainer.lastElementChild); // 새로운 마지막 포스트를 관찰 시작
-//       }
-//     });
-//   }
-//   const observer = new IntersectionObserver(handleIntersection, options);
-//   observer.observe(postContainer.lastElementChild); // 초기에 마지막 포스트를 관찰 시작
-// });
-
 // 추천에 맞는 포스트 추가 함수
 
 const recommendPost = document.querySelector('.recommend-posts');

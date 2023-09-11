@@ -233,7 +233,6 @@ function uploadPost() {
   console.log(form.image.files[0]);
   const data = {
     title: form.title.value,
-    name: form.name.value,
     content: tinyMCE.get('mytextarea').getContent(),
     category: tagNum,
     image: form.image.files[0],
@@ -245,7 +244,7 @@ function uploadPost() {
 
   axios({
     method: 'POST',
-    url: '/uploadPost',
+    url: '/board/upload',
     data,
     headers: {
       'Content-Type': 'multipart/form-data',

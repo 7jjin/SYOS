@@ -36,7 +36,6 @@ db.Comment.belongsTo(db.Post, { foreignKey: 'post_id' });
 db.Post.hasMany(db.Product, { foreignKey: 'post_id' });
 db.Product.belongsTo(db.Post, { foreignKey: 'post_id' });
 
-
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

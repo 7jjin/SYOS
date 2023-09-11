@@ -8,9 +8,6 @@ router.get('/', controller.board);
 // 전체 게시물
 router.post('/', controller.post_board);
 
-// 게시물 상세
-router.get('/:post_id', controller.post_detail);
-
 // 게시물 상세 페이지 데이터 가져오기
 router.post('/detail', controller.post_data);
 
@@ -22,9 +19,6 @@ router.post('/detail/comment', controller.post_post_comment);
 
 // 댓글 삭제
 router.post('/detail/comment/delete', controller.delete_post_comment);
-
-// 게시물 삭제
-router.delete('/:postid/delete', controller.post_delete);
 
 // 게시물 업로드 페이지
 router.get('/upload', controller.uploadPost);
@@ -59,5 +53,17 @@ router.post('/oldest', controller.post_oldest);
 
 // 인기순 정렬 필터
 router.post('/liked', controller.post_liked);
+
+// 게시물 수정
+router.get('/:postid/edit', controller.post_edit);
+
+// 게시물 수정 (patch)
+router.patch('/:postid/edit', controller.patch_post_edit);
+
+// 게시물 삭제
+router.delete('/:postid/delete', controller.post_delete);
+
+// 게시물 상세
+router.get('/:post_id', controller.post_detail);
 
 module.exports = router;
