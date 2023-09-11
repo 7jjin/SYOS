@@ -30,7 +30,10 @@ router.get('/posts', controller.posts);
 router.post('/posts', controller.post_posts);
 
 // 게시물 상세
-router.get('/posts/write', controller.post_write);
+
+router.get("/posts/:post_id", controller.post_detail);
+
+router.get("/posts/write", controller.post_write);
 
 // 마이페이지
 router.get('/mypage', controller.mypage);
@@ -67,5 +70,14 @@ router.patch('/resetPw', controller.patch_resetPw);
 
 // 게시물 상세 페이지 데이터 가져오기
 router.post('/posts/write', controller.post_write_data);
+
+// 좋아요 누름
+router.patch('/posts/write/heart', controller.post_write_heart);
+
+// 댓글 입력
+router.post('/posts/write/comment', controller.post_write_comment);
+
+// 게시물 삭제
+router.delete('/posts/:postid/delete', controller.post_delete);
 
 module.exports = router;

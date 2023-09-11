@@ -4,7 +4,7 @@ const Comment = (sequelize) => {
   return sequelize.define('comment', {
     comment_id: {
       type: Sequelize.UUID,
-      defaultValue: Sequelize.UUIDV3,
+      defaultValue: Sequelize.UUIDV1,
       allowNull: false,
       primaryKey: true,
     },

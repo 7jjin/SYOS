@@ -17,6 +17,9 @@ db.Like = require("./Like")(sequelize);
 db.Comment = require("./Comment")(sequelize);
 
 // 외래키 관계 설정
+db.User.hasMany(db.Post, { foreignKey: "user_id" });
+db.Post.belongsTo(db.User, { foreignKey: "user_id" });
+
 db.User.hasMany(db.Like, { foreignKey: 'user_id' });
 db.Like.belongsTo(db.User, { foreignKey: 'user_id' });
 db.Post.hasMany(db.Like, { foreignKey: 'post_id' });
@@ -27,9 +30,6 @@ db.Comment.belongsTo(db.User,{foreignKey: 'user_id'});
 db.Post.hasMany(db.Comment, { foreignKey: 'post_id' });
 db.Comment.belongsTo(db.Post, { foreignKey: 'post_id' });
 
-// // 1:N 관계
-db.User.hasMany(db.Post, { foreignKey: "user_id" });
-db.Post.belongsTo(db.User, { foreignKey: "user_id" });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

@@ -196,77 +196,125 @@ const google_redirect = async (req, res) => {
   }
 };
 
-// 게시물 상세 -> 추후 게시물 작성으로 변경해야함!!
+// 게시물 작성
 const post_write = (req, res) => {
-  const { post_id } = req.params;
-  res.render('boardwrite', { post_id });
+
 };
+
+// 게시물 상세
+const post_detail = (req, res) => {
+  const {post_id} = req.params;
+  res.render('boardwrite', {post_id});
+}
 
 const post_write_data = async (req, res) => {
   // 일단 고정 게시물
-  const post_id = 11;
-
+  const { post_id } = req.body;
   try {
-    // 해당게시글의 모든 정보와 작성자의 닉네임까지 가져오기
     const postData = await Post.findOne({
       where: { post_id },
+      include: [{ model: User, attributes: ['nickname'] }],
     });
-    console.log('postdata: ', postData);
-    // userid 가져오기
+    // 게시글 정보가 없을 경우 예외처리
+    if (!postData) {
+      return res.status(404).json({ error: 'Post not found' });
+    }
     const user_id = postData.user_id;
-    console.log('user_id', user_id);
-    // 작성자 닉네임 가져오기
-    const nickName = await User.findOne({
-      attributes: ['nickname'],
-      where: { user_id },
-    });
-    console.log('nickName: ', nickName);
-    // const postData = await Post.findOne({
-    //   where: { post_id },
-    //   include: [{ model: User, attributes: ['nickname'] }],
-    // });
-    // // 게시글 정보가 없을 경우 예외처리
-    // if (!postData) {
-    //   return res.status(404).json({ error: 'Post not found' });
-    // }
-    // console.log('postdata: ', postData);
-    // const user_id = postData.user_id;
-    // const nickName = postData.User.nickname;
-    // console.log('user_id', user_id);
-    // console.log('nickName: ', nickName);
+    const nickName = postData.user.nickname;
     // 게시글 id에 해당하는 모든 댓글들 가져오기
     const comments = await Comment.findAll({
       where: { post_id },
+      order: [['createdAt', 'ASC']],
     });
-    console.log(comments);
-
-    // 현재 사용자의 좋아여 여부 확인
+    const commentNickname = [];
+    for (let i = 0; i < comments.length; i++) {
+      let result = await User.findOne({
+        attributes: ['nickname'],
+        where: { user_id: comments[i].user_id },
+      });
+      commentNickname.push(result.nickname);
+    }
+    // 현재 사용자의 좋아요 여부 확인
     const [bearer, token] = req.headers.authorization.split(' ');
     let currentUserId;
+    let currentUserNickname;
     if (bearer === 'Bearer') {
       const decoded = jwt.verify(token, SECRET);
       currentUserId = decoded.user_id;
-      console.log(currentUserId);
+      currentUserNickname = decoded.nickName;
     }
     const isHeart = await Like.findAll({
       where: { post_id, user_id: currentUserId },
     });
-    if (!isHeart) {
-      // 좋아요 안 누른거임
-    }
-    console.log('isHeart', isHeart);
 
     return res.json({
       postData,
       user_id,
       nickName,
       comments,
+      commentNickname,
       isHeart,
+      currentUserId,
+      currentUserNickname,
     });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: 'Internal Server Error' });
   }
+};
+
+const post_delete = async (req, res) => {
+  const { post_id } = req.body;
+  await Post.destroy({ where: post_id });
+  res.send({result: true});
+}
+
+// 좋아요 눌렀을 때
+const post_write_heart = async (req, res) => {
+  const { post_id, isHeart, user_id } = req.body;
+  const post = await Post.findOne({
+    attributes: ['liked'],
+    where: { post_id },
+  });
+  let liked = post.liked;
+  if (!isHeart) {
+    await Like.destroy({
+      where: {
+        post_id, user_id,
+      },
+    });
+    liked -= 1;
+  } else {
+    await Like.create({
+      post_id, user_id,
+    });
+    liked += 1;
+  }
+  await Post.update(
+    { liked },
+    { where: { post_id } }
+  );
+  res.json({ heartNum: liked });
+};
+
+// 댓글 추가
+const post_write_comment = async (req, res) => {
+  const { post_id, user_id, content} = req.body;
+  await Comment.create({
+    post_id,
+    user_id,
+    content
+  });
+  res.send({result: true});
+};
+
+// 댓글 수정
+const post_write_comment_edit = (req, res) => {
+
+};
+// 댓글 삭제
+const post_write_comment_delete = (req, res) => {
+
 };
 
 //로그인
@@ -456,6 +504,7 @@ module.exports = {
   google_redirect,
   mypage,
   mypage_user_id,
+  post_detail,
 
   post_write_data,
   post_signin,
@@ -465,7 +514,13 @@ module.exports = {
   post_recommend,
   post_resetPw,
   patch_resetPw,
+
+  post_write_heart,
+  post_write_comment,
+  post_delete,
+  
   post_mypage_user_id,
+
 };
 
 // 암호화
