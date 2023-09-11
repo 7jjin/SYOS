@@ -1,6 +1,7 @@
 const { User, Post } = require('../models'); // index.js 생략
 
 const jwt = require('jsonwebtoken');
+const SECRET = process.env.SECRET;
 
 // 메인 페이지 이동
 const main = async (req, res) => {
@@ -71,8 +72,8 @@ const mypage_user_id = async (req, res) => {
       user_id,
     },
   });
-
   res.render('myPage', { user: result });
+
 };
 
 // 마이페이지 정보 가져오기
