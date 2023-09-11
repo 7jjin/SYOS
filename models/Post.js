@@ -12,10 +12,6 @@ const Post = (sequelize) => {
       type: Sequelize.UUID,
       allowNull: false,
     },
-    name: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
     title: {
       type: DataTypes.STRING(50),
       allowNull: false,

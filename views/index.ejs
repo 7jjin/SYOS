@@ -52,7 +52,7 @@
       </svg>
       <ul class="main-menu">
         <li onclick="location.href = '/'">Home</li>
-        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/board'">Board</li>
         <li onclick="location.href = '/recommend'">Recommend</li>
         <li onclick="clickMyPage()">MyPage</li>
         <li class="divider"><div class="under-line"></div></li>
@@ -67,7 +67,7 @@
     <div class="main-text-wrapper">
       <div class="main-text">Find a desktop setup</div>
       <div class="main-text">that suits your taste!</div>
-      <div id="board-button" onclick="location.href = '/posts'">
+      <div id="board-button" onclick="location.href = '/board'">
         Get Started
       </div>
     </div>
@@ -117,7 +117,7 @@
       </div>
     </div>
     <div id="best-wrapper">
-      <div class="best-box left" onclick="location.href='/posts/<%= likeId %>'">
+      <div class="best-box left" onclick="location.href='/board/<%= likeId %>'">
         <div class="best-title">Most Liked</div>
         <div id="best-img1" class="best-img"></div>
         <div class="best-info">
@@ -158,7 +158,7 @@
           <span id="best-comment" class="best-text"><%= likeComment %></span>
         </div>
       </div>
-      <div class="best-box right" onclick="location.href='/posts/<%= commentId %>'">
+      <div class="best-box right" onclick="location.href='/board/<%= commentId %>'">
         <div class="best-title">Most Comments</div>
         <div id="best-img2" class="best-img"></div>
         <div class="best-info">
