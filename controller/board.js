@@ -154,7 +154,7 @@ exports.post_post_comment = async (req, res) => {
 };
 
 // 댓글 삭제
-exports.delete_post_comment = (req, res) => {};
+exports.delete_post_comment = (req, res) => { };
 
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
@@ -218,6 +218,7 @@ exports.post_all = async (req, res) => {
   });
   res.json(boardData);
 };
+
 
 // 게시물 필터
 exports.post_board_filter = async (req, res) => {
