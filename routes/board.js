@@ -39,25 +39,4 @@ router.post(
 // ALl 게시물
 router.post('/all', controller.post_all);
 
-// modern 게시물
-router.post('/modern', controller.post_modern);
-
-// natural 게시물
-router.post('/natural', controller.post_natural);
-
-// game 게시물
-router.post('/game', controller.post_game);
-
-// studyoffice 게시물
-router.post('/studyoffice', controller.post_studyoffice);
-
-// 최신순 정렬 필터
-router.post('/latest', controller.post_latest);
-
-// 오래된순 정렬 필터
-router.post('/oldest', controller.post_oldest);
-
-// 인기순 정렬 필터
-router.post('/liked', controller.post_liked);
-
 module.exports = router;

@@ -58,9 +58,9 @@
 
 
 //카테고리 버튼 
-const button = document.querySelectorAll('.button');
-const itemBox = document.querySelectorAll('.item-box');
-console.log(button, itemBox)
+const button = document.querySelectorAll('.filter.button');
+const filter = document.querySelectorAll('.filter');
+console.log(button, filter)
 for (let i = 0; i < button.length; i++) {
     button[i].addEventListener('click', function () {
         console.log(i)
