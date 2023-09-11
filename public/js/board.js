@@ -153,9 +153,9 @@ const LatestData = async () => {
             postCreate.classList.add("item-box");
 
             // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
+            postCreate.addEventListener('click', () => {
+                location.href = `/posts/${res.data[i].post_id}`;
+            })
 
             postCreate.innerHTML = `
             
@@ -208,9 +208,9 @@ const OldestData = async () => {
             postCreate.classList.add("item-box");
 
             // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
+            postCreate.addEventListener('click', () => {
+                location.href = `/posts/${res.data[i].post_id}`;
+            })
 
             postCreate.innerHTML = `
             
@@ -264,9 +264,9 @@ const LikedData = async () => {
             postCreate.classList.add("item-box");
 
             // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
+            postCreate.addEventListener('click', () => {
+                location.href = `/posts/${res.data[i].post_id}`;
+            })
 
             postCreate.innerHTML = `
             
@@ -319,9 +319,9 @@ const allData = async () => {
             postCreate.classList.add("item-box");
 
             // 게시물과 post_id 연결 
-            const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
-            postLink.appendChild(postCreate);
+            postCreate.addEventListener('click', () => {
+                location.href = `/posts/${res.data[i].post_id}`;
+            })
 
             postCreate.innerHTML = `
             
