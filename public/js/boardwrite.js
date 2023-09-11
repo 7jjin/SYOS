@@ -3,9 +3,12 @@ const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');
 const idBox = document.getElementById('post_id');
 const post_id = idBox.textContent;
+const modifyPost = document.getElementById('modify');
+const deletePost = document.getElementById('delete');
 
 let user_id;
 let nickName;
+let postUserId;
 
 // axios로 필요한 데이터 요청
 const token = localStorage.getItem('token');
@@ -19,7 +22,7 @@ const fetchData = async () => {
       },
       data: {
         post_id,
-      }
+      },
     });
     console.log(res);
     // 데이터 불러와서 렌더링
@@ -27,10 +30,36 @@ const fetchData = async () => {
     const postImage = document.querySelector('.post-img');
     const postContent = document.querySelector('#post-content');
     const commentList = document.querySelector('#comment-list');
-    writerNickname.textContent = `${res.data.nickName}`;
+    writerNickname.textContent = `@${res.data.nickName}`;
     postImage.src = res.data.postData.image;
     nickName = res.data.currentUserNickname;
     user_id = res.data.currentUserId;
+    postUserId = res.data.user_id;
+
+    // 수정, 삭제 버튼 활성화 여부
+    if (user_id === postUserId) {
+      // 보이고, 링크 설정
+      modifyPost.style.display = 'block';
+      deletePost.style.display = 'block';
+      modifyPost.addEventListener('click', () => {
+        location.href = `/posts/${post_id}/edit`;
+      });
+      deletePost.addEventListener('click', async () => {
+        const confirmation = confirm('삭제하시겠습니까?');
+        if (confirmation) {
+          await axios({
+            method: 'DELETE',
+            url: `/posts/${post_id}/delete`,
+            data: { post_id },
+          })
+          alert('삭제되었습니다.'); 
+        } 
+      });
+    } else {
+      // 안 보이고 링크 설정 x
+      modifyPost.style.display = 'none';
+      deletePost.style.display = 'none';
+    }
 
     if (res.data.isHeart.length !== 0) {
       heart.classList.remove('fa-regular');
@@ -50,7 +79,7 @@ const fetchData = async () => {
       commentBox.classList.add('comment-box');
       commentWriter.classList.add('user-name');
       commentText.classList.add('user-comment');
-      commentWriter.textContent = `${res.data.commentNickname[i]}`;
+      commentWriter.textContent = `@${res.data.commentNickname[i]}`;
       commentText.textContent = `${res.data.comments[i].content}`;
       commentBox.appendChild(commentWriter);
       commentBox.appendChild(commentText);
@@ -88,7 +117,7 @@ heart.addEventListener('click', async () => {
 });
 
 // 댓글 입력
-const addComment = async(e) => {
+const addComment = async (e) => {
   e.preventDefault();
   const comments = document.getElementById('comments');
   const content = comments.value;
@@ -127,4 +156,4 @@ const addComment = async(e) => {
     commentList.appendChild(commentBox);
     comments.value = '';
   }
-}
+};

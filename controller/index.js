@@ -263,6 +263,12 @@ const post_write_data = async (req, res) => {
   }
 };
 
+const post_delete = async (req, res) => {
+  const { post_id } = req.body;
+  await Post.destroy({ where: post_id });
+  res.send({result: true});
+}
+
 // 좋아요 눌렀을 때
 const post_write_heart = async (req, res) => {
   const { post_id, isHeart, user_id } = req.body;
@@ -489,6 +495,7 @@ module.exports = {
   patch_resetPw,
   post_write_heart,
   post_write_comment,
+  post_delete,
   
 };
 

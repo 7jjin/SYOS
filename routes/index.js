@@ -73,4 +73,7 @@ router.patch('/posts/write/heart', controller.post_write_heart);
 // 댓글 입력
 router.post('/posts/write/comment', controller.post_write_comment);
 
+// 게시물 삭제
+router.delete('/posts/:postid/delete', controller.post_delete);
+
 module.exports = router;
