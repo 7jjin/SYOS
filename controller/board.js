@@ -154,7 +154,7 @@ exports.post_post_comment = async (req, res) => {
 };
 
 // 댓글 삭제
-exports.delete_post_comment = (req, res) => { };
+exports.delete_post_comment = (req, res) => {};
 
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
@@ -162,8 +162,6 @@ exports.post_delete = async (req, res) => {
   await Post.destroy({ where: post_id });
   res.send({ result: true });
 };
-
-exports.post_edit = async (req, res) => {};
 
 // 게시물 업로드 페이지
 exports.uploadPost = (req, res) => {
@@ -221,24 +219,24 @@ exports.post_all = async (req, res) => {
   res.json(boardData);
 };
 
-
 // 게시물 필터
 exports.post_board_filter = async (req, res) => {
-  const {filter} = req.body;
-  if(filter === 'modern'){
-  
-  }else if (filter === 'natural'){
-
-  }else if (filter === 'game'){
-    
-  }else if (filter === 'study'){
-
-  }else if (filter === 'latest'){
-
-  }else if (filter === 'oldest'){
-
-  }else if (filter === 'like'){
-    
+  const { filter } = req.body;
+  if (filter === 'modern') {
+  } else if (filter === 'natural') {
+  } else if (filter === 'game') {
+  } else if (filter === 'study') {
+  } else if (filter === 'latest') {
+  } else if (filter === 'oldest') {
+  } else if (filter === 'like') {
   }
-}
+};
 
+exports.post_edit = (req, res) => {
+  console.log(req.params);
+  res.render('postEdit');
+};
+
+exports.patch_post_edit = (req, res) => {
+  console.log('a');
+};

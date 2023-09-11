@@ -1,0 +1,189 @@
+p{
+    margin:0;
+}
+.tox-notifications-container{
+    display: none;
+}
+
+.wrapper-title{
+    text-align: center;
+    font-weight: 700;
+}
+
+.writer,.title,.image ,.content,.upload-tag{
+    font-weight: 700;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.wrapper-box{
+    margin-bottom: 30px;
+}
+.inner-box{
+    position: relative;
+}
+
+.upload-form{
+    width: 50%;
+    margin:80px auto;
+}
+
+input{
+    width: 97%;
+  height: 32px;
+  font-size: 15px;
+  border: 0;
+  border-radius: 15px;
+  outline: none;
+  padding-left: 3%;
+  background-color: rgb(247, 249, 250);
+}
+#image{
+    background-color: white;
+    display: none;
+}
+
+.upload-image label{
+
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247, 249, 250);
+    border-radius: 15px;
+}
+label i {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+label p {
+    font-size: 16px;
+    font-weight: 600;
+}
+.add-link-wrapper{
+    display: none;
+    position: absolute;
+    bottom: 5%;
+    padding: 5px 10px;
+    border: 1px solid black;
+    border-radius: 15px;
+    background-color: white;
+    left: 50%;
+    cursor: pointer;
+    transform: translate(-50%);
+}
+
+.add-link-wrapper:hover{
+    background-color: #fffed2;
+}
+.upload-image {
+    position: relative;
+}
+
+.mouse-follower {
+    width: 20px; /* 원의 너비 */
+    height: 20px; /* 원의 높이 */
+    background-color: #828c94; /* 원의 배경 색상 */
+    border-radius: 50%; /* 원 모양으로 만들기 */
+    position: absolute; /* 절대 위치 지정 */
+    display: none; /* 초기에는 표시하지 않음 */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+
+
+
+
+
+
+
+
+/* CSS for the click point */
+.point {
+    position: absolute;
+    width: 20px; /* 원의 크기 조절 */
+    height: 18px; /* 원의 크기 조절 */
+    background-color: black; /* 원의 색상을 원하는 색상으로 변경하세요 */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold; /* 텍스트 굵기 조절 */
+    color: white; /* 텍스트 색상 설정 */
+    font-size: 14px; /* 텍스트 크기 설정 */
+  } 
+  
+
+  
+  /* CSS for the product info box */
+  .product-info {
+    width: 200px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.9); /* 박스 배경색을 원하는 색상으로 변경하세요 */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 999; /* 다른 요소 위에 나타나도록 설정 */
+  }
+  
+  /* CSS for product name input */
+  .product-info input[type="text"] {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  /* CSS for product link input */
+  .product-info input[type="text"] {
+    width: 95%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  .product-innerbox{
+    margin-top: 15px;
+    border-bottom: 1px solid black;
+  }
+  .product-innerbox h4 {
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .product-innerbox p:last-child{
+    margin-bottom: 10px;
+  }
+
+  .tag-box-inner{
+    display: flex;
+  }
+  .tag-box .tag{
+    margin-right: 10px;
+    font-size: 20px;
+    color: #a6a6a6;
+    cursor: pointer;
+  }
+  .tag.selected {
+    background-color: beige;
+    border-radius: 20%;
+}
+
+
+.upload-button{
+    margin-bottom: 20px;
+    color: white;
+    font-weight: 700;
+    padding: 10px 25px;
+    display: flex;
+    margin: 40px auto;
+    font-size: 16px;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: black;
+}
