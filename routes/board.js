@@ -5,9 +5,6 @@ const controller = require('../controller/board');
 // 전체 게시물
 router.get('/', controller.board);
 
-// 전체 게시물
-router.post('/', controller.post_board);
-
 // 게시물 상세 페이지 데이터 가져오기
 router.post('/detail', controller.post_data);
 
@@ -30,7 +27,7 @@ router.post(
   controller.post_uploadPost
 );
 
-// ALl 게시물
+// All 게시물
 router.post('/all', controller.post_all);
 
 // 게시물 필터
@@ -38,9 +35,6 @@ router.post('/filter', controller.post_board_filter);
 
 // 게시물 상세
 router.get('/:post_id', controller.post_detail);
-
-// 게시물 삭제
-router.delete('/:postid/delete', controller.post_delete);
 
 // 게시물 수정
 router.get('/:postid/edit', controller.post_edit);

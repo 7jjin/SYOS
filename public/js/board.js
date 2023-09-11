@@ -82,7 +82,7 @@
 const fetchData = async () => {
   const res = await axios({
     method: 'POST',
-    url: '/board',
+    url: '/board/all',
   });
   console.log(res);
 

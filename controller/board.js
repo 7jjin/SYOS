@@ -36,22 +36,6 @@ exports.board = (req, res) => {
   res.render('board');
 };
 
-//전체 게시물 (post)
-exports.post_board = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-  });
-  res.json(boardData);
-};
-
 // 게시물 상세 (get)
 exports.post_detail = (req, res) => {
   const { post_id } = req.params;
