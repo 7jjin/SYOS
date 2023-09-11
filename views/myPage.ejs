@@ -7,6 +7,10 @@
     <title>MyPage</title>
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/mypage.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
   </head>
   <body>
     <header id="main-header">
@@ -59,25 +63,71 @@
 
     <main class="myPage">
       <div class="profileDiv">
-        <div class="profileImg">
-          <img src="../img/profile.png" alt="profile" />
-        </div>
         <div class="profileInfo">
-          <div class="profileName"><%= user.nickname %></div>
-          <div class="profileId"><%= user.user_id %></div>
+          <div class="profileName">@<%= user.nickname %></div>
+          <!-- 요일 월 일 년 시간 순서로 출력됨 년월일로 출력하려면 -->
+          <div class="profileSince"></div>
+        </div>
+        <div class="profileImg">
+          <img src="../images/profileIcon.jpg" alt="profile" />
         </div>
       </div>
 
-      <div class="myPost">
-        <!-- 내가 쓴 게시물 -->
-      </div>
+      <div class="three">
+        <div class="myPost">
+          <div class="myWord">My Post</div>
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <!-- 여기에 들어갈 예정 -->
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+            </div>
+            <div class="swiper-pagination"></div>
 
-      <div class="myComment">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+
         <!-- 내가 댓글 단 게시물 -->
-      </div>
+        <div class="myComment">
+          <div class="myWord">My Comment</div>
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+            </div>
+            <div class="swiper-pagination"></div>
 
-      <div class="내가 좋아요 누른 게시물">
-        <!--  -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+
+        <!-- 내가 좋아요 누른 게시물 -->
+        <div class="myLiked">
+          <div class="myWord">My Liked</div>
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+              <div class="swiper-slide"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <div class="swiper-scrollbar"></div>
+          </div>
+        </div>
+        <!-- 내가 쓴 게시물 -->
       </div>
     </main>
 
@@ -109,12 +159,22 @@
 
     <!-- footer -->
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
     <script src="../js/menu.js"></script>
     <script src="../js/myPage.js"></script>
     <script>
       // js에 ejs 변수 넘겨서 user_id 저장
-      let id = "<%= user.user_id %>";
+      let id = '<%= user.user_id %>';
       saveId(id);
+      let nickname = '<%= user.nickname %>';
+      saveNickname(nickname);
+      let date = '<%= user.createdAt %>';
+      saveDate(date);
+
+      ready();
+      async function ready() {
+        await getMyPost();
+      }
     </script>
   </body>
 </html>

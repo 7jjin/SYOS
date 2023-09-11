@@ -468,6 +468,27 @@ const patch_resetPw = async (req, res) => {
   res.json({ result: true });
 };
 
+// 마이페이지 정보 가져오기
+const post_mypage_user_id = async (req, res) => {
+  const { user_id } = req.params;
+
+  const myPost = await Post.findAll({
+    where: {
+      user_id,
+    },
+  });
+
+  console.log(myPost);
+
+  if (myPost.length == 0) {
+    console.log('게시물 없음!!!!!!');
+    res.json({ result: '1' });
+  } else {
+    console.log('게시물 있음 !!!!!');
+    res.json({ result: '2', myPost });
+  }
+};
+
 // 소셜 로그인
 module.exports = {
   main,
@@ -493,10 +514,13 @@ module.exports = {
   post_recommend,
   post_resetPw,
   patch_resetPw,
+
   post_write_heart,
   post_write_comment,
   post_delete,
   
+  post_mypage_user_id,
+
 };
 
 // 암호화
