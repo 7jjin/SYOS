@@ -29,6 +29,33 @@ router.get("/posts", controller.posts);
 // 전체 게시물
 router.post("/posts", controller.post_posts);
 
+// ALl 게시물
+router.post("/posts/all", controller.post_all);
+
+// modern 게시물
+router.post("/posts/modern", controller.post_modern);
+
+// modern - most liked 게시물
+// router.post("/posts/modern/liked", controller.post_modern_liked);
+
+// natural 게시물
+router.post("/posts/natural", controller.post_natural);
+
+// game 게시물
+router.post("/posts/game", controller.post_game);
+
+// studyoffice 게시물
+router.post("/posts/studyoffice", controller.post_studyoffice);
+
+// 최신순 정렬 필터
+router.post("/posts/latest", controller.post_latest)
+
+// 오래된순 정렬 필터
+router.post("/posts/oldest", controller.post_oldest)
+
+// 인기순 정렬 필터
+router.post("/posts/liked", controller.post_liked)
+
 // 게시물 상세
 router.get("/posts/write", controller.post_write);
 

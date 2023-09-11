@@ -85,11 +85,108 @@ const posts = (req, res) => {
   res.render('board');
 };
 
-const post_posts = (req, res) => {
-  Post.findAll({}).then((result) => {
-    res.json({ data: result });
+//전체 게시물
+const post_posts = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
   });
+  res.json(boardData);
 };
+
+//ALl 게시물
+const post_all = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+  });
+  res.json(boardData);
+};
+
+// modern 게시물
+const post_modern = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    where: {
+      category: 1
+    }
+  });
+  res.json(boardData);
+};
+
+// modern - mosk liked 게시물
+// const post_modern_liked = async (req, res) => {
+//   const boardData = await Post.findAll({
+//     attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+//     where: {
+//       category: 1
+//     },
+//     order: [['liked', 'DESC']],
+//   });
+//   res.json(boardData);
+// };
+
+
+// natural 게시물
+const post_natural = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    where: {
+      category: 2
+    }
+  });
+  res.json(boardData);
+};
+
+// game 게시물
+const post_game = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    where: {
+      category: 3
+    }
+  });
+  res.json(boardData);
+};
+
+// studyoffice 게시물
+const post_studyoffice = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    where: {
+      category: 4
+    }
+  });
+  res.json(boardData);
+};
+
+
+// 최신순 페이지 이동
+const post_latest = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    order: [['createdAt', 'ASC']],
+  });
+  res.json(boardData);
+};
+
+// 오래된순 페이지 이동
+const post_oldest = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    order: [['createdAt', 'DESC']],
+  });
+  res.json(boardData);
+};
+
+
+// 인기순 페이지 이동 
+const post_liked = async (req, res) => {
+  const boardData = await Post.findAll({
+    attributes: ["post_id", "title", "image", "category", "liked", "comment", "createdAt"],
+    order: [['liked', 'DESC']],
+  });
+  res.json(boardData);
+};
+
 
 // 마이페이지
 const mypage = (req, res) => {
@@ -431,6 +528,15 @@ module.exports = {
   resetPw,
   posts,
   post_posts,
+  post_all,
+  post_modern,
+  // post_modern_liked,
+  post_natural,
+  post_game,
+  post_studyoffice,
+  post_latest,
+  post_oldest,
+  post_liked,
   post_write,
   google_signin,
   google_redirect,
