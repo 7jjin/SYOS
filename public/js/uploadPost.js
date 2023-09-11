@@ -245,7 +245,7 @@ function uploadPost() {
 
   axios({
     method: 'POST',
-    url: '/uploadPost',
+    url: '/board/upload',
     data,
     headers: {
       'Content-Type': 'multipart/form-data',
