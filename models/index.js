@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV;
-const config = require(__dirname + "/../config/config.json")[env];
+const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 const sequelize = new Sequelize(
   config.database,
@@ -11,24 +11,30 @@ const sequelize = new Sequelize(
   config
 );
 
-db.User = require("./User")(sequelize);
-db.Post = require("./Post")(sequelize);
-db.Like = require("./Like")(sequelize);
-db.Comment = require("./Comment")(sequelize);
+db.User = require('./User')(sequelize);
+db.Post = require('./Post')(sequelize);
+db.Like = require('./Like')(sequelize);
+db.Comment = require('./Comment')(sequelize);
+db.Product = require('./Product')(sequelize);
 
 // 외래키 관계 설정
-db.User.hasMany(db.Post, { foreignKey: "user_id" });
-db.Post.belongsTo(db.User, { foreignKey: "user_id" });
+db.User.hasMany(db.Post, { foreignKey: 'user_id' });
+db.Post.belongsTo(db.User, { foreignKey: 'user_id' });
 
 db.User.hasMany(db.Like, { foreignKey: 'user_id' });
 db.Like.belongsTo(db.User, { foreignKey: 'user_id' });
+
 db.Post.hasMany(db.Like, { foreignKey: 'post_id' });
 db.Like.belongsTo(db.Post, { foreignKey: 'post_id' });
 
-db.User.hasMany(db.Comment, {foreignKey: 'user_id'});
-db.Comment.belongsTo(db.User,{foreignKey: 'user_id'});
+db.User.hasMany(db.Comment, { foreignKey: 'user_id' });
+db.Comment.belongsTo(db.User, { foreignKey: 'user_id' });
+
 db.Post.hasMany(db.Comment, { foreignKey: 'post_id' });
 db.Comment.belongsTo(db.Post, { foreignKey: 'post_id' });
+
+db.Post.hasMany(db.Product, { foreignKey: 'post_id' });
+db.Product.belongsTo(db.Post, { foreignKey: 'post_id' });
 
 
 db.sequelize = sequelize;

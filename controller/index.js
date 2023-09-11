@@ -1,9 +1,38 @@
-const { User, Post, Like, Comment } = require('../models'); // index.js 생략
+const { User, Post, Like, Comment, Product } = require('../models'); // index.js 생략
 const bcrypt = require('bcrypt');
 const { smtpTransport } = require('../config/email'); // 이메일 전송
 
 const jwt = require('jsonwebtoken');
 const axios = require('axios');
+// const upload = require('../index.js').upload; // 이 부분을 추가
+
+///multer
+const multer = require('multer');
+const aws = require('aws-sdk');
+const multerS3 = require('multer-s3');
+
+aws.config.update({
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  region: 'ap-northeast-2',
+});
+
+//aws s3 인스턴스 생성
+const s3 = new aws.S3();
+// multer설정 - aws
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'syos-test2',
+    acl: 'public-read', //파일접근권한 (public-read로 해야 업로드된 파일이 공개)
+    metadata: function (req, file, cb) {
+      cb(null, { fieldName: file.fieldname });
+    },
+    key: function (req, file, cb) {
+      cb(null, file.originalname);
+    },
+  }),
+});
 
 // 암호화 관련 정보
 const saltNumber = parseInt(process.env.SALT);
@@ -60,8 +89,43 @@ const post_recommend = (req, res) => {
   });
 };
 
-const post_upload = (req, res) => {
+// 게시물 작성 페이지
+const uploadPost = (req, res) => {
   res.render('uploadPost');
+};
+
+const post_uploadPost = async (req, res) => {
+  const { title, name, content, category, imageName, photoData } = req.body;
+  const [bearer, token] = req.headers.authorization.split(' ');
+  let currentUserId;
+  if (bearer === 'Bearer') {
+    const decoded = jwt.verify(token, SECRET);
+    currentUserId = decoded.user_id;
+  }
+  await Post.create({
+    user_id: currentUserId,
+    name: name,
+    title: title,
+    image: imageName,
+    content: content,
+    category: category,
+  });
+  const result = await Post.findOne({
+    attributes: ['post_id'],
+    order: [['createdAt', 'DESC']],
+    limit: 1,
+  });
+
+  for (let i = 0; i < photoData.length; i++) {
+    Product.create({
+      post_id: result.post_id,
+      product_name: photoData[i].productName,
+      product_link: photoData[i].productLink,
+      top: photoData[i].top,
+      left: photoData[i].left,
+    });
+  }
+  res.send(true);
 };
 
 // 회원가입 페이지 이동
@@ -590,7 +654,8 @@ const post_mypage_user_id = async (req, res) => {
 module.exports = {
   main,
   recommend,
-  post_upload,
+  uploadPost,
+  post_uploadPost,
   signup,
   signin,
   resetPw,
@@ -620,13 +685,13 @@ module.exports = {
   post_recommend,
   post_resetPw,
   patch_resetPw,
+  upload,
 
   post_write_heart,
   post_write_comment,
   post_delete,
   
   post_mypage_user_id,
-
 };
 
 // 암호화

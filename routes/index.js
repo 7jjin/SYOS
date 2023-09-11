@@ -12,7 +12,14 @@ router.get('/recommend', controller.recommend);
 router.post('/recommend', controller.post_recommend);
 
 // 포스트 업로드 페이지
-router.get('/uploadPost', controller.post_upload);
+router.get('/uploadPost', controller.uploadPost);
+
+// 포스트 업로드
+router.post(
+  '/uploadPost',
+  controller.upload.single('image'),
+  controller.post_uploadPost
+);
 
 // 회원가입 페이지 이동
 router.get('/signup', controller.signup);
