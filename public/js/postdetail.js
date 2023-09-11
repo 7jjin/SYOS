@@ -16,7 +16,7 @@ const fetchData = async () => {
   try {
     const res = await axios({
       method: 'POST',
-      url: '/posts/write',
+      url: '/board/detail',
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -42,14 +42,14 @@ const fetchData = async () => {
       modifyPost.style.display = 'block';
       deletePost.style.display = 'block';
       modifyPost.addEventListener('click', () => {
-        location.href = `/posts/${post_id}/edit`;
+        location.href = `/board/${post_id}/edit`;
       });
       deletePost.addEventListener('click', async () => {
         const confirmation = confirm('삭제하시겠습니까?');
         if (confirmation) {
           await axios({
             method: 'DELETE',
-            url: `/posts/${post_id}/delete`,
+            url: `/board/${post_id}/delete`,
             data: { post_id },
           })
           alert('삭제되었습니다.'); 
@@ -109,7 +109,7 @@ heart.addEventListener('click', async () => {
   }
   const res = await axios({
     method: 'PATCH',
-    url: '/posts/write/heart',
+    url: '/board/detail/heart',
     data: { post_id, isHeart, user_id },
   });
   const number = res.data.heartNum;
@@ -134,7 +134,7 @@ const addComment = async (e) => {
 
   const result = await axios({
     method: 'POST',
-    url: '/posts/write/comment',
+    url: '/board/detail/comment',
     data: {
       post_id,
       user_id,
@@ -149,7 +149,7 @@ const addComment = async (e) => {
     commentBox.classList.add('comment-box');
     commentWriter.classList.add('user-name');
     commentText.classList.add('user-comment');
-    commentWriter.textContent = nickName;
+    commentWriter.textContent = `@${nickName}`;
     commentText.textContent = content;
     commentBox.appendChild(commentWriter);
     commentBox.appendChild(commentText);

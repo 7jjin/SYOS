@@ -25,12 +25,15 @@ app.use(express.json());
 
 //router
 const router = require('./routes');
-app.use('/', router);
-
 const admin = require('./routes/admin');
-app.use('/admin', admin);
-
 const socketRouter = require('./routes/socket');
+const board = require('./routes/board');
+const oauth = require('./routes/oauth');
+
+app.use('/', router);
+app.use('/', oauth);
+app.use('/admin', admin);
+app.use('/board', board);
 socketRouter(io);
 
 db.sequelize.sync({ force: false }).then(() => {
