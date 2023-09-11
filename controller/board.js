@@ -205,40 +205,62 @@ exports.post_uploadPost = async (req, res) => {
   res.send(true);
 };
 
-//ALl 게시물
+//All 게시물 (처음 한 번)
 exports.post_all = async (req, res) => {
   const boardData = await Post.findAll({
     attributes: [
       'post_id',
       'title',
       'image',
-      'category',
       'liked',
       'comment',
-      'createdAt',
     ],
   });
   res.json(boardData);
 };
 
-
 // 게시물 필터
 exports.post_board_filter = async (req, res) => {
   const {filter} = req.body;
+  let data;
   if(filter === 'modern'){
-  
+    data = await Post.findAll({
+      where: { category: 0 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
   }else if (filter === 'natural'){
-
+    data = await Post.findAll({
+      where: { category: 1 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
   }else if (filter === 'game'){
-    
+    data = await Post.findAll({
+      where: { category: 2 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
   }else if (filter === 'study'){
-
+    data = await Post.findAll({
+      where: { category: 3 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
   }else if (filter === 'latest'){
-
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+      order: [['createdAt', 'DESC']],
+    });
   }else if (filter === 'oldest'){
-
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+      order: [['createdAt', 'ASC']],
+    });
   }else if (filter === 'like'){
-    
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+      order: [['liked', 'DESC']],
+    });
   }
-}
+  res.json(data);
+};
+
+
 

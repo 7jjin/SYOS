@@ -1,192 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>board</title>
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/board.css" />
     <link rel="stylesheet" href="../css/chat.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-</head>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
 
-<body>
+  <body>
     <header id="main-header">
-        <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36"
-            viewBox="0 0 24 24">
-            <path
-                d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
-            </path>
-        </svg>
-        <span id="logo" onclick="location.href = '/'">SYOS</span>
+      <svg
+        class="menu-button"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="36"
+        height="36"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
+        ></path>
+      </svg>
+      <span id="logo" onclick="location.href = '/'">SYOS</span>
     </header>
 
     <!-- navBar -->
     <nav id="main-nav">
-        <svg class="menu-button close" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px"
-            viewBox="0 0 24 24">
-            <path
-                d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
-        </svg>
-        <ul class="main-menu">
-            <li onclick="location.href = '/'">Home</li>
-            <li onclick="location.href = '/posts'">Board</li>
-            <li onclick="location.href = '/recommend'">Recommend</li>
-            <!-- mypage 엔드포인트에 param 추가해야함-->
-            <li onclick="location.href = '/mypage'">MyPage</li>
-            <li class="divider">
-                <div class="under-line"></div>
-            </li>
-        </ul>
-        <ul class="sub-menu">
-            <li>About</li>
-            <li>Contact</li>
-            <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
-        </ul>
+      <svg
+        class="menu-button close"
+        xmlns="http://www.w3.org/2000/svg"
+        width="40px"
+        height="40px"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+      <ul class="main-menu">
+        <li onclick="location.href = '/'">Home</li>
+        <li onclick="location.href = '/board'">Board</li>
+        <li onclick="location.href = '/recommend'">Recommend</li>
+        <!-- mypage 엔드포인트에 param 추가해야함-->
+        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li class="divider"><div class="under-line"></div></li>
+      </ul>
+      <ul class="sub-menu">
+        <li>About</li>
+        <li>Contact</li>
+        <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
+      </ul>
     </nav>
 
     <!-- board -->
     <div class="board-Page">
-        <div class="boardPageIn">
+      <div class="mood-container">
+        <div class="mood-header-1">
+          <div class="filter latest">
+            <input type="radio" id="latest" name="filter" value="latest" />
+            <label for="latest">latest</label>
+          </div>
 
-            <!-- ShareYourOwnMood! 문구 -->
+          <div class="filter oldest">
+            <input type="radio" id="oldest" name="filter" value="oldest" />
+            <label for="oldest">oldest</label>
+          </div>
 
-            <div class="board-text">
-                <div>ShareYourOwnMood!</div>
+          <div class="filter like">
+            <input type="radio" id="like" name="filter" value="like" />
+            <label for="like">most-liked</label>
+          </div>
+        </div>
+
+        <div class="mood-header-2">
+          <div class="filter active">
+            <input
+              type="radio"
+              id="all"
+              name="filter"
+              value="all"
+              data-item="all"
+              checked
+            />
+            <label for="all">All</label>
+          </div>
+
+          <div class="filter modern">
+            <input
+              type="radio"
+              id="modern"
+              name="filter"
+              value="modern"
+              data-item="modern"
+            />
+            <label for="modern">Modern</label>
+          </div>
+
+          <div class="filter natural">
+            <input
+              type="radio"
+              id="natural"
+              name="filter"
+              value="natural"
+              data-item="natural"
+            />
+            <label for="natural">Natural</label>
+          </div>
+
+          <div class="filter game">
+            <input
+              type="radio"
+              id="game"
+              name="filter"
+              value="game"
+              data-item="game"
+            />
+            <label for="game">Game</label>
+          </div>
+          <div class="filter studyoffice">
+            <input
+              type="radio"
+              id="studyoffice"
+              name="filter"
+              value="study"
+              data-item="studyoffice"
+            />
+            <label for="studyoffice">Study&Office</label>
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- 
+    <div class="write">
+      <span class="mood-write">write</span>
+    </div> -->
+
+    <!-- 게시물  -->
+    <div class="mood-box">
+        <div class="mood-itemwrap" id="mood-itemwrap"></div>
+    </div>
+
+    <!-- footer -->
+    <footer id="main-footer">
+      <div id="footer-logo">SYOS</div>
+      <div id="description">
+        <div class="desc-text">@2023 SYOS</div>
+        <div>Desktop Setup Sharing Platform</div>
+      </div>
+      <div id="footer-icon-wrapper">
+        <i class="fa-brands fa-twitter footer-sns"></i>
+        <i class="fa-brands fa-instagram footer-sns"></i>
+        <i class="fa-brands fa-facebook footer-sns"></i>
+      </div>
+    </footer>
+    <!-- chat -->
+    <div id="chat-wrapper">
+      <div id="chat-content">
+        <div id="chat-header">
+          <div id="chat-header-logo">SYOS</div>
+          <div id="chat-header-text">문의하기</div>
+        </div>
+        <div id="chat-box-wrapper">
+          <div id="chat-box">
+            <div class="chat other-chat">
+              안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+              궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
             </div>
+            <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+              데스크 셋업 추천? 💻
+            </div>
+            <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+              SYOS에게 바라는 점 📝
+            </div>
+            <div
+              id="connect"
+              class="chat chat-button"
+              onclick="clickConnectButton()"
+            >
+              상담원 연결하기 👨‍👩‍👧‍👦
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="reply"
+          placeholder="메세지를 입력하세요..."
+          disabled
+        />
+        <button id="reply-btn">입력</button>
+      </form>
+    </div>
 
-            <div class="mood-container">
+    <div id="chat-button">S</div>
 
-                <!-- mood 선택 버튼 -->
-                <div class="mood-header-1">
-
-
-                    <div class="filter button active">
-                        <input type="radio" id="all" name="filter" value="all" data-item="all" checked>
-                        <label for="all">All</label>
-                    </div>
-
-                    <div class="filter button modern">
-                        <input type="radio" id="modern" name="filter" value="modern" data-item="modern">
-                        <label for="modern">Modern</label>
-                    </div>
-
-                    <div class="filter button natural">
-                        <input type="radio" id="natural" name="filter" value="natural" data-item="natural">
-                        <label for="natural">Natural</label>
-                    </div>
-
-                    <div class="filter button game">
-                        <input type="radio" id="game" name="filter" value="game" data-item="game">
-                        <label for="game">Game</label>
-                    </div>
-
-                    <div class="filter button studyoffice">
-                        <input type="radio" id="studyoffice" name="filter" value="study" data-item="studyoffice">
-                        <label for="studyoffice">Study&Office</label>
-                    </div>
-
-                </div>
-
-                <div class="mood-header-2">
-
-                    <div class="filter button latest">
-                        <input type="radio" id="latest" name="filter" value="latest">
-                        <label for="latest">latest</label>
-
-                    </div>
-
-                    <div class="filter button oldest">
-                        <input type="radio" id="oldest" name="filter" value="oldest">
-                        <label for="oldest">oldest</label>
-                    </div>
-
-                    <div class="filter button like">
-                        <input type="radio" id="like" name="filter" value="like">
-                        <label for="like">most-liked</label>
-                    </div>
-                </div>
-
-                <div class="write">
-                    <span class="mood-write">write</span>
-                </div>
-
-                <!-- 무드 이미지 -->
-                <div class="mood-box">
-                    <div class="mood-itemwrap" id="mood-itemwrap">
-                    </div>
-                </div>
-
-                <!-- footer -->
-                <link rel="stylesheet" href="../css/global.css" />
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-                    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-                    crossorigin="anonymous" referrerpolicy="no-referrer" />
-                ...
-
-                <footer id="main-footer">
-                    <div id="footer-logo">SYOS</div>
-                    <div id="description">
-                        <div class="desc-text">@2023 SYOS</div>
-                        <div>Desktop Setup Sharing Platform</div>
-                    </div>
-                    <div id="footer-icon-wrapper">
-                        <i class="fa-brands fa-twitter footer-sns"></i>
-                        <i class="fa-brands fa-instagram footer-sns"></i>
-                        <i class="fa-brands fa-facebook footer-sns"></i>
-                    </div>
-                </footer>
-
-                <!-- chat -->
-                <div id="chat-wrapper">
-                    <div id="chat-content">
-                        <div id="chat-header">
-                            <div id="chat-header-logo">SYOS</div>
-                            <div id="chat-header-text">문의하기</div>
-                        </div>
-                        <div id="chat-box-wrapper">
-                            <div id="chat-box">
-                                <div class="chat other-chat">
-                                    안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
-                                    궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
-                                </div>
-                                <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
-                                    데스크 셋업 추천? 💻
-                                </div>
-                                <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
-                                    SYOS에게 바라는 점 📝
-                                </div>
-                                <div id="connect" class="chat chat-button" onclick="clickConnectButton()">
-                                    상담원 연결하기 👨‍👩‍👧‍👦
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <form id="chat-form">
-                        <input type="text" id="reply" placeholder="메세지를 입력하세요..." disabled />
-                        <button id="reply-btn">입력</button>
-                    </form>
-                </div>
-
-                <div id="chat-button">S</div>
-                ...
-
-                <script src="/socket.io/socket.io.js"></script>
-                <script src="../js/chat.js"></script>
-                <script src="../js/menu.js"></script>
-                <script src="../js/board.js"></script>
-</body>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/chat.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/board.js"></script>
+  </body>
 </html>
