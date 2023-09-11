@@ -6,9 +6,14 @@ const Post = (sequelize) => {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
     },
     user_id: {
       type: Sequelize.UUID,
+      allowNull: false,
+    },
+    name: {
+      type: DataTypes.STRING(50),
       allowNull: false,
     },
     title: {
@@ -23,10 +28,6 @@ const Post = (sequelize) => {
       type: DataTypes.STRING(1000),
       allowNull: false,
     },
-    product_link: {
-      type: DataTypes.STRING(500),
-      allowNull: false,
-    },
     liked: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
@@ -35,14 +36,10 @@ const Post = (sequelize) => {
     comment: {
       type: DataTypes.INTEGER.UNSIGNED,
       allowNull: false,
-      default: 0,
+      defaultValue: 0,
     },
     category: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING(1000),
       allowNull: false,
     },
   });

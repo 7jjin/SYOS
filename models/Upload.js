@@ -2,6 +2,7 @@ const { DataTypes, Sequelize } = require('sequelize');
 
 const Upload = (sequelize) => {
   return sequelize.define('upload', {
+    // Post에서 사용되는 외래키
     post_id: {
       primaryKey: true,
       type: DataTypes.INTEGER.UNSIGNED,

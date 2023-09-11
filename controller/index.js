@@ -1,4 +1,4 @@
-const { User, Post, Like, Comment } = require('../models'); // index.js 생략
+const { User, Post, Like, Comment, Product } = require('../models'); // index.js 생략
 const bcrypt = require('bcrypt');
 const { smtpTransport } = require('../config/email'); // 이메일 전송
 
@@ -94,8 +94,38 @@ const uploadPost = (req, res) => {
   res.render('uploadPost');
 };
 
-const post_uploadPost = (req, res) => {
-  console.log(req.body);
+const post_uploadPost = async (req, res) => {
+  const { title, name, content, category, imageName, photoData } = req.body;
+  const [bearer, token] = req.headers.authorization.split(' ');
+  let currentUserId;
+  if (bearer === 'Bearer') {
+    const decoded = jwt.verify(token, SECRET);
+    currentUserId = decoded.user_id;
+  }
+  await Post.create({
+    user_id: currentUserId,
+    name: name,
+    title: title,
+    image: imageName,
+    content: content,
+    category: category,
+  });
+  const result = await Post.findOne({
+    attributes: ['post_id'],
+    order: [['createdAt', 'DESC']],
+    limit: 1,
+  });
+
+  for (let i = 0; i < photoData.length; i++) {
+    Product.create({
+      post_id: result.post_id,
+      product_name: photoData[i].productName,
+      product_link: photoData[i].productLink,
+      top: photoData[i].top,
+      left: photoData[i].left,
+    });
+  }
+  res.send(true);
 };
 
 // 회원가입 페이지 이동

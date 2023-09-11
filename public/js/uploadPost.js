@@ -225,6 +225,7 @@ function mousemove() {
 /// 폼 전송하기
 
 function uploadPost() {
+  const token = localStorage.getItem('token');
   const content = document.querySelector('#tinymce p');
   // console.log(tinyMCE.get('mytextarea').getContent());
   const form = document.forms['upload-post'];
@@ -244,6 +245,7 @@ function uploadPost() {
     data,
     headers: {
       'Content-Type': 'multipart/form-data',
+      Authorization: `Bearer ${token}`,
     },
   }).then((res) => {
     console.log('res', res);
