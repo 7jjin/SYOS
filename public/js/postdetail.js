@@ -1,3 +1,4 @@
+const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
 const heart = document.querySelector('.fa-heart');
 const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');
@@ -31,7 +32,7 @@ const fetchData = async () => {
     const postContent = document.querySelector('#post-content');
     const commentList = document.querySelector('#comment-list');
     writerNickname.textContent = `@${res.data.nickName}`;
-    postImage.src = res.data.postData.image;
+    postImage.src = `${IMG + res.data.postData.image}`;
     nickName = res.data.currentUserNickname;
     user_id = res.data.currentUserId;
     postUserId = res.data.user_id;

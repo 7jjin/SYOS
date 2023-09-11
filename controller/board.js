@@ -219,22 +219,23 @@ exports.post_all = async (req, res) => {
   res.json(boardData);
 };
 
-// modern 게시물
-exports.post_modern = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-    where: {
-      category: 1,
-    },
-  });
-  res.json(boardData);
-};
 
+// 게시물 필터
+exports.post_board_filter = async (req, res) => {
+  const {filter} = req.body;
+  if(filter === 'modern'){
+  
+  }else if (filter === 'natural'){
+
+  }else if (filter === 'game'){
+    
+  }else if (filter === 'study'){
+
+  }else if (filter === 'latest'){
+
+  }else if (filter === 'oldest'){
+
+  }else if (filter === 'like'){
+    
+  }
+}
