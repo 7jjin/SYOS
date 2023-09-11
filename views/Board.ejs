@@ -73,23 +73,23 @@
 
                 <div class="mood-header">
                     <div class="mood-li">
-                        <span class="button active" data-filter="all">All</span>
+                        <span class="button active" id="all" data-filter="all">All</span>
                     </div>
 
                     <div class="mood-li">
-                        <span class="button modern" data-filter="modern">modern</span>
+                        <span class="button modern" id="modern" data-filter="modern">modern</span>
                     </div>
 
                     <div class="mood-li">
-                        <span class="button natural" data-filter="natural">natural</span>
+                        <span class="button natural" id="natural" data-filter="natural">natural</span>
                     </div>
 
                     <div class="mood-li">
-                        <span class="button game" data-filter="game">game</span>
+                        <span class="button game" id="game" data-filter="game">game</span>
                     </div>
 
                     <div class="mood-li">
-                        <span class="button studyoffice" data-filter="studyoffice">study&office</span>
+                        <span class="button studyoffice" id="studyoffice" data-filter="studyoffice">study&office</span>
                     </div>
 
                     <div class="mood-li">
@@ -102,132 +102,79 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        all
+                        sort
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" id="most-like">Most like</a></li>
-                        <li><a class="dropdown-item" id="latest">recent</a></li>
-                        <li><a class="dropdown-item" id="oldest">old</a></li>
+                        <li><a class="dropdown-item" id="most-like">Most liked</a></li>
+                        <li><a class="dropdown-item" id="latest">latest</a></li>
+                        <li><a class="dropdown-item" id="oldest">oldest</a></li>
                     </ul>
                 </div>
 
                 <!-- 무드 이미지 -->
                 <div class="mood-box">
                     <div class="mood-itemwrap" id="mood-itemwrap">
-                        <div class="item-box" data-item="modern">
-                            <img src="../images/modern.jpg" alt="desk">
-                        </div>
-                        <div class="item-box" data-item="modern">
-                            <img src="../images/modern.jpg" alt="desk">
-                        </div>
-                        <div class="item-box" data-item="modern">
-                            <img src="../images/modern.jpg" alt="desk">
-                        </div>
-                    </div>
-
-                    <div class="mood-itemwrap" id="mood-itemwrap">
-                        <div class="item-box" data-item="natural">
-                            <img src="../images/natural.jpg" alt="">
-                        </div>
-                        <div class="item-box" data-item="natural">
-                            <img src="../images/natural.jpg" alt="">
-                        </div>
-                        <div class="item-box" data-item="natural">
-                            <img src="../images/natural.jpg" alt="">
-                        </div>
-                    </div>
-
-                    <div class="mood-itemwrap" id="mood-itemwrap">
-                        <div class="item-box" data-item="game">
-                            <img src="../images/game.jpg" alt="">
-
-                        </div>
-                        <div class="item-box" data-item="game">
-                            <img src="../images/game.jpg" alt="">
-
-                        </div>
-                        <div class="item-box" data-item="game">
-                            <img src="../images/game.jpg" alt="">
-
-                        </div>
-                    </div>
-
-                    <div class="mood-itemwrap" id="mood-itemwrap">
-                        <div class="item-box" data-item="studyoffice">
-                            <img src="../images/studyoffice.jpg" alt="">
-                        </div>
-                        <div class="item-box" data-item="studyoffice">
-                            <img src="../images/studyoffice.jpg" alt="">
-                        </div>
-                        <div class="item-box" data-item="studyoffice">
-                            <img src="../images/studyoffice.jpg" alt="">
-                        </div>
-                    </div>
-
-                </div>
-
-
-            </div>
-        </div>
-
-        <!-- footer -->
-        <link rel="stylesheet" href="../css/global.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-            crossorigin="anonymous" referrerpolicy="no-referrer" />
-        ...
-
-        <footer id="main-footer">
-            <div id="footer-logo">SYOS</div>
-            <div id="description">
-                <div class="desc-text">@2023 SYOS</div>
-                <div>Desktop Setup Sharing Platform</div>
-            </div>
-            <div id="footer-icon-wrapper">
-                <i class="fa-brands fa-twitter footer-sns"></i>
-                <i class="fa-brands fa-instagram footer-sns"></i>
-                <i class="fa-brands fa-facebook footer-sns"></i>
-            </div>
-        </footer>
-
-        <!-- chat -->
-        <div id="chat-wrapper">
-            <div id="chat-content">
-                <div id="chat-header">
-                    <div id="chat-header-logo">SYOS</div>
-                    <div id="chat-header-text">문의하기</div>
-                </div>
-                <div id="chat-box-wrapper">
-                    <div id="chat-box">
-                        <div class="chat other-chat">
-                            안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
-                            궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
-                        </div>
-                        <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
-                            데스크 셋업 추천? 💻
-                        </div>
-                        <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
-                            SYOS에게 바라는 점 📝
-                        </div>
-                        <div id="connect" class="chat chat-button" onclick="clickConnectButton()">
-                            상담원 연결하기 👨‍👩‍👧‍👦
-                        </div>
                     </div>
                 </div>
-            </div>
-            <form id="chat-form">
-                <input type="text" id="reply" placeholder="메세지를 입력하세요..." disabled />
-                <button id="reply-btn">입력</button>
-            </form>
-        </div>
 
-        <div id="chat-button">S</div>
-        ...
+                <!-- footer -->
+                <link rel="stylesheet" href="../css/global.css" />
+                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+                    integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+                    crossorigin="anonymous" referrerpolicy="no-referrer" />
+                ...
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="../js/chat.js"></script>
-        <script src="../js/menu.js"></script>
-        <script src="../js/board.js"></script>
+                <footer id="main-footer">
+                    <div id="footer-logo">SYOS</div>
+                    <div id="description">
+                        <div class="desc-text">@2023 SYOS</div>
+                        <div>Desktop Setup Sharing Platform</div>
+                    </div>
+                    <div id="footer-icon-wrapper">
+                        <i class="fa-brands fa-twitter footer-sns"></i>
+                        <i class="fa-brands fa-instagram footer-sns"></i>
+                        <i class="fa-brands fa-facebook footer-sns"></i>
+                    </div>
+                </footer>
+
+                <!-- chat -->
+                <div id="chat-wrapper">
+                    <div id="chat-content">
+                        <div id="chat-header">
+                            <div id="chat-header-logo">SYOS</div>
+                            <div id="chat-header-text">문의하기</div>
+                        </div>
+                        <div id="chat-box-wrapper">
+                            <div id="chat-box">
+                                <div class="chat other-chat">
+                                    안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+                                    궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+                                </div>
+                                <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+                                    데스크 셋업 추천? 💻
+                                </div>
+                                <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+                                    SYOS에게 바라는 점 📝
+                                </div>
+                                <div id="connect" class="chat chat-button" onclick="clickConnectButton()">
+                                    상담원 연결하기 👨‍👩‍👧‍👦
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form id="chat-form">
+                        <input type="text" id="reply" placeholder="메세지를 입력하세요..." disabled />
+                        <button id="reply-btn">입력</button>
+                    </form>
+                </div>
+
+                <div id="chat-button">S</div>
+                ...
+
+                <script src="/socket.io/socket.io.js"></script>
+                <script src="../js/chat.js"></script>
+                <script src="../js/menu.js"></script>
+                <script src="../js/board.js"></script>
 </body>
 
 </html>

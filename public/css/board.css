@@ -1,31 +1,31 @@
 .title {
   text-align: center;
-  font-size: 40px;
+  font-size: 2.5em;
   font-weight: 600;
 }
 
 .board-text > div {
-  font-size: 87px;
+  font-size: 5.4375em;
   font-weight: 400;
   text-align: left;
-  margin-top: 30px;
-  margin-left: 30px;
+  margin-top: 0.3em;
+  margin-left: 0.8em;
 }
 
 .mood-container {
   position: relative;
-  top: 50px;
+  top: 3.1em;
 }
 
 .mood-header {
   display: flex;
-  margin: 0px 500px;
+  margin: 0px 31.2em;
   justify-content: center;
 }
 
 .dropdown {
   display: flex;
-  margin: 27px 300px;
+  margin: 1.7em 18.7em;
   justify-content: flex-start;
 }
 
@@ -33,11 +33,28 @@
   background-color: white !important;
   color: black !important;
   border: none !important;
+  font-size: 1.4em !important;
+}
+
+.dropdown-item {
+  font-size: 1.4em !important;
+}
+
+#most-like {
+  cursor: pointer;
+}
+
+#latest {
+  cursor: pointer;
+}
+
+#oldest {
+  cursor: pointer;
 }
 
 .mood-box {
-  margin-top: 52px;
-  margin-bottom: 150px;
+  margin-top: 3.2em;
+  margin-bottom: 9.3em;
 }
 
 .button {
@@ -53,24 +70,23 @@
   color: white;
   background-color: black;
   cursor: pointer;
-  font-size: 21px;
+  font-size: 1.3em;
   line-height: 35px;
   vertical-align: middle;
-  cursor: pointer;
 }
 
 .button.active {
   color: black;
   background-color: white;
   border: 1px solid #4d4d4d;
+  cursor: pointer;
 }
-
 
 .mood-write {
   display: inline-block;
   position: relative;
   height: 39px;
-  border: 1px solid #000000;
+  /* border: 1px solid #000000; */
   border-radius: 20px;
   padding-left: 18px;
   padding-right: 18px;
@@ -79,18 +95,18 @@
   color: black;
   background-color: white;
   cursor: pointer;
-  font-size: 21px;
+  font-size: 25px;
   line-height: 35px;
   vertical-align: middle;
   cursor: pointer;
+  text-decoration: underline;
 }
-
 
 .mood-itemwrap {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0px 200px;
+  margin: 0px 10.6em;
 }
 
 .mood-itemwrap .active {
@@ -102,8 +118,11 @@
 }
 
 .item-box {
-  width: 300px;
-  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18.7em;
+  height: 18.7em;
   flex-direction: column;
   margin: 2px;
   transition: 0.3s ease-in-out;
@@ -112,8 +131,26 @@
   animation: fadeIn 2s 0s forwards;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
+.post-box {
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+}
+
+.text-box {
+  font-size: 1.9em;
+  font-weight: 600;
+}
+
+.res-box {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.13em;
+  font-weight: 600;
+}
 
 @keyframes fadeIn {
   from {
@@ -125,16 +162,18 @@
   }
 }
 
+.post-box {
+  display: none;
+}
+
+.item-box:hover .post-box {
+  display: block;
+}
 
 .item-box:hover img {
   transform: scale(1.1);
-  -webkit-filter: blur(2px);
-	filter: blur(2px);
-}
-  
-
-.item-box.invisible {
-  display: none;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
 }
 
 .item-box > img {
@@ -146,19 +185,26 @@
   transition: transform 0.3s ease-in-out;
 }
 
-
 @media screen and (max-width: 1200px) {
   .mood-header {
     display: flex;
     justify-content: center;
-    margin: 0px 400px;
+    margin: 0px 25em;
+  }
+
+  .dropdown {
+    margin: 1.7em 11.25em;
   }
 
   .modern,
   .natural,
   .game,
   .studyoffice {
-    margin: 0px 10px;
+    margin: 0em 0.6em;
+  }
+
+  .mood-box {
+    margin: 3.25em 12.5em 9.375em 12.5em;
   }
 
   .mood-itemwrap {
@@ -166,31 +212,46 @@
     margin: 0px;
   }
 
-  .mood-item {
-    width: 230px;
-    height: 230px;
-    margin: 1px;
+  .item-box {
+    width: 14.4em;
+    height: 14.4em;
+    margin: 0.0625em;
   }
 
   .board-text > div {
-    font-size: 70px;
+    font-size: 4.375em;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25em;
     text-align: left;
   }
 }
 
 @media screen and (max-width: 768px) {
   .mood-header {
-    margin: 0px 40px;
+    margin: 0px 2.5em;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mood-li {
+    margin: 0.625em 0em;
   }
 
   .modern,
   .natural,
   .game,
   .studyoffice {
-    margin: 0px 6px;
+    margin: 0em 0.375em;
+  }
+
+  .dropdown {
+    justify-content: center;
+  }
+
+  .mood-box {
+    margin: 3.25em 1.25em 9.375em 1.25em;
   }
 
   .mood-itemwrap {
@@ -198,22 +259,22 @@
     margin: 0px;
   }
 
-  .mood-item {
-    width: 150px;
-    height: 150px;
+  .item-box {
+    width: 8.4375em;
+    height: 8.4375em;
     margin: 1px;
   }
 
   .board-text > div {
-    font-size: 46px;
+    font-size: 2.875em;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25em;
   }
 }
 
 @media screen and (max-width: 450px) {
   .mood-header {
-    margin: 0px 40px;
+    margin: 0em 2.5em;
     justify-content: center;
   }
 
@@ -221,7 +282,7 @@
   .mood-natural,
   .mood-game,
   .mood-studyoffice {
-    margin: 0px 8px;
+    margin: 0em 0.5em;
   }
 
   .mood-itemwrap {
@@ -229,17 +290,15 @@
     margin: 0px;
   }
 
-  .mood-item {
-    width: 130px;
-    height: 130px;
+  .item-box {
+    width: 8.125em;
+    height: 8.125em;
     margin: 1px;
   }
 
   .board-text > div {
-    font-size: 43px;
+    font-size: 2.7em;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 1.25em;
   }
 }
-
-

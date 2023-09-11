@@ -68,23 +68,29 @@
         <div class="post-content">
           <div class="post-contentbox">
             <div class="post-header">
-              <div class="header-name">@YUMIN</div>
+              <div class="header-nickname"></div>
               <div class="header-md">
-                <div class="modify">modify</div>
-                <div class="delete">delete</div>
+                <div id="modify" class="manipulation-button">modify</div>
+                <div id="delete" class="manipulation-button">delete</div>
               </div>
             </div>
 
-            <div class="post-image">
-              <img src="../images/postdesk.jpg" alt="" />
+            <div class="post-img-wrapper">
+              <img class="post-img"  alt="desk" />
             </div>
             <div class="post-res">
-              <span><i class="fa-solid fa-heart"></i></span>
-              <span><i class="fa-solid fa-comment"></i></span>
+              <span
+                ><i class="fa-regular fa-heart"></i
+                ><span id="heart-number" class="number"></span
+              ></span>
+              <span
+                ><i class="fa-regular fa-comment fa-flip-horizontal"></i
+                ><span id="comment-number" class="number"></span
+              ></span>
             </div>
 
             <div class="post-text">
-              <span>helloooooooo my desk</span>
+              <span id="post-content"></span>
             </div>
 
             <hr class="hr-1" />
@@ -93,30 +99,17 @@
               <span>Comments</span>
             </div>
 
-            <div class="comments">
+            <form class="comments">
               <input
                 type="text"
                 class="comments-input"
                 id="comments"
                 placeholder="Enter Comments"
               />
-              <button onclick="addComment()">Enter</button>
-            </div>
+              <button type="submit" onclick="addComment(event)">Enter</button>
+            </form>
 
-            <ul id="comment-list">
-              <li class="comment-box">
-                <div class="user-name">@yumin</div>
-                <div class="user-comment">안녕하세요 안녕하세요 안녕하세요</div>
-              </li>
-              <li class="comment-box">
-                <div class="user-name">@yumin</div>
-                <div class="user-comment">안녕하세요 안녕하세요 안녕하세요</div>
-              </li>
-              <li class="comment-box">
-                <div class="user-name">@yumin</div>
-                <div class="user-comment">안녕하세요 안녕하세요 안녕하세요</div>
-              </li>
-            </ul>
+            <ul id="comment-list"></ul>
           </div>
         </div>
       </div>
@@ -163,6 +156,7 @@
     </div>
 
     <div id="chat-button">S</div>
+
     <!-- footer -->
     <footer id="main-footer">
       <div id="footer-logo">SYOS</div>
@@ -177,6 +171,7 @@
       </div>
     </footer>
 
+    <div id="post_id" style="display: none;"><%= post_id %></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="../js/menu.js"></script>
