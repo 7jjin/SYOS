@@ -90,7 +90,7 @@ for (let i = 0; i < button.length; i++) {
 const fetchData = async () => {
     const res = await axios({
         method: "POST",
-        url: "/posts",
+        url: "/board",
     });
     console.log(res);
 
@@ -102,7 +102,7 @@ const fetchData = async () => {
 
         // 게시물과 post_id 연결 
         postCreate.addEventListener('click', () => {
-            location.href = `/posts/${res.data[i].post_id}`;
+            location.href = `/board/${res.data[i].post_id}`;
         })
 
         postCreate.innerHTML = `
@@ -141,7 +141,7 @@ const LatestData = async () => {
     latest.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/latest",
+            url: "/board/latest",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -154,7 +154,7 @@ const LatestData = async () => {
 
             // 게시물과 post_id 연결 
             postCreate.addEventListener('click', () => {
-                location.href = `/posts/${res.data[i].post_id}`;
+                location.href = `/board/${res.data[i].post_id}`;
             })
 
             postCreate.innerHTML = `
@@ -196,7 +196,7 @@ const OldestData = async () => {
     oldest.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/oldest",
+            url: "/board/oldest",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -209,7 +209,7 @@ const OldestData = async () => {
 
             // 게시물과 post_id 연결 
             postCreate.addEventListener('click', () => {
-                location.href = `/posts/${res.data[i].post_id}`;
+                location.href = `/board/${res.data[i].post_id}`;
             })
 
             postCreate.innerHTML = `
@@ -252,7 +252,7 @@ const LikedData = async () => {
     liked.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/liked",
+            url: "/board/liked",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -265,7 +265,7 @@ const LikedData = async () => {
 
             // 게시물과 post_id 연결 
             postCreate.addEventListener('click', () => {
-                location.href = `/posts/${res.data[i].post_id}`;
+                location.href = `/board/${res.data[i].post_id}`;
             })
 
             postCreate.innerHTML = `
@@ -307,7 +307,7 @@ const allData = async () => {
     all.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/all",
+            url: "/board/all",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -320,7 +320,7 @@ const allData = async () => {
 
             // 게시물과 post_id 연결 
             postCreate.addEventListener('click', () => {
-                location.href = `/posts/${res.data[i].post_id}`;
+                location.href = `/board/${res.data[i].post_id}`;
             })
 
             postCreate.innerHTML = `
@@ -362,7 +362,7 @@ const modernData = async () => {
     modern.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/modern",
+            url: "/board/modern",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -375,7 +375,7 @@ const modernData = async () => {
 
             // 게시물과 post_id 연결 
             const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
+            postLink.href = `/board/${res.data[i].post_id}`;
             postLink.appendChild(postCreate);
 
             postCreate.innerHTML = `
@@ -466,7 +466,7 @@ const naturalData = async () => {
     natural.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/natural",
+            url: "/board/natural",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -479,7 +479,7 @@ const naturalData = async () => {
 
             // 게시물과 post_id 연결 
             const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
+            postLink.href = `/board/${res.data[i].post_id}`;
             postLink.appendChild(postCreate);
 
             postCreate.innerHTML = `
@@ -521,7 +521,7 @@ const gameData = async () => {
     game.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/game",
+            url: "/board/game",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -534,7 +534,7 @@ const gameData = async () => {
 
             // 게시물과 post_id 연결 
             const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
+            postLink.href = `/board/${res.data[i].post_id}`;
             postLink.appendChild(postCreate);
 
             postCreate.innerHTML = `
@@ -577,7 +577,7 @@ const studyofficeData = async () => {
     studyoffice.addEventListener("click", async () => {
         const res = await axios({
             method: "POST",
-            url: "/posts/studyoffice",
+            url: "/board/studyoffice",
         });
 
         const container = document.getElementById("mood-itemwrap");
@@ -590,7 +590,7 @@ const studyofficeData = async () => {
 
             // 게시물과 post_id 연결 
             const postLink = document.createElement("a");
-            postLink.href = `/posts/${res.data[i].post_id}`;
+            postLink.href = `/board/${res.data[i].post_id}`;
             postLink.appendChild(postCreate);
 
             postCreate.innerHTML = `
