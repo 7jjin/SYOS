@@ -51,7 +51,8 @@ imageInput.addEventListener('change', function (event) {
       const imageUrl = e.target.result;
       uploadImageLabel.style.backgroundImage = `url('${imageUrl}')`;
       uploadImageLabel.style.backgroundPosition = 'center';
-      uploadImageLabel.style.backgroundSize = 'cover';
+      uploadImageLabel.style.backgroundSize = 'contain';
+      uploadImageLabel.style.backgroundRepeat = 'no-repeat';
       carmeraIcon.style.display = 'none';
       carmeraTitle.style.display = 'none';
 
@@ -239,6 +240,9 @@ function uploadPost() {
     imageName: form.image.files[0].name,
     photoData,
   };
+
+  // url:/board/upload
+
   axios({
     method: 'POST',
     url: '/uploadPost',

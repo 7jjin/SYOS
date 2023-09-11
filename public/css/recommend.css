@@ -232,3 +232,64 @@ bottom:0;
 
     opacity: 0;
 }
+
+
+
+
+/* 반응형 */
+@media (max-width: 768px){
+    .upload-title {
+        font-size: 24px;
+    }
+    .big-wrapper{
+        width: 100%;
+        display: flex;
+    }
+    .upload-image-wrapper{
+        width: 35%;
+        height: auto;
+    }
+    .result-box-wrapper{
+        flex-direction: column;
+        height: 100%;
+        padding-top: 0px;
+    }
+    .result-box{
+        width: 50%;
+        height: auto;
+        margin-bottom: 0px;
+    }
+    .result{
+        display: flex;
+        justify-content: center;
+        width: auto;
+        height: auto;
+        margin:5px;
+    }
+    .moden-span,.office-span,.study-span,.natural-span{
+        font-size: 20px;
+        border:none;
+        display: flex;
+    justify-content: center;
+    width: 60%;
+    }
+    .per{
+        font-size: 20px;
+        display: flex;
+        width: 40%;
+        align-items: center;
+        margin-top: 0px;
+        justify-content: center;
+    }
+    .post1{
+        height: 50%;
+    }
+    .recommend-posts{
+        margin-bottom: 40px;
+       
+    }
+    .move-box-inner p ,.move-box-inner i{
+        font-size: 24px;
+    }
+    
+}
