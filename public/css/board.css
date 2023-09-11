@@ -37,7 +37,7 @@
 }
 
 .dropdown-item {
-  font-size: 1.4em !important;
+  font-size: 1.1em !important;
 }
 
 #most-like {
@@ -204,7 +204,7 @@
   }
 
   .mood-box {
-    margin: 3.25em 12.5em 9.375em 12.5em;
+    margin: 3.25em 3.5em 9.375em 3.5em;
   }
 
   .mood-itemwrap {
@@ -213,8 +213,8 @@
   }
 
   .item-box {
-    width: 14.4em;
-    height: 14.4em;
+    /* width: 14.4em;
+    height: 14.4em; */
     margin: 0.0625em;
   }
 
@@ -259,11 +259,11 @@
     margin: 0px;
   }
 
-  .item-box {
+  /* .item-box {
     width: 8.4375em;
     height: 8.4375em;
     margin: 1px;
-  }
+  } */
 
   .board-text > div {
     font-size: 2.875em;
@@ -290,11 +290,11 @@
     margin: 0px;
   }
 
-  .item-box {
+  /* .item-box {
     width: 8.125em;
     height: 8.125em;
     margin: 1px;
-  }
+  } */
 
   .board-text > div {
     font-size: 2.7em;

@@ -72,7 +72,7 @@
                 <!-- mood 선택 버튼 -->
 
                 <div class="mood-header">
-                    <div class="mood-li">
+                    <!-- <div class="mood-li">
                         <span class="button active" id="all" data-filter="all">All</span>
                     </div>
 
@@ -94,21 +94,57 @@
 
                     <div class="mood-li">
                         <span class="mood-write">write</span>
+                    </div> -->
+                    <div class="mood-li">
+                        <input type="radio" id="all" name="mood" value="all" class="button active" checked>
+                        <label for="all">All</label>
                     </div>
+
+                    <div class="mood-li">
+                        <input type="radio" id="modern" name="mood" value="modern" class="button modern">
+                        <label for="modern">Modern</label>
+                    </div>
+
+                    <div class="mood-li">
+                        <input type="radio" id="natural" name="mood" value="natural" class="button natural">
+                        <label for="natural">Natural</label>
+                    </div>
+
+                    <div class="mood-li">
+                        <input type="radio" id="game" name="mood" value="game" class="button game">
+                        <label for="game">Game</label>
+                    </div>
+
+                    <div class="mood-li">
+                        <input type="radio" id="studyoffice" name="mood" value="studyoffice" class="button studyoffice">
+                        <label for="studyoffice">Study & Office</label>
+                    </div>
+
+                    <div class="mood-li">
+                        <input type="radio" id="write" name="mood" value="write" class="mood-write">
+                        <label for="write">Write</label>
+                    </div>
+
 
                 </div>
 
                 <!-- 드롭다운 -->
                 <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                    <!-- <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         sort
-                    </button>
-                    <ul class="dropdown-menu">
+                    </button> -->
+                    <!-- <ul class="dropdown-menu">
                         <li><a class="dropdown-item" id="most-like">Most liked</a></li>
                         <li><a class="dropdown-item" id="latest">latest</a></li>
                         <li><a class="dropdown-item" id="oldest">oldest</a></li>
-                    </ul>
+                    </ul> -->
+                    <select id="sort-select">
+                        <option value="most-like" id="most-like">Most liked</option>
+                        <option value="latest" id="latest">Latest</option>
+                        <option value="oldest" id="oldest">Oldest</option>
+                    </select>
+
                 </div>
 
                 <!-- 무드 이미지 -->
