@@ -25,12 +25,12 @@ const main = async (req, res) => {
     });
 
     const mostCommentedPost = await Post.findOne({
-      attributes: ["post_id", "title", "image", "comment", "liked", "comment"],
-      order: [["comment", "DESC"]],
+      attributes: ['post_id', 'title', 'image', 'comment', 'liked', 'comment'],
+      order: [['comment', 'DESC']],
     });
 
-    console.log("가장 많이 좋아요 받은 포스트:", mostLikedPost);
-    console.log("가장 많은 댓글이 달린 포스트:", mostCommentedPost);
+    console.log('가장 많이 좋아요 받은 포스트:', mostLikedPost);
+    console.log('가장 많은 댓글이 달린 포스트:', mostCommentedPost);
 
     res.render('index', {
       likeId: mostLikedPost.post_id,
@@ -44,7 +44,6 @@ const main = async (req, res) => {
       commentLiked: mostCommentedPost.liked,
       commentComment: mostCommentedPost.comment,
     });
-
   } catch (error) {
     console.error();
   }
@@ -94,17 +93,17 @@ const post_posts = (req, res) => {
 // 마이페이지
 const mypage = (req, res) => {
   // jwt 토큰으로 유저 정보 가져오기
-  const [bearer, token] = req.headers.authorization.split(" ");
-  if (bearer === "Bearer") {
+  const [bearer, token] = req.headers.authorization.split(' ');
+  if (bearer === 'Bearer') {
     try {
       const decoded = jwt.verify(token, SECRET);
       const { user_id } = decoded;
       res.json({ user_id });
     } catch (err) {
-      res.render("signin");
+      res.render('signin');
     }
   } else {
-    res.render("signin");
+    res.render('signin');
   }
 };
 
@@ -117,7 +116,7 @@ const mypage_user_id = async (req, res) => {
     },
   });
 
-  res.render("myPage", { user: result });
+  res.render('myPage', { user: result });
 };
 
 // 구글 로그인 페이지로 이동
@@ -421,6 +420,27 @@ const patch_resetPw = async (req, res) => {
   res.json({ result: true });
 };
 
+// 마이페이지 정보 가져오기
+const post_mypage_user_id = async (req, res) => {
+  const { user_id } = req.params;
+
+  const myPost = await Post.findAll({
+    where: {
+      user_id,
+    },
+  });
+
+  console.log(myPost);
+
+  if (myPost.length == 0) {
+    console.log('게시물 없음!!!!!!');
+    res.json({ result: '1' });
+  } else {
+    console.log('게시물 있음 !!!!!');
+    res.json({ result: '2', myPost });
+  }
+};
+
 // 소셜 로그인
 module.exports = {
   main,
@@ -445,6 +465,7 @@ module.exports = {
   post_recommend,
   post_resetPw,
   patch_resetPw,
+  post_mypage_user_id,
 };
 
 // 암호화
