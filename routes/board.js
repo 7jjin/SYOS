@@ -15,7 +15,7 @@ router.patch('/detail/heart', controller.patch_post_heart);
 router.post('/detail/comment', controller.post_post_comment);
 
 // 댓글 삭제
-router.post('/detail/comment/delete', controller.delete_post_comment);
+router.delete('/detail/comment/delete', controller.delete_post_comment);
 
 // 게시물 업로드 페이지
 router.get('/upload', controller.uploadPost);

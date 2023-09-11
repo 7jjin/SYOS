@@ -134,11 +134,30 @@ exports.post_post_comment = async (req, res) => {
     user_id,
     content,
   });
-  res.send({ result: true });
+  const post = await Post.findOne({ where: { post_id } });
+  if (post) {
+    await post.update({ comment: post.comment + 1 });
+  }
+  const result =  await Comment.findOne({
+    attributes: ['comment_id'],
+    order: [['createdAt', 'DESC']],
+    limit: 1,
+  });
+  res.send({ comment_id: result.comment_id });
 };
 
 // 댓글 삭제
-exports.delete_post_comment = (req, res) => { };
+exports.delete_post_comment = async (req, res) => { 
+  const {post_id, comment_id} = req.body;
+  const post = await Post.findOne({ where: { post_id } });
+  if (post) {
+    await post.update({ comment: post.comment - 1 });
+  }
+  await Comment.destroy({
+    where: {comment_id},
+  });
+  res.send({result: true});
+};
 
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
