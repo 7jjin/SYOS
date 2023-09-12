@@ -20,7 +20,7 @@
 .mood-header-1 {
   display: flex;
   margin: 0px 19.2em;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 21px;
   font-weight: 500;
 }
@@ -28,7 +28,7 @@
 .mood-header-2 {
   display: flex;
   margin: 0px 23.2em;
-  justify-content: space-around;
+  justify-content: center;
   margin-top: 20px;
   font-size: 21px;
   font-weight: 500;
@@ -36,23 +36,11 @@
 
 input[type='radio'] {
   display: none;
+  cursor: pointer;
 }
 
-.dropdown {
-  display: flex;
-  margin: 1.7em 18.7em;
-  justify-content: flex-start;
-}
-
-.dropdown-toggle {
-  background-color: white !important;
-  color: black !important;
-  border: none !important;
-  font-size: 1.4em !important;
-}
-
-.dropdown-item {
-  font-size: 1.1em !important;
+label {
+  cursor: pointer;
 }
 
 .write {
@@ -61,24 +49,12 @@ input[type='radio'] {
   margin: 0px 270px;
 }
 
-#most-like {
-  cursor: pointer;
-}
-
-#latest {
-  cursor: pointer;
-}
-
-#oldest {
-  cursor: pointer;
-}
-
 .mood-box {
   margin-top: 1.2em;
   margin-bottom: 9.3em;
 }
 
-.button {
+.filter {
   display: inline-block;
   position: relative;
   height: 39px;
@@ -89,14 +65,13 @@ input[type='radio'] {
   margin: 0px 30px;
   line-height: 0;
   color: black;
-  /* background-color: black; */
   cursor: pointer;
   font-size: 0.9em;
   line-height: 35px;
   vertical-align: middle;
 }
 
-.button.active {
+.filter.active {
   color: white;
   background-color: black;
   border: 1px solid #4d4d4d;
@@ -267,8 +242,18 @@ input[type='radio'] {
     margin: 0em 0.375em;
   }
 
-  .dropdown {
+  .post-img-wrapper {
+    display: flex;
     justify-content: center;
+  }
+
+  .post-img-wrapper > img {
+    width: 457px;
+    height: 300px;
+  }
+
+  .comments-input {
+    width: 368px;
   }
 
   .mood-box {
