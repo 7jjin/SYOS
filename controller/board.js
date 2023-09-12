@@ -83,6 +83,12 @@ exports.post_data = async (req, res) => {
       where: { post_id, user_id: currentUserId },
     });
 
+    // 이미지 안에 있는 링크 가져오기
+    const productInfo = await Product.findAll({
+      where: {post_id}
+    })
+    console.log(productInfo);
+    
     return res.json({
       postData,
       user_id,
