@@ -32,7 +32,7 @@ const fetchData = async () => {
     const postContent = document.querySelector('#post-content');
     const commentList = document.querySelector('#comment-list');
     writerNickname.textContent = `@${res.data.nickName}`;
-    postImage.src = `${IMG + res.data.postData.image}`;
+    postImage.src = `${res.data.postData.image}`;
     nickName = res.data.currentUserNickname;
     user_id = res.data.currentUserId;
     postUserId = res.data.user_id;
@@ -52,9 +52,9 @@ const fetchData = async () => {
             method: 'DELETE',
             url: `/board/${post_id}/delete`,
             data: { post_id },
-          })
-          alert('삭제되었습니다.'); 
-        } 
+          });
+          alert('삭제되었습니다.');
+        }
       });
     } else {
       // 안 보이고 링크 설정 x
@@ -77,6 +77,7 @@ const fetchData = async () => {
       const commentBox = document.createElement('li');
       const commentWriter = document.createElement('div');
       const commentText = document.createElement('div');
+      commentBox.dataset.commentId = res.data.comments[i].comment_id;
       commentBox.classList.add('comment-box');
       commentWriter.classList.add('user-name');
       commentText.classList.add('user-comment');
@@ -84,6 +85,13 @@ const fetchData = async () => {
       commentText.textContent = `${res.data.comments[i].content}`;
       commentBox.appendChild(commentWriter);
       commentBox.appendChild(commentText);
+      if (res.data.commentNickname[i] === nickName) {
+        const deleteButton = document.createElement('span');
+        deleteButton.classList.add('comment-delete');
+        deleteButton.textContent = 'delete';
+        deleteButton.addEventListener('click', deleteComment);
+        commentText.appendChild(deleteButton);
+      }
       commentList.appendChild(commentBox);
     }
   } catch (error) {
@@ -142,19 +150,42 @@ const addComment = async (e) => {
       content,
     },
   });
-  if (result.data.result) {
+  if (result.data) {
     const commentList = document.getElementById('comment-list');
     const commentBox = document.createElement('li');
     const commentWriter = document.createElement('div');
     const commentText = document.createElement('div');
+    const deleteButton = document.createElement('span');
+    commentBox.dataset.commentId = result.data.comment_id;
     commentBox.classList.add('comment-box');
     commentWriter.classList.add('user-name');
     commentText.classList.add('user-comment');
     commentWriter.textContent = `@${nickName}`;
     commentText.textContent = content;
+    deleteButton.classList.add('comment-delete');
+    deleteButton.textContent = 'delete';
+    deleteButton.addEventListener('click', deleteComment);
     commentBox.appendChild(commentWriter);
     commentBox.appendChild(commentText);
+    commentText.appendChild(deleteButton);
     commentList.appendChild(commentBox);
     comments.value = '';
+    commentNum.textContent = parseInt(commentNum.textContent)+1;
   }
+};
+
+// 댓글 삭제
+const deleteComment = async (event) => {
+  const commentBox = event.target.closest('.comment-box');
+  const comment_id = commentBox.dataset.commentId;
+  const result = await axios({
+    method: 'DELETE',
+    url: '/board/detail/comment/delete',
+    data: {
+      post_id,
+      comment_id,
+    },
+  });
+  commentBox.remove();
+  commentNum.textContent = parseInt(commentNum.textContent)-1;
 };
