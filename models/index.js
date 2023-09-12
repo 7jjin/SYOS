@@ -1,8 +1,8 @@
 'use strict';
 
 const Sequelize = require('sequelize');
-const env = process.env.NODE_ENV;
-const config = require(__dirname + '/../config/config.json')[env];
+// const env = process.env.NODE_ENV;
+const config = require(__dirname + '/../config/config.json')["production"];
 const db = {};
 const sequelize = new Sequelize(
   config.database,
