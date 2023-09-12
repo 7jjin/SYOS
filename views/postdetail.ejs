@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>boardwrite</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/boardwrite.css" />
+    <link rel="stylesheet" href="../css/chat.css" />
+  </head>
+
+  <body>
+    <header id="main-header">
+      <svg
+        class="menu-button"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="36"
+        height="36"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
+        ></path>
+      </svg>
+      <span id="logo" onclick="location.href = '/'">SYOS</span>
+    </header>
+
+    <!-- navBar -->
+    <nav id="main-nav">
+      <svg
+        class="menu-button close"
+        xmlns="http://www.w3.org/2000/svg"
+        width="40px"
+        height="40px"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+      <ul class="main-menu">
+        <li onclick="location.href = '/'">Home</li>
+        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/recommend'">Recommend</li>
+        <!-- mypage 엔드포인트에 param 추가해야함-->
+        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li class="divider"><div class="under-line"></div></li>
+      </ul>
+      <ul class="sub-menu">
+        <li>About</li>
+        <li>Contact</li>
+        <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
+      </ul>
+    </nav>
+
+    <!-- board -->
+    <div class="board-page">
+      <div class="post-container">
+        <div class="post-content">
+          <div class="post-contentbox">
+            <div class="post-header">
+              <div class="header-nickname"></div>
+              <div class="header-md">
+                <div id="modify" class="manipulation-button">modify</div>
+                <div id="delete" class="manipulation-button">delete</div>
+              </div>
+            </div>
+
+            <div class="post-img-wrapper">
+              <img class="post-img"  alt="desk" />
+            </div>
+            <div class="post-res">
+              <span
+                ><i class="fa-regular fa-heart"></i
+                ><span id="heart-number" class="number"></span
+              ></span>
+              <span
+                ><i class="fa-regular fa-comment fa-flip-horizontal"></i
+                ><span id="comment-number" class="number"></span
+              ></span>
+            </div>
+
+            <div class="post-text">
+              <span id="post-content"></span>
+            </div>
+
+            <hr class="hr-1" />
+
+            <div class="comments-text">
+              <span>Comments</span>
+            </div>
+
+            <form class="comments">
+              <input
+                type="text"
+                class="comments-input"
+                id="comments"
+                placeholder="Enter Comments"
+              />
+              <button type="submit" onclick="addComment(event)">Enter</button>
+            </form>
+
+            <ul id="comment-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- chat -->
+    <div id="chat-wrapper">
+      <div id="chat-content">
+        <div id="chat-header">
+          <div id="chat-header-logo">SYOS</div>
+          <div id="chat-header-text">문의하기</div>
+        </div>
+        <div id="chat-box-wrapper">
+          <div id="chat-box">
+            <div class="chat other-chat">
+              안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+              궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+            </div>
+            <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+              데스크 셋업 추천? 💻
+            </div>
+            <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+              SYOS에게 바라는 점 📝
+            </div>
+            <div
+              id="connect"
+              class="chat chat-button"
+              onclick="clickConnectButton()"
+            >
+              상담원 연결하기 👨‍👩‍👧‍👦
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="reply"
+          placeholder="메세지를 입력하세요..."
+          disabled
+        />
+        <button id="reply-btn">입력</button>
+      </form>
+    </div>
+
+    <div id="chat-button">S</div>
+
+    <!-- footer -->
+    <footer id="main-footer">
+      <div id="footer-logo">SYOS</div>
+      <div id="description">
+        <div class="desc-text">@2023 SYOS</div>
+        <div>Desktop Setup Sharing Platform</div>
+      </div>
+      <div id="footer-icon-wrapper">
+        <i class="fa-brands fa-twitter footer-sns"></i>
+        <i class="fa-brands fa-instagram footer-sns"></i>
+        <i class="fa-brands fa-facebook footer-sns"></i>
+      </div>
+    </footer>
+
+    <div id="post_id" style="display: none;"><%= post_id %></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/chat.js"></script>
+    <script src="../js/postdetail.js"></script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Raleway:wght@100&display=swap');
+
+* {
+  font-family: 'EB Garamond', serif;
+}
+
+body {
+  margin: 0;
+}
+
+/* header */
+#main-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#logo {
+  font-size: 70px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* navBar */
+#main-nav {
+  position: fixed;
+  top: 0;
+  background-color: #fff;
+  width: 40vw;
+  height: 100vh;
+  z-index: 999;
+  box-shadow: 0 30px 80px 0 rgba(97, 45, 45, 0.25);
+  transform: translateX(-120%);
+  transition: transform 0.3s ease;
+}
+
+.main-menu{
+  margin-top: 120px;
+}
+
+.menu-button {
+  position: fixed;
+  left: 1px;
+  margin:  2rem;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.main-menu li {
+  cursor: pointer;
+  margin-bottom: 1vw;
+  font-size: 2.6rem;
+  font-weight: bold;
+}
+
+.sub-menu li {
+  font-size: 1.5rem;
+  margin-bottom: 0.6vw;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.under-line {
+  width: 5vw;
+  height: 1px;
+  background-color: rgba(37, 33, 32, 0.12);
+  margin: 5vh 0;
+}
+
+/* footer */
+#main-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 2vw 30px 0;
+}
+
+#footer-logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  font-size: 40px;
+  font-weight: bold;
+  align-self: flex-end;
+  margin-right: 1rem;
+}
+
+#description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #cbcbcb;
+  font-size: 12px;
+  margin-right: 2rem;
+}
+
+.description-text {
+  margin-bottom: 1px;
+}
+
+#footer-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-sns {
+  font-size: 30px;
+  margin-right: 1rem;
+  color: black;
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  #main-header {
+    margin-bottom: 40px;
+  }
+
+  #logo {
+    font-size: 60px;
+  }
+
+  .main-menu li {
+    margin-bottom: 1vw;
+    font-size: 2rem;
+  }
+
+  .sub-menu li {
+    font-size: 1.5rem;
+    margin-bottom: 0.6vw;
+  }
+  .under-line {
+    margin: 3vh 0;
+  }
+  #footer-logo {
+    height: 50px;
+    font-size: 50px;
+    margin-right: 2rem;
+  }
+
+  #description {
+    font-size: 16px;
+    margin-right: 2rem;
+  }
+
+  .description-text {
+    margin-bottom: 1px;
+  }
+
+  .footer-sns {
+    margin-right: 1rem;
+  }
+}

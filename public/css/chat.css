@@ -1,0 +1,204 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.chat {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#reply {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.chat > a {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#chat-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: auto;
+}
+
+#chat-header {
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 1.5rem;
+}
+
+#chat-header-logo {
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+#chat-header-text {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#chat-wrapper {
+  display: none;
+  width: 400px;
+  height: 600px;
+  opacity: 0;
+  position: fixed;
+  background-color: white;
+  right: 30px;
+  bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  border-radius: 24px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0, 0.15) 0px 8px 30px;
+}
+
+#chat-button {
+  z-index: 99999999;
+  position: fixed;
+  right: 30px;
+  bottom: 40px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  border-radius: 99999px;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0, 0.15) 0px 8px 30px;
+}
+
+#chat-form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#chat-box-wrapper {
+  overflow-y: scroll;
+  width: 100%;
+}
+
+#chat-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.chat {
+  max-width: 320px;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 5px 20px;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+#reply {
+  width: 90%;
+  height: 40px;
+  background-color: #eeeeee;
+  box-sizing: border-box;
+  border: none;
+  margin: 20px 0;
+  padding: 10px 20px;
+  border-radius: 16px;
+}
+
+#reply:focus {
+  outline: none;
+}
+
+
+#reply-btn {
+  display: none;
+}
+
+#button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-button {
+  border: 0.5px solid #bebebe7f;
+  background-color: white;
+  border-radius: 24px;
+  cursor: pointer;
+}
+
+.my-chat {
+  margin-left: auto;
+  background-color: white;
+  border: 0.5px solid #bebebe7f;
+  border-bottom-right-radius: 0px;
+}
+
+.other-chat {
+  margin-right: auto;
+  background-color: #eeeeee;
+  border-bottom-left-radius: 0px;
+}
+
+#notice {
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 12px auto;
+  background-color: #eeeeee;
+  border-radius: 24px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  align-items: center;
+}
+
+/* animation */
+@keyframes openChat {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 10%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes closeChat {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, 10%, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

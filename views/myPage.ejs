@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>MyPage</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/myPage.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+    />
+  </head>
+  <body>
+    <header id="main-header">
+      <svg
+        class="menu-button"
+        xmlns="http://www.w3.org/2000/svg"
+        x="0px"
+        y="0px"
+        width="36"
+        height="36"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
+        ></path>
+      </svg>
+      <span id="logo" onclick="location.href = '/'">SYOS</span>
+    </header>
+
+    <!-- navBar -->
+
+    <nav id="main-nav">
+      <svg
+        class="menu-button close"
+        xmlns="http://www.w3.org/2000/svg"
+        width="40px"
+        height="40px"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+        />
+      </svg>
+      <ul class="main-menu">
+        <li onclick="location.href = '/'">Home</li>
+        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/recommend'">Recommend</li>
+        <!-- mypage 엔드포인트에 param 추가해야함-->
+        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li class="divider"><div class="under-line"></div></li>
+      </ul>
+      <ul class="sub-menu">
+        <li>About</li>
+        <li>Contact</li>
+        <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
+      </ul>
+    </nav>
+
+    <!-- myPage -->
+
+    <main class="myPage">
+      <div class="profileDiv">
+        <div class="profileInfo">
+          <div class="profileName">@<%= user.nickname %></div>
+          <!-- 요일 월 일 년 시간 순서로 출력됨 년월일로 출력하려면 -->
+          <div class="profileSince"></div>
+        </div>
+        <div class="profileImg">
+          <img src="../images/profileIcon.jpg" alt="profile" />
+        </div>
+      </div>
+
+      <div class="three">
+        <div class="myPost">
+          <div class="myWord">My Post</div>
+          <div class="swiper-container swiper">
+            <div class="swiper-wrapper">
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination swiper-pagination"></div>
+          </div>
+        </div>
+
+        <!-- 내가 댓글 단 게시물 -->
+        <div class="myComment">
+          <div class="myWord">My Comment</div>
+          <!-- <div class="swiper-container swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">1</div>
+              <div class="swiper-slide">2</div>
+              <div class="swiper-slide">3</div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination swiper-pagination1"></div> -->
+          </div>
+        </div>
+
+        <!-- 내가 좋아요 누른 게시물 -->
+        <div class="myLiked">
+          <div class="myWord">My Liked</div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- myPage -->
+
+    <!-- footer -->
+
+    <link rel="stylesheet" href="../css/global.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <footer id="main-footer">
+      <div id="footer-logo">SYOS</div>
+      <div id="description">
+        <div class="desc-text">@2023 SYOS</div>
+        <div>Desktop Setup Sharing Platform</div>
+      </div>
+      <div id="footer-icon-wrapper">
+        <i class="fa-brands fa-twitter footer-sns"></i>
+        <i class="fa-brands fa-instagram footer-sns"></i>
+        <i class="fa-brands fa-facebook footer-sns"></i>
+      </div>
+    </footer>
+
+    <!-- footer -->
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/myPage.js"></script>
+    <script>
+      // js에 ejs 변수 넘겨서 user_id 저장
+      let id = '<%= user.user_id %>';
+      saveId(id);
+      let nickname = '<%= user.nickname %>';
+      saveNickname(nickname);
+      let date = '<%= user.createdAt %>';
+      saveDate(date);
+
+      ready();
+      async function ready() {
+        await getMyPost();
+      }
+    </script>
+  </body>
+</html>

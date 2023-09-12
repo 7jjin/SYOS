@@ -1,0 +1,272 @@
+.mood-container {
+  margin-top: 5rem;
+}
+
+.mood-header-1 {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem 30vw;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.mood-header-2 {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 1rem 20vw;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+input[type='radio'] {
+  display: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  height: 39px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding: 0px 18px;
+  color: black;
+  font-size: 16px;
+}
+
+.mood-box {
+  margin-top: 5rem;
+  margin-bottom: 9.3em;
+}
+
+.button.active {
+  color: white;
+  background-color: black;
+  border: 1px solid #4d4d4d;
+  cursor: pointer;
+}
+
+.mood-write {
+  display: inline-block;
+  position: relative;
+  height: 39px;
+  /* border: 1px solid #000000; */
+  border-radius: 20px;
+  padding-left: 18px;
+  padding-right: 18px;
+  margin: 0px 30px;
+  line-height: 0;
+  color: black;
+  background-color: white;
+  cursor: pointer;
+  font-size: 25px;
+  line-height: 35px;
+  vertical-align: middle;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.mood-itemwrap {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 0px 10.6em;
+}
+
+.mood-itemwrap .active {
+  display: block;
+}
+
+.mood-itemwrap .hide {
+  display: none;
+}
+
+.item-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 18.7em;
+  height: 18.7em;
+  flex-direction: column;
+  margin: 2px;
+  transition: 0.3s ease-in-out;
+  animation-name: fadeIn;
+  opacity: 0;
+  animation: fadeIn 2s 0s forwards;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+
+.post-box {
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+}
+
+.text-box {
+  font-size: 1.9em;
+  font-weight: 600;
+}
+
+.res-box {
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 1.13em;
+  font-weight: 600;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.post-box {
+  display: none;
+}
+
+.item-box:hover .post-box {
+  display: block;
+}
+
+.item-box:hover img {
+  transform: scale(1.1);
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+}
+
+.item-box > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 1200px) {
+  .mood-header {
+    display: flex;
+    justify-content: center;
+    margin: 0px 25em;
+  }
+
+  .dropdown {
+    margin: 1.7em 11.25em;
+  }
+
+  .modern,
+  .natural,
+  .game,
+  .studyoffice {
+    margin: 0em 0.6em;
+  }
+
+  .mood-box {
+    margin: 3.25em 3.5em 9.375em 3.5em;
+  }
+
+  .mood-itemwrap {
+    display: flex;
+    margin: 0px;
+  }
+
+  .item-box {
+    /* width: 14.4em;
+    height: 14.4em; */
+    margin: 0.0625em;
+  }
+
+  .board-text > div {
+    font-size: 4.375em;
+    text-align: center;
+    margin-top: 1.25em;
+    text-align: left;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .mood-header {
+    margin: 0px 2.5em;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mood-li {
+    margin: 0.625em 0em;
+  }
+
+  .modern,
+  .natural,
+  .game,
+  .studyoffice {
+    margin: 0em 0.375em;
+  }
+
+  .dropdown {
+    justify-content: center;
+  }
+
+  .mood-box {
+    margin: 3.25em 1.25em 9.375em 1.25em;
+  }
+
+  .mood-itemwrap {
+    display: flex;
+    margin: 0px;
+  }
+
+  /* .item-box {
+    width: 8.4375em;
+    height: 8.4375em;
+    margin: 1px;
+  } */
+
+  .board-text > div {
+    font-size: 2.875em;
+    text-align: center;
+    margin-top: 1.25em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .mood-header {
+    margin: 0em 2.5em;
+    justify-content: center;
+  }
+
+  .mood-modern,
+  .mood-natural,
+  .mood-game,
+  .mood-studyoffice {
+    margin: 0em 0.5em;
+  }
+
+  .mood-itemwrap {
+    display: flex;
+    margin: 0px;
+  }
+
+  /* .item-box {
+    width: 8.125em;
+    height: 8.125em;
+    margin: 1px;
+  } */
+
+  .board-text > div {
+    font-size: 2.7em;
+    text-align: center;
+    margin-top: 1.25em;
+  }
+}
