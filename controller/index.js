@@ -1,4 +1,4 @@
-const { User, Post } = require('../models'); // index.js 생략
+const { User, Post, Comment, Like } = require('../models'); // index.js 생략
 
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
@@ -73,7 +73,6 @@ const mypage_user_id = async (req, res) => {
     },
   });
   res.render('myPage', { user: result });
-
 };
 
 // 마이페이지 정보 가져오기
@@ -89,11 +88,73 @@ const post_mypage_user_id = async (req, res) => {
   console.log(myPost);
 
   if (myPost.length == 0) {
-    console.log('게시물 없음!!!!!!');
     res.json({ result: '1' });
   } else {
-    console.log('게시물 있음 !!!!!');
     res.json({ result: '2', myPost });
+  }
+};
+
+// 마이페이지 댓글 가져오기
+const mypage_comment = async (req, res) => {
+  const { user_id } = req.params;
+
+  const myComments = await Comment.findAll({
+    where: {
+      user_id,
+    },
+    attributes: ['post_id'],
+    distinct: true,
+  });
+
+  // 댓글이 없는 경우
+  if (myComments.length == 0) {
+    res.json({ result: '1' });
+  } else {
+    // 댓글 있을 때 찾은 게시물의 post_id로 정보 다시 찾기
+    const myCommentPost = [];
+
+    for (let i = 0; i < myComments.length; i++) {
+      const post = await Post.findOne({
+        where: {
+          post_id: myComments[i].post_id,
+        },
+      });
+      myCommentPost.push(post);
+    }
+
+    res.json({ result: '2', myCommentPost });
+  }
+};
+
+// 마이페이지 좋아요 가져오기
+const mypage_like = async (req, res) => {
+  const { user_id } = req.params;
+
+  const myLiked = await Like.findAll({
+    where: {
+      user_id,
+    },
+    attributes: ['post_id'],
+    distinct: true,
+  });
+
+  // 좋아요 한 게시물이 없는 경우
+  if (myLiked.length == 0) {
+    res.json({ result: '1' });
+  } else {
+    // 좋아요 한 게시물이 있는 경우 post_id로 정보 다시 찾기
+    const myLikedPost = [];
+
+    for (let i = 0; i < myLiked.length; i++) {
+      const post = await Post.findOne({
+        where: {
+          post_id: myLiked[i].post_id,
+        },
+      });
+      myLikedPost.push(post);
+    }
+
+    res.json({ result: '2', myLikedPost });
   }
 };
 
@@ -105,4 +166,6 @@ module.exports = {
 
   post_recommend,
   post_mypage_user_id,
+  mypage_comment,
+  mypage_like,
 };
