@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
     <link rel="stylesheet" href="/css/uploadPost.css">
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/global.css" />
@@ -62,11 +61,11 @@
     <form method="post" name="upload-post" class="upload-form">
         <div class="title-box wrapper-box">
             <p class="title">제목</p>
-            <input type="text" name="title" placeholder="제목을 적어주세요">
+            <input type="text" name="title" id="title"placeholder="제목을 적어주세요">
         </div>
         <div class="writer-box wrapper-box">
             <p class="writer">작성자</p>
-            <input type="text" name="name" placeholder="이름을 적어주세요.">
+            <input type="text" name="name" id="name" placeholder="이름을 적어주세요.">
         </div>
         <div class="image-box wrapper-box">
             <div class="inner-box">
@@ -149,6 +148,9 @@
 
     <div id="chat-button">S</div>
 
+    <div id="post_id" style="display: none;"><%=post_id%></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/chat.js"></script>
     <script src="/js/menu.js"></script>
