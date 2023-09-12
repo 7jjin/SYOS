@@ -88,7 +88,6 @@ exports.post_data = async (req, res) => {
       where: {post_id}
     })
     console.log(productInfo);
-    
     return res.json({
       postData,
       user_id,
@@ -98,6 +97,7 @@ exports.post_data = async (req, res) => {
       isHeart,
       currentUserId,
       currentUserNickname,
+      productInfo,
     });
   } catch (error) {
     console.error(error);
@@ -169,7 +169,8 @@ exports.delete_post_comment = async (req, res) => {
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
   const { post_id } = req.body;
-  await Post.destroy({ where: post_id });
+  console.log(post_id);
+  await Post.destroy({ where:  {post_id} });
   res.send({ result: true });
 };
 
