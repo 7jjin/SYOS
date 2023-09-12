@@ -26,8 +26,6 @@
       <span id="logo" onclick="location.href = '/'">SYOS</span>
     </header>
 
-    <!-- navBar -->
-
     <nav id="main-nav">
       <svg
         class="menu-button close"
@@ -42,10 +40,9 @@
       </svg>
       <ul class="main-menu">
         <li onclick="location.href = '/'">Home</li>
-        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/board'">Board</li>
         <li onclick="location.href = '/recommend'">Recommend</li>
-        <!-- mypage 엔드포인트에 param 추가해야함-->
-        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li onclick="clickMyPage()">MyPage</li>
         <li class="divider"><div class="under-line"></div></li>
       </ul>
       <ul class="sub-menu">
