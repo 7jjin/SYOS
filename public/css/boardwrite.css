@@ -149,6 +149,17 @@ input[type='text'] {
   font-weight: 600;
 }
 
+.user-comment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-delete {
+ cursor: pointer;
+ color: #6c6c6c72;
+ text-decoration: underline;
+}
+
 @media screen and (max-width: 768px) {
   .post-image > img {
     width: 630px;
