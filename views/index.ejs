@@ -158,7 +158,10 @@
           <span id="best-comment" class="best-text"><%= likeComment %></span>
         </div>
       </div>
-      <div class="best-box right" onclick="location.href='/board/<%= commentId %>'">
+      <div
+        class="best-box right"
+        onclick="location.href='/board/<%= commentId %>'"
+      >
         <div class="best-title">Most Comments</div>
         <div id="best-img2" class="best-img"></div>
         <div class="best-info">
@@ -238,6 +241,7 @@
           id="reply"
           placeholder="메세지를 입력하세요..."
           disabled
+          autocomplete="off"
         />
         <button id="reply-btn">입력</button>
       </form>
@@ -252,16 +256,22 @@
         <div>Desktop Setup Sharing Platform</div>
       </div>
       <div id="footer-icon-wrapper">
-        <a href="https://github.com/cheolung12/SYOS" target="_blank"><i class="fa-brands fa-twitter footer-sns"></i></a>
-        <a href="https://github.com/cheolung12/SYOS" target="_blank"><i class="fa-brands fa-instagram footer-sns"></i></a>
-        <a href="https://github.com/cheolung12/SYOS" target="_blank"><i class="fa-brands fa-facebook footer-sns"></i></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-twitter footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-instagram footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-facebook footer-sns"></i
+        ></a>
       </div>
     </footer>
     <script>
-      const bestImage1 = document.querySelector("#best-img1");
-      const bestImage2 = document.querySelector("#best-img2");
-      imageUrl1 = "<%= likeImage %>";
-      imageUrl2 = "<%= commentImage %>";
+      const bestImage1 = document.querySelector('#best-img1');
+      const bestImage2 = document.querySelector('#best-img2');
+      imageUrl1 = '<%= likeImage %>';
+      imageUrl2 = '<%= commentImage %>';
       bestImage1.style.backgroundImage = `url(${imageUrl1})`;
       bestImage2.style.backgroundImage = `url(${imageUrl2})`;
     </script>

@@ -51,8 +51,7 @@
         <li onclick="location.href = '/'">Home</li>
         <li onclick="location.href = '/board'">Board</li>
         <li onclick="location.href = '/recommend'">Recommend</li>
-        <!-- mypage 엔드포인트에 param 추가해야함-->
-        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li onclick="clickMyPage()">MyPage</li>
         <li class="divider"><div class="under-line"></div></li>
       </ul>
       <ul class="sub-menu">
@@ -140,14 +139,14 @@
         </div>
       </div>
     </div>
-<!-- 
+    <!-- 
     <div class="write">
       <span class="mood-write">write</span>
     </div> -->
 
     <!-- 게시물  -->
     <div class="mood-box">
-        <div class="mood-itemwrap" id="mood-itemwrap"></div>
+      <div class="mood-itemwrap" id="mood-itemwrap"></div>
     </div>
 
     <!-- footer -->
@@ -158,9 +157,15 @@
         <div>Desktop Setup Sharing Platform</div>
       </div>
       <div id="footer-icon-wrapper">
-        <i class="fa-brands fa-twitter footer-sns"></i>
-        <i class="fa-brands fa-instagram footer-sns"></i>
-        <i class="fa-brands fa-facebook footer-sns"></i>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-twitter footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-instagram footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-facebook footer-sns"></i
+        ></a>
       </div>
     </footer>
     <!-- chat -->
@@ -198,6 +203,7 @@
           id="reply"
           placeholder="메세지를 입력하세요..."
           disabled
+          autocomplete="off"
         />
         <button id="reply-btn">입력</button>
       </form>
