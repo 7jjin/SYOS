@@ -1,4 +1,5 @@
 const { User, Post, Comment, Like } = require('../models'); // index.js 생략
+const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
 
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;
@@ -22,12 +23,12 @@ const main = async (req, res) => {
     res.render('index', {
       likeId: mostLikedPost.post_id,
       // likeTitle: mostLikedPost.title,
-      likeImage: mostLikedPost.image,
+      likeImage: `${IMG + mostLikedPost.image}`,
       likeLiked: mostLikedPost.liked,
       likeComment: mostLikedPost.comment,
       commentId: mostCommentedPost.post_id,
       // commentTitle: mostCommentedPost.title,
-      commentImage: mostCommentedPost.image,
+      commentImage: `${IMG + mostCommentedPost.image}`,
       commentLiked: mostCommentedPost.liked,
       commentComment: mostCommentedPost.comment,
     });
