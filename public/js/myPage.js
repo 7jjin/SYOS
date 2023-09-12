@@ -1,23 +1,32 @@
 // 스와이퍼
 const swiper = new Swiper('.swiper', {
-  // Optional parameters
   direction: 'horizontal',
   loop: true,
 
-  // If we need pagination
   pagination: {
     el: '.swiper-pagination',
   },
 
-  // Navigation arrows
+  // 버튼
   navigation: {
     nextEl: '.swiper-button-next',
     prevEl: '.swiper-button-prev',
   },
+});
 
-  // And if we need scrollbar
-  scrollbar: {
-    el: '.swiper-scrollbar',
+// // 스와이퍼
+const swiper2 = new Swiper('.swiper2', {
+  direction: 'horizontal',
+  loop: true,
+
+  pagination: {
+    el: '.swiper-pagination2',
+  },
+
+  // 버튼
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
 });
 
@@ -55,7 +64,8 @@ function formatDate(dateString) {
 
 // 사용자가 쓴 게시물
 const myPost = document.querySelector('.myPost');
-const myPostSwiper = myPost.querySelector('.swiper-wrapper');
+const myPostSwiper = myPost.querySelector('.swiper');
+const myPostSwiperWrapper = myPost.querySelector('.swiper-wrapper');
 
 // 내가 쓴 게시물 가져오기
 async function getMyPost() {
@@ -75,20 +85,21 @@ async function getMyPost() {
       const noPost = document.createElement('div');
       noPost.classList.add('no');
       noPost.innerText = 'There is no post';
-      myPostSwiper.appendChild(noPost);
+      myPostSwiperWrapper.appendChild(noPost);
       break;
     case '2':
       console.log(myPost.length);
       myPost.forEach((post) => {
         const postBox = document.createElement('div');
         postBox.classList.add('swiper-slide');
-        postBox.innerHTML = `${post.title}
-          <a href="/posts/${post.post_id}">
-            <img src="${post.image}" />
-          </a>
-        `;
-        // 맨앞에서부터 추가
-        myPostSwiper.insertBefore(postBox, myPostSwiper.firstChild);
+        postBox.addEventListener('click', () => {
+          location.href = `/board/${post.post_id}`;
+        });
+        postBox.innerHTML = `<img src="${post.image}"/>`;
+
+       myPostSwiperWrapper.appendChild(postBox);
+
+        swiper.update();
       });
   }
 

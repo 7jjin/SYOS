@@ -172,8 +172,6 @@ exports.post_delete = async (req, res) => {
   res.send({ result: true });
 };
 
-exports.post_edit = async (req, res) => {};
-
 // 게시물 업로드 페이지
 exports.uploadPost = (req, res) => {
   res.render('uploadPost');
@@ -271,5 +269,29 @@ exports.post_board_filter = async (req, res) => {
   res.json(data);
 };
 
+exports.edit = (req, res) => {
+  const post_id = req.params.postid;
+  res.render('postEdit', { post_id });
+};
+
+exports.post_edit = async (req, res) => {
+  const keys = Object.keys(req.body);
+  const post_id = String(keys[0]);
+  console.log(post_id);
+  const postsData = await Post.findOne({
+    where: {
+      post_id
+    },
+  });
+  const result = await Post.findOne({
+    where: { post_id },
+    include: [{ model: User, attributes: ['nickname'] }],
+  });
+  const nickName = result.user.nickname;
+  res.json({ postsData,nickName });
+};
 
 
+exports.patch_post_edit = (req, res) => {
+  console.log('a');
+};

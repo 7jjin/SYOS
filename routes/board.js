@@ -37,10 +37,13 @@ router.post('/filter', controller.post_board_filter);
 router.get('/:post_id', controller.post_detail);
 
 // 게시물 수정
-router.get('/:postid/edit', controller.post_edit);
+router.get('/:postid/edit', controller.edit);
+
+// 게시물 수정(post)
+router.post('/:postid/edit', controller.post_edit);
 
 // 게시물 수정 (patch)
-// router.patch('/:postid/edit', controller.patch_post_edit);
+router.patch('/:postid/edit', controller.patch_post_edit);
 
 // 게시물 삭제
 router.delete('/:postid/delete', controller.post_delete);
