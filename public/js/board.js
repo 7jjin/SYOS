@@ -1,7 +1,5 @@
 //S3 이미지 경로
-
-//const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`
-// const IMG = 'http://localhost:8000';
+const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`
 
 // //무한 스크롤 기능
 // document.addEventListener("DOMContentLoaded", function () {
@@ -54,29 +52,20 @@
 // }
 
 //카테고리 버튼
-// const button = document.querySelectorAll('.filter.button');
-// const filter = document.querySelectorAll('.filter');
-// console.log(button, filter)
-// for (let i = 0; i < button.length; i++) {
-//     button[i].addEventListener('click', function () {
-//         for (let j = 0; j < button.length; j++) {
-//             button[j].classList.remove('active');
-//         }
-//         this.classList.add('active');
+document.addEventListener("DOMContentLoaded", function () {
+  const filter = document.querySelectorAll(".filter");
 
-//         let dataFilter = this.getAttribute('data-filter');
-//         for (let k = 0; k < itemBox.length; k++) {
-//             itemBox[k].classList.remove('active');
-//             itemBox[k].classList.add('hide');
+  filter.forEach(function (filterBtn) {
+    filterBtn.addEventListener("click", function () {
+      filter.forEach(function (btn) {
+        btn.classList.remove("active");
+      });
+      this.classList.add("active");
+    });
+  });
+});
 
-//             if (itemBox[k].getAttribute('data-item') == dataFilter ||
-//                 dataFilter == "all") {
-//                 itemBox[k].classList.remove('hide');
-//                 itemBox[k].classList.add('active');
-//             }
-//         }
-//     })
-// }
+
 
 // 페이지 렌더될 때 데이터 가져오기
 const fetchData = async () => {
@@ -99,22 +88,29 @@ const fetchData = async () => {
 
     postCreate.innerHTML = `
             <img src="${res.data[i].image}" />
-            <div class="post-box" >
-                <div class="text-box">
-                    <span> ${res.data[i].title}</span>
-                </div>
 
+              <div class="text-container">
+                <div class="text-box">
+                    <div class="title"> ${res.data[i].title}</div>
+                </div>
+              </div>   
+
+              <div class="res-container">
                 <div class="res-box">
                     <div class="heart-box">
-                        <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
+                        <i class="fa-solid fa-heart" style="color: #000000;"></i>                          
                         <p class="liked">${res.data[i].liked}</p>
                     </div>
                     <div class="comment-box">
-                        <i class="fa-regular fa-comment" style="color: #000000;"></i>
+                        <i class="fa-solid fa-comment fa-flip-horizontal" style="color: #000000;"></i>
                         <p class="comment">${res.data[i].comment}</p>
                     </div>
                 </div>
-            </div>`;
+              </div>`;
+
+    // 게시물 랜덤 페이드인 효과 (0.4초)
+    const randomDelay = Math.floor(Math.random() * 400);
+    postCreate.style.animation = `fadeIn 1s forwards ${randomDelay}ms`;
 
     container.appendChild(postCreate);
   }
@@ -123,8 +119,8 @@ const fetchData = async () => {
 fetchData();
 
 // 버튼 선택할 때마다 axios로 값 보내주기
-const filterButtons = document.querySelectorAll('input[name="filter"]');
-filterButtons.forEach((filter) => {
+const filter = document.querySelectorAll('input[name="filter"]');
+filter.forEach((filter) => {
   filter.addEventListener('change', async () => {
     const posts = await axios({
       method: 'POST',
@@ -136,34 +132,52 @@ filterButtons.forEach((filter) => {
     container.innerHTML = ``;
     // 게시물 생성
     for (let i = 0; i < posts.data.length; i++) {
-        console.log(i);
-        const postCreate = document.createElement('div');
-        postCreate.classList.add('item-box');
-        // 게시물과 post_id 연결
-        postCreate.addEventListener('click', () => {
-          location.href = `/board/${posts.data[i].post_id}`;
-        });
-    
-        postCreate.innerHTML = `
+      console.log(i);
+      const postCreate = document.createElement('div');
+      postCreate.classList.add('item-box');
+      // 게시물과 post_id 연결
+      postCreate.addEventListener('click', () => {
+        location.href = `/board/${posts.data[i].post_id}`;
+      });
+
+      postCreate.innerHTML = `
                 <img src="${posts.data[i].image}" />
-                <div class="post-box" >
+
+                
+                <div class="text-container" >
                     <div class="text-box">
-                        <span> This is title: ${posts.data[i].title}</span>
+                        <div class="title">${posts.data[i].title}</div>
                     </div>
+                </div>   
     
+                <div class="res-container">
                     <div class="res-box">
                         <div class="heart-box">
-                            <i class="fa-solid fa-heart" style="color: #f00000;"></i>                            
+                            <i class="fa-solid fa-heart" style="color: #000000;"></i>                           
                             <p class="liked">${posts.data[i].liked}</p>
                         </div>
                         <div class="comment-box">
-                            <i class="fa-regular fa-comment" style="color: #000000;"></i>
+                            <i class="fa-solid fa-comment fa-flip-horizontal" style="color: #000000;"></i>
                             <p class="comment">${posts.data[i].comment}</p>
                         </div>
                     </div>
-                </div>`;
-    
-        container.appendChild(postCreate);
-      }
-    });
+                  </div>`;
+
+      const randomDelay = Math.floor(Math.random() * 500);
+      postCreate.style.animation = `fadeIn 2s forwards ${randomDelay}ms`;
+
+      container.appendChild(postCreate);
+    }
+  });
 });
+
+// write 버튼 누르면 작성 페이지로 이동 
+const write = document.querySelector(".write");
+write.addEventListener('click', () => {
+  axios({
+    method: "GET",
+    url: "/board/upload",
+  }).then((res) => {
+    location.href = "/board/upload";
+  })
+})
