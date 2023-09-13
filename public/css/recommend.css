@@ -1,297 +1,324 @@
-.upload-title{
-    text-align: center;
-    margin:20px 0;
-    font-size: 48px;
+.upload-title {
+  text-align: center;
+  margin: 5vh 0 40px 0;
+  font-size: 48px;
 }
-.upload-image-wrapper{
-    position: relative;
-    margin: 0 auto;
-    width: 40%;
-    height: 300px;
-    border:1px solid black;
-    border-radius: 20px;
+
+.upload-image-wrapper {
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 80px;
+  width: 35%;
+  height: 350px;
+  border: 3px dashed gray;
+  border-radius: 20px;
 }
-.upload-image-form{
-    height: 100%;
+
+.fa-camera {
+  top: calc(50% - 60px);
+  left: calc(50% - 60px);
+  position: absolute;
+  font-size: 120px;
+  z-index: -1;
 }
-.loading{
-    position: absolute;
-    
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #3498db;
-    border-radius: 50%;
-    animation: load 1s linear infinite;
-    
-    top: 43%;
-    left: 46%;
-    transform: translate(-50%,-50%);
-    display: block;
+
+.upload-image-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
 }
+
+.loading {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left: 4px solid gray;
+  border-radius: 50%;
+  animation: load 1s linear infinite;
+  top: 43%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+  display: block;
+}
+
 @keyframes load {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
   }
-
-
-  
-.upload-image{
-    display: block;
-    text-align: center;
-    height: 100%;
-    line-height: 400px;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.button_wrapper{
-    display: flex;
-    /* display: none; */
-    justify-content: center;
-    margin-top: 30px;
-}
-.search{
-    background-color: black;
-    color:white;
-    font-weight: 900;
-    padding:12px 30px;
-    border-radius: 20px;
-    width: 30%;
+.upload-image {
+  display: block;
+  text-align: center;
+  height: 100%;
+  line-height: 400px;
 }
 
-
-#input-image{
-    display: none;
+.button_wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
 }
 
-.result-box{
-    height: 150px;
-    margin-bottom: 22px;
-}
-.result-box-wrapper{
-    width: 80%;
-    padding-top: 30px;
-    display: flex;
-    /* display: none; */
-    margin: 0 auto;
-    justify-content: space-around;
-}
-.result{
-    width: 190px;
-    height: 65px;
-}
-.moden-span,.office-span,.study-span,.natural-span{
-    color: #c9c9c9;;
-    text-align: center;
-    text-shadow: 2px 1px 1px rgb(0 0 0 / 90%);
-    font-size: 30px;
-    font-weight: 700;
-    border: 2px solid black;
-    padding: 10px 20px;
-    border-radius: 20px;
-    transition: box-shadow 0.3s ease-out;
-} 
-.moden-span:hover,.office-span:hover,.study-span:hover,.natural-span:hover{
-    box-shadow: 0px 0px 7px 0px black;
-}
-.per{
-    text-align: center;
-    margin-top: 15px;
-    font-size: 25px;
-    font-weight: 500;
+.search {
+  background-color: black;
+  color: white;
+  font-weight: 900;
+  padding: 12px 30px;
+  border-radius: 20px;
+  width: 30%;
 }
 
-.recommend-title{
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 30px;
+#input-image {
+  display: none;
+}
+
+.result-box {
+  height: 150px;
+  margin-bottom: 100px;
+}
+
+.result-box-wrapper {
+  width: 80%;
+  padding-top: 30px;
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-around;
+}
+
+.result {
+  width: 190px;
+  height: 65px;
+}
+
+.moden-span,
+.office-span,
+.study-span,
+.natural-span {
+  color: #c9c9c9;
+  text-align: center;
+  text-shadow: 2px 1px 1px rgb(0 0 0 / 90%);
+  font-size: 30px;
+  font-weight: 700;
+  border: 2px solid black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  transition: box-shadow 0.3s ease-out;
+}
+.moden-span:hover,
+.office-span:hover,
+.study-span:hover,
+.natural-span:hover {
+  box-shadow: 0px 0px 7px 0px black;
+}
+.per {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.recommend-title {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 30px;
 }
 
 /* recommend-post */
-.recommend-posts{
-    margin-top: 20px;
-    padding-bottom: 24px;
-    display: none;
+.recommend-posts {
+  margin-top: 20px;
+  padding-bottom: 24px;
+  display: none;
 }
-.recommend-post-wrapper{
-    display: flex;
-    width: 80%;
-    margin:0 auto;
+.recommend-post-wrapper {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
 }
-.option-box{
-    display: flex;
-    flex-direction: row-reverse;
+.option-box {
+  display: flex;
+  flex-direction: row-reverse;
 }
-#sort{
-    padding: 6px 3px;
-    border-style: none;
+#sort {
+  padding: 6px 3px;
+  border-style: none;
 }
-#sort:focus{
-    outline:none;
+#sort:focus {
+  outline: none;
 }
-.posts-box{
-    width: 60%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 20px;
+.posts-box {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin-top: 20px;
 }
-.move-box{
-    width: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.move-box {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.move-box-inner{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.move-box-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.move-box-inner p,.move-box-inner i{
-    font-size: 40px;
+.move-box-inner p,
+.move-box-inner i {
+  font-size: 40px;
 }
 
-.post1{
-    border-radius: 20px;
-    width: 40%;
-    height: 210px;
-    margin-bottom: 30px;
-    position: relative;
-    overflow: hidden;
+.post1 {
+  border-radius: 20px;
+  width: 40%;
+  height: 210px;
+  margin-bottom: 30px;
+  position: relative;
+  overflow: hidden;
 }
-#webcam-container{
-    width: 100%;
-    height: 100%;
+#webcam-container {
+  width: 100%;
+  height: 100%;
 }
-canvas{
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
+canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
-.post-text{
-    height: 100%;
+.post-text {
+  height: 100%;
 }
-.post1 img{
-    width: 100%;
-    height: 100%;
+.post1 img {
+  width: 100%;
+  height: 100%;
 }
 .hidden-box {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    left: 0;
-    top:0;
-    height: 100%;
-    width: 100%;
-    background: rgba(252, 255, 255, 0.40);
-    backdrop-filter: blur(2px);
-    color: white;
-    text-align: center;
-    transition:  0.5s;
-    opacity: 0;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(252, 255, 255, 0.4);
+  backdrop-filter: blur(2px);
+  color: white;
+  text-align: center;
+  transition: 0.5s;
+  opacity: 0;
 }
-.text-box{
-    height: 100%;
-    color: black;
-    font-size: 20px;
-    font-weight: 600;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.text-box {
+  height: 100%;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.post-bar{
-    position: absolute;
-    display: flex;
-bottom:0;
-    padding-left: 15px;
+.post-bar {
+  position: absolute;
+  display: flex;
+  bottom: 0;
+  padding-left: 15px;
 }
-.heart,.review{
-    display: flex;
-    align-items: center;
+.heart,
+.review {
+  display: flex;
+  align-items: center;
 }
-.heart i, .review i{
-    width: 16px;
-    height: 16px;
-    color:black;
+.heart i,
+.review i {
+  width: 16px;
+  height: 16px;
+  color: black;
 }
-.review i{
-    font-size: 18px;
+.review i {
+  font-size: 18px;
 }
-.count{
-    margin-left: 5px;
-    color:black;
+.count {
+  margin-left: 5px;
+  color: black;
 }
-.review-box{
-    margin-left: 8px;
+.review-box {
+  margin-left: 8px;
 }
 
 .post1:hover .hidden-box {
-    opacity: 1;
+  opacity: 1;
 }
 .post1:hover .post1 image {
-
-    opacity: 0;
+  opacity: 0;
 }
 
-@media (max-width: 1200px){
-    
+@media (max-width: 1200px) {
 }
-
 
 /* 반응형 */
-@media (max-width: 768px){
-    .upload-title {
-        font-size: 24px;
-    }
-    .big-wrapper{
-        width: 100%;
-        display: flex;
-    }
-    .upload-image-wrapper{
-        width: 35%;
-        height: auto;
-    }
-    .result-box-wrapper{
-        flex-direction: column;
-        height: 100%;
-        padding-top: 0px;
-    }
-    .result-box{
-        width: 50%;
-        height: auto;
-        margin-bottom: 0px;
-    }
-    .result{
-        display: flex;
-        justify-content: center;
-        width: auto;
-        height: auto;
-        margin:5px;
-    }
-    .moden-span,.office-span,.study-span,.natural-span{
-        font-size: 20px;
-        border:none;
-        display: flex;
+@media (max-width: 768px) {
+  .upload-title {
+    font-size: 24px;
+  }
+  .big-wrapper {
+    width: 100%;
+    display: flex;
+  }
+  .upload-image-wrapper {
+    width: 35%;
+    height: auto;
+  }
+  .result-box-wrapper {
+    flex-direction: column;
+    height: 100%;
+    padding-top: 0px;
+  }
+  .result-box {
+    width: 50%;
+    height: auto;
+    margin-bottom: 0px;
+  }
+  .result {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    height: auto;
+    margin: 5px;
+  }
+  .moden-span,
+  .office-span,
+  .study-span,
+  .natural-span {
+    font-size: 20px;
+    border: none;
+    display: flex;
     justify-content: center;
     width: 60%;
-    }
-    .per{
-        font-size: 20px;
-        display: flex;
-        width: 40%;
-        align-items: center;
-        margin-top: 0px;
-        justify-content: center;
-    }
-    .post1{
-        height: 50%;
-    }
-    .recommend-posts{
-        margin-bottom: 40px;
-       
-    }
-    .move-box-inner p ,.move-box-inner i{
-        font-size: 24px;
-    }
-    
+  }
+  .per {
+    font-size: 20px;
+    display: flex;
+    width: 40%;
+    align-items: center;
+    margin-top: 0px;
+    justify-content: center;
+  }
+  .post1 {
+    height: 50%;
+  }
+  .recommend-posts {
+    margin-bottom: 40px;
+  }
+  .move-box-inner p,
+  .move-box-inner i {
+    font-size: 24px;
+  }
 }

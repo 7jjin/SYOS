@@ -17,6 +17,8 @@ let data = [];
 
 // 이미지 모델을 분석 및 웹캠 설정
 async function init() {
+  const cameraIcon = document.querySelector('.fa-camera');
+  cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
   console.log('a');
