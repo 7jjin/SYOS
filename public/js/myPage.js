@@ -39,6 +39,8 @@ function formatDate(dateString) {
 const myPost = document.querySelector('.myPost');
 const myPostCarousel = document.querySelector('#myPostCarousel');
 const myPostInner = myPostCarousel.querySelector('.carousel-inner');
+const myPostBtn1 = myPost.querySelectorAll('button')[0];
+const myPostBtn2 = myPost.querySelectorAll('button')[1];
 
 // 내가 쓴 게시물 가져오기
 async function getMyPost() {
@@ -64,20 +66,51 @@ async function getMyPost() {
       break;
     case '2': // 게시물 있을 때 생성하는 곳
       let cnt = 0; // cnt 0일 때 active 생성하려고
+
+      if (myPost.length == 1) { // 게시물 1개면 버튼 없애기
+        myPostBtn1.style.display = 'none';
+        myPostBtn2.style.display = 'none';
+      }
+
       myPost.forEach((post) => {
         const postDiv = document.createElement('div');
+
         postDiv.addEventListener('click', () => {
           location.href = `/board/${post.post_id}`;
         });
 
         postDiv.classList.add('carousel-item');
+        postDiv.classList.add('item-box');
+
         if (cnt === 0) {
           // 첫번째 게시물에 active 추가
           postDiv.classList.add('active');
         }
-        const postImg = document.createElement('img');
-        postImg.src = `${IMG + post.image}`;
-        postDiv.appendChild(postImg);
+
+        postDiv.innerHTML = `
+            <img src="${IMG + post.image}" />
+
+              <div class="text-container">
+                <div class="text-box">
+                    <div class="title"> ${post.title}</div>
+                </div>
+              </div>
+
+              <div class="res-container">
+                <div class="res-box">
+                    <div class="heart-box">
+                        <i class="fa-solid fa-heart" style="color: #000000;"></i>
+                        <p class="liked">${post.liked}</p>
+                    </div>
+                    <div class="comment-box">
+                        <i class="fa-solid fa-comment fa-flip-horizontal" style="color: #000000;"></i>
+                        <p class="comment">${post.comment}</p>
+                    </div>
+                </div>
+              </div>`;
+        // const postImg = document.createElement('img');
+        // postImg.src = `${IMG + post.image}`;
+        // postDiv.appendChild(postImg);
         myPostInner.appendChild(postDiv);
         cnt++;
       });
@@ -91,6 +124,8 @@ async function getMyPost() {
 const myComment = document.querySelector('.myComment');
 const myCommentCarousel = document.querySelector('#myCommentCarousel');
 const myCommentInner = myCommentCarousel.querySelector('.carousel-inner');
+const myCommentBtn1 = myComment.querySelectorAll('button')[0];
+const myCommentBtn2 = myComment.querySelectorAll('button')[1];
 
 // 내가 댓글 단 게시물 가져오기
 async function getMyComment() {
@@ -106,6 +141,8 @@ async function getMyComment() {
 
   switch (result) {
     case '1': // 댓글 없음
+      myCommentBtn1.style.display = 'none';
+      myCommentBtn2.style.display = 'none';
       const commentDiv = document.createElement('div');
       commentDiv.classList.add('carousel-item');
       commentDiv.classList.add('active');
@@ -115,20 +152,51 @@ async function getMyComment() {
       break;
     case '2': // 댓글 있을 때 생성하는 곳
       let cnt = 0; // cnt 0일 때 active 생성하려고
+
+      if (myCommentPost.length == 1) { // 게시물 1개면 버튼 없애기
+        myCommentBtn1.style.display = 'none';
+        myCommentBtn2.style.display = 'none';
+      }
+
       myCommentPost.forEach((post) => {
         const commentDiv = document.createElement('div');
+
         commentDiv.addEventListener('click', () => {
           location.href = `/board/${post.post_id}`;
         });
 
         commentDiv.classList.add('carousel-item');
+        commentDiv.classList.add('item-box');
+
         if (cnt === 0) {
           // 첫번째 게시물에 active 추가
           commentDiv.classList.add('active');
         }
-        const commentImg = document.createElement('img');
-        commentImg.src = `${IMG + post.image}`;
-        commentDiv.appendChild(commentImg);
+
+        commentDiv.innerHTML = `
+            <img src="${IMG + post.image}" />
+
+              <div class="text-container">
+                <div class="text-box">
+                    <div class="title"> ${post.title}</div>
+                </div>
+              </div>
+
+              <div class="res-container">
+                <div class="res-box">
+                    <div class="heart-box">
+                        <i class="fa-solid fa-heart" style="color: #000000;"></i>
+                        <p class="liked">${post.liked}</p>
+                    </div>
+                    <div class="comment-box">
+                        <i class="fa-solid fa-comment fa-flip-horizontal" style="color: #000000;"></i>
+                        <p class="comment">${post.comment}</p>
+                    </div>
+                </div>
+              </div>`;
+        // const commentImg = document.createElement('img');
+        // commentImg.src = `${IMG + post.image}`;
+        // commentDiv.appendChild(commentImg);
         myCommentInner.appendChild(commentDiv);
         cnt++;
       });
@@ -142,6 +210,8 @@ async function getMyComment() {
 const myLiked = document.querySelector('.myLiked');
 const myLikedCarousel = document.querySelector('#myLikedCarousel');
 const myLikedInner = myLikedCarousel.querySelector('.carousel-inner');
+const myLikedBtn1 = myLiked.querySelectorAll('button')[0];
+const myLikedBtn2 = myLiked.querySelectorAll('button')[1];
 
 // 내가 좋아요 누른 게시물 가져오기
 async function getMyLiked() {
@@ -157,6 +227,8 @@ async function getMyLiked() {
 
   switch (result) {
     case '1': // 좋아요 한 게시물 없음
+      myLikedBtn1.style.display = 'none';
+      myLikedBtn2.style.display = 'none';
       const likedDiv = document.createElement('div');
       likedDiv.classList.add('carousel-item');
       likedDiv.classList.add('active');
@@ -166,20 +238,51 @@ async function getMyLiked() {
       break;
     case '2': // 좋아요 한 게시물 있을 때 생성하는 곳
       let cnt = 0; // cnt 0일 때 active 생성하려고
+      
+      if (myLikedPost.length == 1) { // 게시물 1개면 버튼 없애기
+        myLikedBtn1.style.display = 'none';
+        myLikedBtn2.style.display = 'none';
+      }
+
       myLikedPost.forEach((post) => {
         const likedDiv = document.createElement('div');
+
         likedDiv.addEventListener('click', () => {
           location.href = `/board/${post.post_id}`;
         });
 
         likedDiv.classList.add('carousel-item');
+        likedDiv.classList.add('item-box');
+
         if (cnt === 0) {
           // 첫번째 게시물에 active 추가
           likedDiv.classList.add('active');
         }
-        const likedImg = document.createElement('img');
-        likedImg.src = `${IMG + post.image}`;
-        likedDiv.appendChild(likedImg);
+
+        likedDiv.innerHTML = `
+            <img src="${IMG + post.image}" />
+            
+              <div class="text-container">
+                <div class="text-box">
+                    <div class="title"> ${post.title}</div>
+                </div>
+              </div>
+
+              <div class="res-container">
+                <div class="res-box">
+                    <div class="heart-box">
+                        <i class="fa-solid fa-heart" style="color: #000000;"></i>
+                        <p class="liked">${post.liked}</p>
+                    </div>
+                    <div class="comment-box">
+                        <i class="fa-solid fa-comment fa-flip-horizontal" style="color: #000000;"></i>
+                        <p class="comment">${post.comment}</p>
+                    </div>
+                </div>
+              </div>`;
+        // const likedImg = document.createElement('img');
+        // likedImg.src = `${IMG + post.image}`;
+        // likedDiv.appendChild(likedImg);
         myLikedInner.appendChild(likedDiv);
         cnt++;
       });
