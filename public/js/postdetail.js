@@ -14,7 +14,11 @@ let postUserId;
 
 // axios로 필요한 데이터 요청
 const token = localStorage.getItem('token');
+let login = true;
 const fetchData = async () => {
+  if(!token) {
+    login = false;
+  }
   try {
     const res = await axios({
       method: 'POST',
@@ -24,6 +28,7 @@ const fetchData = async () => {
       },
       data: {
         post_id,
+        login,
       },
     });
     console.log(res);
@@ -63,11 +68,12 @@ const fetchData = async () => {
       modifyPost.style.display = 'none';
       deletePost.style.display = 'none';
     }
-
-    if (res.data.isHeart.length !== 0) {
-      heart.classList.remove('fa-regular');
-      heart.classList.add('fa-solid');
-      heart.style.color = '#ec4141';
+    if(login){
+      if (res.data.isHeart.length !== 0) {
+        heart.classList.remove('fa-regular');
+        heart.classList.add('fa-solid');
+        heart.style.color = '#ec4141';
+      }  
     }
 
     heartNum.textContent = res.data.postData.liked;
@@ -122,27 +128,34 @@ const fetchData = async () => {
 fetchData();
 
 // 좋아요 누를 때 UI 변경 및 DB 업데이트
-heart.addEventListener('click', async () => {
-  let isHeart;
-  if (heart.classList.contains('fa-solid')) {
-    heart.classList.remove('fa-solid');
-    heart.classList.add('fa-regular');
-    heart.style.color = '';
-    isHeart = false;
-  } else {
-    heart.classList.remove('fa-regular');
-    heart.classList.add('fa-solid');
-    heart.style.color = '#ec4141';
-    isHeart = true;
-  }
-  const res = await axios({
-    method: 'PATCH',
-    url: '/board/detail/heart',
-    data: { post_id, isHeart, user_id },
+if(login){
+  heart.addEventListener('click', async () => {
+    let isHeart;
+    if (heart.classList.contains('fa-solid')) {
+      heart.classList.remove('fa-solid');
+      heart.classList.add('fa-regular');
+      heart.style.color = '';
+      isHeart = false;
+    } else {
+      heart.classList.remove('fa-regular');
+      heart.classList.add('fa-solid');
+      heart.style.color = '#ec4141';
+      isHeart = true;
+    }
+    const res = await axios({
+      method: 'PATCH',
+      url: '/board/detail/heart',
+      data: { post_id, isHeart, user_id },
+    });
+    const number = res.data.heartNum;
+    heartNum.textContent = `${number}`;
+  });  
+}
+else {
+  heart.addEventListener('click', () => {
+    alert('로그인이 필요합니다!');
   });
-  const number = res.data.heartNum;
-  heartNum.textContent = `${number}`;
-});
+}
 
 // 댓글 입력
 const addComment = async (e) => {
@@ -156,7 +169,7 @@ const addComment = async (e) => {
     return;
   }
   if (content.trim() === '') {
-    alert('Please enter comments.');
+    alert('내용을 입력해주세요.');
     return;
   }
 
