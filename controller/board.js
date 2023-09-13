@@ -191,17 +191,18 @@ exports.post_uploadPost = async (req, res) => {
     order: [['createdAt', 'DESC']],
     limit: 1,
   });
-
-  for (let i = 0; i < photoData.length; i++) {
+  if(photoData){
+    for (let i = 0; i < photoData.length; i++) {
     Product.create({
       post_id: result.post_id,
       product_name: photoData[i].productName,
       product_link: photoData[i].productLink,
       top: photoData[i].top,
       left: photoData[i].left,
-    });
+      });
+    }
+    res.json({result:true});  
   }
-  res.send(true);
 };
 
 //ALl 게시물

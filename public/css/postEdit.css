@@ -1,5 +1,9 @@
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
 
+
+body form *{
+  font-family: 'Pretendard-Regular';
+}
 .body {
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -187,7 +191,8 @@ label p {
     cursor: pointer;
   }
   .tag.selected {
-    background-color: beige;
+    color: black;
+    font-weight: 600;
     border-radius: 20%;
 }
 

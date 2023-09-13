@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+body form *{
+  font-family: 'Pretendard-Regular';
+}
+
+
 p{
     margin:0;
 }
@@ -42,6 +53,10 @@ input{
     background-color: white;
     display: none;
 }
+.upload-image{
+  width: 530px;
+  height: 320px;
+}
 
 .upload-image label{
 
@@ -64,7 +79,7 @@ label p {
 .add-link-wrapper{
     display: none;
     position: absolute;
-    bottom: 5%;
+    bottom: 10%;
     padding: 5px 10px;
     border: 1px solid black;
     border-radius: 15px;
@@ -165,11 +180,12 @@ label p {
   .tag-box .tag{
     margin-right: 10px;
     font-size: 20px;
-    color: #a6a6a6;
+    color: #b3b3b37d;
     cursor: pointer;
   }
   .tag.selected {
-    background-color: beige;
+    color: black;
+    font-weight: 600;
     border-radius: 20%;
 }
 

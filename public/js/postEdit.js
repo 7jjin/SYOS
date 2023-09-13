@@ -329,8 +329,10 @@ async function uploadPost() {
     category: tagNum,
     photo,
   };
-
-  // url:/board/upload
+  if(Object.keys(photoData).length === 0){
+    alert("링크를 추가해주세요")
+  }else{
+    // url:/board/upload
   const dataForm = await axios({
     method: 'patch',
     url: `/board/${post_id}/edit`,
@@ -348,4 +350,6 @@ async function uploadPost() {
   // if(dataForm.data.result===true){
   //   alert("편집이 완료되었습니다.")
   // }
+  }
+  
 }

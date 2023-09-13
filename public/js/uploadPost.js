@@ -37,7 +37,7 @@ const carmeraTitle = document.querySelector('.upload-image p');
 const linkTag = document.querySelector('.add-link-wrapper');
 const uploadImage = document.querySelector('.upload-image');
 
-let IsfileUpload = true;
+let IsfileUpload = false;
 
 imageInput.addEventListener('change', function (event) {
   // 파일을 경로
@@ -45,13 +45,12 @@ imageInput.addEventListener('change', function (event) {
 
   // 경로가 있다면 (사진을 올렸을 경우) 실행
   if (file) {
-    console.log(IsfileUpload);
     const reader = new FileReader();
     reader.onload = function (e) {
       const imageUrl = e.target.result;
       uploadImageLabel.style.backgroundImage = `url('${imageUrl}')`;
       uploadImageLabel.style.backgroundPosition = 'center';
-      uploadImageLabel.style.backgroundSize = 'contain';
+      uploadImageLabel.style.backgroundSize = 'cover';
       uploadImageLabel.style.backgroundRepeat = 'no-repeat';
       carmeraIcon.style.display = 'none';
       carmeraTitle.style.display = 'none';
@@ -64,7 +63,6 @@ imageInput.addEventListener('change', function (event) {
   } else {
     // 경로가 없을 경우 (사진이 없을 경우)
     IsfileUpload = false;
-    console.log(IsfileUpload);
     uploadImageLabel.style.backgroundImage = 'none';
     carmeraIcon.style.display = 'block';
     carmeraTitle.style.display = 'block';
@@ -136,7 +134,6 @@ function mousemove() {
     }
     realclickX = clickedX;
     realclickY = clickedY;
-    console.log('Clicked at (top, left):', clickedY, clickedX);
     mouseFollower.style.display = 'none';
 
     // product-info 박스 초기화 시켜주기
@@ -194,8 +191,6 @@ function mousemove() {
       top: realclickY,
       left: realclickX,
     };
-    console.log(productName);
-    console.log(productLink);
 
     // 현재의 점에 해당하는 productInfo를 찾음
     const currentPoint = points[points.length - 1];
@@ -226,10 +221,9 @@ function mousemove() {
 
 function uploadPost() {
   const token = localStorage.getItem('token');
-  const content = document.querySelector('#tinymce p');
-  // console.log(tinyMCE.get('mytextarea').getContent());
   const form = document.forms['upload-post'];
-  console.log(form.image.files[0]);
+  console.log(photoData);
+  console.log(IsfileUpload)
   const data = {
     title: form.title.value,
     content: tinyMCE.get('mytextarea').getContent(),
@@ -240,16 +234,20 @@ function uploadPost() {
   };
 
   // url:/board/upload
-
-  axios({
-    method: 'POST',
-    url: '/board/upload',
-    data,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    console.log('res', res);
-  });
+  if(Object.keys(photoData).length === 0){
+    alert("링크를 추가해주세요")
+  }
+  else{
+    axios({
+      method: 'POST',
+      url: '/board/upload',
+      data,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      console.log('res', res.data.result);
+    });
+  }
 }
