@@ -92,3 +92,8 @@ main > .signUpDiv > .rePwDiv > .rePwValid {
   text-align: right;
   border-radius: 50%;
 }
+
+/* 인풋 포커스 테두리 삭제 */
+main.signUp input:focus {
+  outline: none;
+}

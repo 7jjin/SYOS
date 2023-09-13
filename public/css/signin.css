@@ -31,7 +31,7 @@ main > .signInDiv {
 main > .signInDiv > div {
   height: 20vh;
   margin-bottom: 10px;
-  background-color: white;
+  background-color: transparent;
   border: none;
   border-bottom: 2px solid #000000;
 }
@@ -130,4 +130,9 @@ main.signIn > div.google div.googleText {
 
 main.signIn > div.signUp {
   margin-top: 30px;
+}
+
+/* 인풋 포커스 테두리 삭제 */
+main.signIn input:focus {
+  outline: none;
 }
