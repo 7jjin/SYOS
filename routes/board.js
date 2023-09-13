@@ -42,6 +42,9 @@ router.post('/:postid/edit', controller.post_edit);
 // 게시물 수정 (patch)
 router.patch('/:postid/edit', controller.patch_post_edit);
 
+// 게시물 수정 (delete)
+router.delete('/:postid/edit', controller.delete_post_delt);
+
 // 게시물 삭제
 router.delete('/:postid/delete', controller.post_delete);
 
