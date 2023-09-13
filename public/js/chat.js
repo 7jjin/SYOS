@@ -61,7 +61,20 @@ const clickBtn1 = () => {
   chatBox.appendChild(div2);
 };
 
-const clickBtn2 = () => {};
+const clickBtn2 = () => {
+  const div = document.createElement('div');
+  const div2 = document.createElement('div');
+  div.classList.add('chat');
+  div.classList.add('other-chat');
+  div2.classList.add('chat');
+  div2.classList.add('other-chat');
+  div.innerText =
+    '문의 사항이 있으시다면 아래 이메일로 보내주세요!';
+  div2.innerHTML =
+    '<b>cheolung97@gmail.com</b>'
+  chatBox.appendChild(div);
+  chatBox.appendChild(div2);
+};
 
 socket.on('notice', (res) => {
   const div = document.createElement('div');

@@ -36,22 +36,6 @@ exports.board = (req, res) => {
   res.render('board');
 };
 
-//전체 게시물 (post)
-exports.post_board = async (req, res) => {
-  const boardData = await Post.findAll({
-    attributes: [
-      'post_id',
-      'title',
-      'image',
-      'category',
-      'liked',
-      'comment',
-      'createdAt',
-    ],
-  });
-  res.json(boardData);
-};
-
 // 게시물 상세 (get)
 exports.post_detail = (req, res) => {
   const { post_id } = req.params;
@@ -99,6 +83,12 @@ exports.post_data = async (req, res) => {
       where: { post_id, user_id: currentUserId },
     });
 
+    // 이미지 안에 있는 링크 가져오기
+    const productInfo = await Product.findAll({
+      where: {post_id}
+    })
+    console.log(productInfo);
+    
     return res.json({
       postData,
       user_id,
@@ -150,11 +140,31 @@ exports.post_post_comment = async (req, res) => {
     user_id,
     content,
   });
-  res.send({ result: true });
+  const post = await Post.findOne({ where: { post_id } });
+  if (post) {
+    await post.update({ comment: post.comment + 1 });
+  }
+  const result =  await Comment.findOne({
+    attributes: ['comment_id'],
+    order: [['createdAt', 'DESC']],
+    limit: 1,
+  });
+  res.send({ comment_id: result.comment_id });
 };
 
 // 댓글 삭제
-exports.delete_post_comment = (req, res) => {};
+exports.delete_post_comment = async (req, res) => { 
+  const {post_id, comment_id} = req.body;
+  console.log(comment_id);
+  const post = await Post.findOne({ where: { post_id } });
+  if (post) {
+    await post.update({ comment: post.comment - 1 });
+  }
+  await Comment.destroy({
+    where: {comment_id},
+  });
+  res.send({result: true});
+};
 
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
@@ -205,17 +215,15 @@ exports.post_uploadPost = async (req, res) => {
   }
 };
 
-//ALl 게시물
+//All 게시물 (처음 한 번)
 exports.post_all = async (req, res) => {
   const boardData = await Post.findAll({
     attributes: [
       'post_id',
       'title',
       'image',
-      'category',
       'liked',
       'comment',
-      'createdAt',
     ],
   });
   res.json(boardData);
@@ -223,15 +231,45 @@ exports.post_all = async (req, res) => {
 
 // 게시물 필터
 exports.post_board_filter = async (req, res) => {
-  const { filter } = req.body;
-  if (filter === 'modern') {
-  } else if (filter === 'natural') {
-  } else if (filter === 'game') {
-  } else if (filter === 'study') {
-  } else if (filter === 'latest') {
-  } else if (filter === 'oldest') {
-  } else if (filter === 'like') {
+  const {filter} = req.body;
+  let data;
+  if(filter === 'modern'){
+    data = await Post.findAll({
+      where: { category: 0 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
+  }else if (filter === 'natural'){
+    data = await Post.findAll({
+      where: { category: 1 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
+  }else if (filter === 'game'){
+    data = await Post.findAll({
+      where: { category: 2 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
+  }else if (filter === 'study'){
+    data = await Post.findAll({
+      where: { category: 3 },
+      attributes: ['post_id', 'title', 'image','liked', 'comment']
+    });
+  }else if (filter === 'latest'){
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+      order: [['createdAt', 'DESC']],
+    });
+  }else if (filter === 'oldest'){
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+      order: [['createdAt', 'ASC']],
+    });
+  }else if (filter === 'like'){
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+      order: [['liked', 'DESC']],
+    });
   }
+  res.json(data);
 };
 
 exports.edit = (req, res) => {
@@ -272,6 +310,7 @@ exports.patch_post_edit = async (req, res) => {
   res.json({result_edit:true})
 };
 
+
 // 게시글 수정(product 테이블)
 exports.delete_post_delt = async (req, res) => {
   const {title,content,category,photo} = req.body.data;
@@ -288,6 +327,11 @@ exports.delete_post_delt = async (req, res) => {
   }
   
   res.json({result_create:true})
+};
+
+exports.patch_post_edit = (req, res) => {
+  console.log('a');
+
 };
 
 
