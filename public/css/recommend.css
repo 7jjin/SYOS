@@ -189,7 +189,7 @@
   height: 100%;
 }
 canvas {
-  border : 3px dashed grey;
+  border: 3px dashed grey;
   width: 100%;
   height: 100%;
   border-radius: 20px;
@@ -259,6 +259,10 @@ canvas {
 }
 .post1:hover .post1 image {
   opacity: 0;
+}
+
+.item-box {
+  display: flex !important;
 }
 
 @media (max-width: 1200px) {
