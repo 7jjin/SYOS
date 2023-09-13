@@ -1,56 +1,5 @@
 //S3 이미지 경로
 const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`
-
-// //무한 스크롤 기능
-// document.addEventListener("DOMContentLoaded", function () {
-//     const postContainer = document.querySelector(".mood-box");
-//     let lastPost = document.querySelector(".mood-itemwrap:last-child");
-
-//     const options = {
-//         threshold: 0.8, // 80%이상 보일 경우 콜백
-//     };
-
-//     // Intersection Observer 콜백 함수
-//     function handleIntersection(entries, observer) {
-//         entries.forEach((entry) => {
-//             if (entry.isIntersecting) {
-//                 observer.unobserve(document.querySelector(".mood-itemwrap:last-child"));
-//                 // 새로운 포스트를 3개 추가
-//                 for (let i = 0; i < 3; i++) {
-//                     createPost();
-//                 }
-//                 // 기존 마지막 포스트 업데이트
-//                 lastPost = document.querySelector(".mood-itemwrap:last-child");
-//                 observer.observe(lastPost); // 새로운 마지막 포스트를 관찰 시작
-//             }
-//         });
-//     }
-
-//     const observer = new IntersectionObserver(handleIntersection, options);
-//     observer.observe(lastPost); // 초기에 마지막 포스트를 관찰 시작
-// });
-
-// // 스크롤이 마지막에 도달할 때 이미지 추가
-// function createPost(user_id, title, content, image, category, liked, createAt) {
-//     const postContainer = document.querySelector(".mood-box");
-//     const newPost = document.createElement("div");
-//     console.log(image)
-//     // newPost.className = `mood type${category}`
-//     newPost.className = "mood-itemwrap";
-//     newPost.innerHTML = `
-//     <div class="mood-item" >
-//         <img src='${IMG + image}' alt="">
-//     </div>
-//     <div class="mood-item">
-//         <img src='${IMG + image}' alt="">
-//     </div>
-//     <div class="mood-item">
-//         <img src='${IMG + image}' alt="">
-//     </div>
-//       `;
-//     postContainer.appendChild(newPost);
-// }
-
 //카테고리 버튼
 document.addEventListener("DOMContentLoaded", function () {
   const filter = document.querySelectorAll(".filter");
@@ -87,7 +36,7 @@ const fetchData = async () => {
     });
 
     postCreate.innerHTML = `
-            <img src="${res.data[i].image}" />
+            <img src="${IMG + res.data[i].image}" />
 
               <div class="text-container">
                 <div class="text-box">
@@ -141,7 +90,7 @@ filter.forEach((filter) => {
       });
 
       postCreate.innerHTML = `
-                <img src="${posts.data[i].image}" />
+                <img src="${IMG + posts.data[i].image}" />
 
                 
                 <div class="text-container" >

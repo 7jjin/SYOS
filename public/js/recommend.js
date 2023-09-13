@@ -21,6 +21,8 @@ const uploadImageForm = document.querySelector('.upload-image-form');
 uploadImageForm.addEventListener("click", init);
 async function init() {
   uploadImageForm.removeEventListener("click", init);
+  const cameraIcon = document.querySelector('.fa-camera');
+  cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
   const webcamContainer = document.querySelectorAll('#webcam-container')

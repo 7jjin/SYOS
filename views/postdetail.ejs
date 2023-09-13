@@ -49,10 +49,9 @@
       </svg>
       <ul class="main-menu">
         <li onclick="location.href = '/'">Home</li>
-        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/board'">Board</li>
         <li onclick="location.href = '/recommend'">Recommend</li>
-        <!-- mypage 엔드포인트에 param 추가해야함-->
-        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li onclick="clickMyPage()">MyPage</li>
         <li class="divider"><div class="under-line"></div></li>
       </ul>
       <ul class="sub-menu">
@@ -61,7 +60,7 @@
         <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
       </ul>
     </nav>
-
+    
     <!-- board -->
     <div class="board-page">
       <div class="post-container">
@@ -76,7 +75,7 @@
             </div>
 
             <div class="post-img-wrapper">
-              <img class="post-img"  alt="desk" />
+              <img class="post-img" alt="desk" />
             </div>
             <div class="post-res">
               <span
@@ -150,14 +149,19 @@
           id="reply"
           placeholder="메세지를 입력하세요..."
           disabled
+          autocomplete="off"
         />
         <button id="reply-btn">입력</button>
       </form>
     </div>
 
-    <div id="chat-button">S</div>
+    <div id="chat-button">
+      <i
+        class="fa-regular fa-comment-dots fa-flip-horizontal"
+        style="color: #ffffff"
+      ></i>
+    </div>
 
-    <!-- footer -->
     <footer id="main-footer">
       <div id="footer-logo">SYOS</div>
       <div id="description">
@@ -165,13 +169,19 @@
         <div>Desktop Setup Sharing Platform</div>
       </div>
       <div id="footer-icon-wrapper">
-        <i class="fa-brands fa-twitter footer-sns"></i>
-        <i class="fa-brands fa-instagram footer-sns"></i>
-        <i class="fa-brands fa-facebook footer-sns"></i>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-twitter footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-instagram footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-facebook footer-sns"></i
+        ></a>
       </div>
     </footer>
 
-    <div id="post_id" style="display: none;"><%= post_id %></div>
+    <div id="post_id" style="display: none"><%= post_id %></div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="../js/menu.js"></script>

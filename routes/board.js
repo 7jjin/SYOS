@@ -33,9 +33,6 @@ router.post('/all', controller.post_all);
 // 게시물 필터
 router.post('/filter', controller.post_board_filter);
 
-// 게시물 상세
-router.get('/:post_id', controller.post_detail);
-
 // 게시물 수정
 router.get('/:postid/edit', controller.edit);
 

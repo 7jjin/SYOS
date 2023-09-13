@@ -45,7 +45,7 @@ exports.post_detail = (req, res) => {
 // 게시물 상세 (post)
 exports.post_data = async (req, res) => {
   // 일단 고정 게시물
-  const { post_id } = req.body;
+  const { post_id, login} = req.body;
   try {
     const postData = await Post.findOne({
       where: { post_id },
@@ -70,25 +70,36 @@ exports.post_data = async (req, res) => {
       });
       commentNickname.push(result.nickname);
     }
+
+     // 이미지 안에 있는 링크 가져오기
+     const productInfo = await Product.findAll({
+      where: {post_id}
+    })
+    console.log(productInfo);
+
     // 현재 사용자의 좋아요 여부 확인
     const [bearer, token] = req.headers.authorization.split(' ');
     let currentUserId;
     let currentUserNickname;
-    if (bearer === 'Bearer') {
+    if (login) {
       const decoded = jwt.verify(token, SECRET);
       currentUserId = decoded.user_id;
       currentUserNickname = decoded.nickName;
+    } else{
+      return res.json({
+        postData,
+        user_id,
+        nickName,
+        comments,
+        commentNickname,
+        productInfo,
+      });
     }
     const isHeart = await Like.findAll({
       where: { post_id, user_id: currentUserId },
     });
 
-    // 이미지 안에 있는 링크 가져오기
-    const productInfo = await Product.findAll({
-      where: {post_id}
-    })
-    console.log(productInfo);
-    
+   
     return res.json({
       postData,
       user_id,
@@ -98,6 +109,7 @@ exports.post_data = async (req, res) => {
       isHeart,
       currentUserId,
       currentUserNickname,
+      productInfo,
     });
   } catch (error) {
     console.error(error);
@@ -169,7 +181,8 @@ exports.delete_post_comment = async (req, res) => {
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
   const { post_id } = req.body;
-  await Post.destroy({ where: post_id });
+  console.log(post_id);
+  await Post.destroy({ where:  {post_id} });
   res.send({ result: true });
 };
 
