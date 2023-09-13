@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/myPage.css" />
+    <link rel="stylesheet" href="../css/chat.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
@@ -20,6 +21,17 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header id="main-header">
@@ -39,6 +51,7 @@
       <span id="logo" onclick="location.href = '/'">SYOS</span>
     </header>
 
+    <!-- navBar -->
     <nav id="main-nav">
       <svg
         class="menu-button close"
@@ -59,11 +72,59 @@
         <li class="divider"><div class="under-line"></div></li>
       </ul>
       <ul class="sub-menu">
-        <li>About</li>
-        <li>Contact</li>
+        <li data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</li>
         <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
       </ul>
     </nav>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <span id="modal-body-header">Made By</span>
+            <span class="github"
+              ><i
+                id="cheolung12"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              cheolung12</span
+            >
+            <span class="github"
+              ><i
+                id="jaejae990921"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              jaejae990921</span
+            >
+            <span class="github"
+              ><i
+                id="7jjin"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              7jjin</span
+            >
+            <span class="github"
+              ><i
+                id="dbals627"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              dbals627</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- myPage -->
 
@@ -179,7 +240,53 @@
 
     <!-- myPage -->
 
-    <!-- footer -->
+    <!-- chat -->
+    <div id="chat-wrapper">
+      <div id="chat-content">
+        <div id="chat-header">
+          <div id="chat-header-logo">SYOS</div>
+          <div id="chat-header-text">문의하기</div>
+        </div>
+        <div id="chat-box-wrapper">
+          <div id="chat-box">
+            <div class="chat other-chat">
+              안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+              궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+            </div>
+            <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+              데스크 셋업 추천? 💻
+            </div>
+            <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+              SYOS에게 바라는 점 📝
+            </div>
+            <div
+              id="connect"
+              class="chat chat-button"
+              onclick="clickConnectButton()"
+            >
+              상담원 연결하기 👨‍👩‍👧‍👦
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="reply"
+          placeholder="메세지를 입력하세요..."
+          disabled
+          autocomplete="off"
+        />
+        <button id="reply-btn">입력</button>
+      </form>
+    </div>
+
+    <div id="chat-button">
+      <i
+        class="fa-regular fa-comment-dots fa-flip-horizontal"
+        style="color: #ffffff"
+      ></i>
+    </div>
 
     <footer id="main-footer">
       <div id="footer-logo">SYOS</div>
@@ -199,8 +306,6 @@
         ></a>
       </div>
     </footer>
-
-    <!-- footer -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
@@ -224,5 +329,7 @@
         await getMyLiked();
       }
     </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/chat.js"></script>
   </body>
 </html>
