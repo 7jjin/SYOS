@@ -149,7 +149,6 @@ function mousemove() {
     point.className = `product${index} point`;
     point.style.left = clickedX + '%';
     point.style.top = clickedY + '%';
-    point.innerHTML = index + 1;
     uploadImage.appendChild(point);
 
     // 제품 정보 입력하는 div 박스 생성 및 위치 설정
@@ -209,7 +208,7 @@ function mousemove() {
     // 제품명과 링크를 표시
     productInfoBox.innerHTML = `
     <div class="product-innerbox"> 
-    <h4>⚫ 제품 ${index + 1}</h4>
+    <h4>⚫ 제품</h4>
     <p>제품명: ${productName}</p>
     <p>링크: ${productLink}</p>
     </div>

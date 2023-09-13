@@ -1,3 +1,9 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
 p{
     margin:0;
 }
@@ -153,10 +159,22 @@ label p {
   }
   .product-innerbox h4 {
     margin: 0;
-    margin-bottom: 10px;
+   
   }
   .product-innerbox p:last-child{
     margin-bottom: 10px;
+  }
+  .product-top{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+  .product-top button{
+    border: none;
+    background-color: black;
+    color: white;
+    border-radius: 10%;
   }
 
   .tag-box-inner{
