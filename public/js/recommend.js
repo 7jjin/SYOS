@@ -10,17 +10,20 @@ const result = document.querySelectorAll('.result');
 // 웹캠 설정 부분 시작
 
 const per = document.querySelectorAll('.per');
-const URL = 'https://teachablemachine.withgoogle.com/models/Is29DJcYn/';
+const URL = 'https://teachablemachine.withgoogle.com/models/mxuNZiol6/';
+
 
 let model, webcam, labelContainer, maxPredictions, maxIndex;
 let data = [];
 
 // 이미지 모델을 분석 및 웹캠 설정
+const uploadImageForm = document.querySelector('.upload-image-form');
+uploadImageForm.addEventListener("click", init);
 async function init() {
+  uploadImageForm.removeEventListener("click", init);
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
-  console.log('a');
-  const uploadImageForm = document.querySelector('.upload-image-form');
+  const webcamContainer = document.querySelectorAll('#webcam-container')
   const loading = document.createElement('div');
   loading.className = 'loading';
   uploadImageForm.appendChild(loading);
@@ -74,6 +77,7 @@ async function init() {
       recommendPost.scrollIntoView({ behavior: 'smooth' });
     });
   }, 5000);
+
 }
 
 // 웹캠이 동작 할 동안 계속 화면을 업데이트 시켜주는 함수

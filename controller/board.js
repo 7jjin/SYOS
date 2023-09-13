@@ -181,6 +181,7 @@ exports.uploadPost = (req, res) => {
 // 게시물 업로드  (post)
 exports.post_uploadPost = async (req, res) => {
   const { title, name, content, category, imageName, photoData } = req.body;
+  console.log(photoData)
   const [bearer, token] = req.headers.authorization.split(' ');
   let currentUserId;
   if (bearer === 'Bearer') {
@@ -200,17 +201,18 @@ exports.post_uploadPost = async (req, res) => {
     order: [['createdAt', 'DESC']],
     limit: 1,
   });
-
-  for (let i = 0; i < photoData.length; i++) {
+  if(photoData){
+    for (let i = 0; i < photoData.length; i++) {
     Product.create({
       post_id: result.post_id,
       product_name: photoData[i].productName,
       product_link: photoData[i].productLink,
       top: photoData[i].top,
       left: photoData[i].left,
-    });
+      });
+    }
+    res.json({result:true});  
   }
-  res.send(true);
 };
 
 //All 게시물 (처음 한 번)
@@ -288,11 +290,49 @@ exports.post_edit = async (req, res) => {
     where: { post_id },
     include: [{ model: User, attributes: ['nickname'] }],
   });
+  const photo = await Product.findAll({
+    where: { post_id },
+    
+  })
   const nickName = result.user.nickname;
-  res.json({ postsData,nickName });
+  res.json({ postsData,nickName,photo });
 };
 
+// 게시글 수정(posts 테이블)
+exports.patch_post_edit = async (req, res) => {
+  const {title,content,category,photo} = req.body.data;
+  await Post.update({
+    title,content,category
+  },{
+    where:{post_id:req.body.post_id}
+  });
+
+  res.json({result_edit:true})
+};
+
+
+// 게시글 수정(product 테이블)
+exports.delete_post_delt = async (req, res) => {
+  const {title,content,category,photo} = req.body.data;
+  console.log(photo)
+  await Product.destroy({where:{post_id:req.body.post_id}});
+  for (let i = 0; i < photo.length; i++) {
+    Product.create({
+      post_id: req.body.post_id,
+      product_name: photo[i].productName,
+      product_link: photo[i].productLink,
+      top: photo[i].top,
+      left: photo[i].left,
+    });
+  }
+  
+  res.json({result_create:true})
+};
 
 exports.patch_post_edit = (req, res) => {
   console.log('a');
+
 };
+
+
+//모두 destory 후 다시 생성
