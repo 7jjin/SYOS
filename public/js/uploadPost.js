@@ -144,6 +144,9 @@ function mousemove() {
     // 클릭한 좌표에 점 표시
     const point = document.createElement('div');
     point.className = `product${index} point`;
+    point.classList.add('circle');
+    point.innerHTML =
+    '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>'; 
     point.style.left = clickedX + '%';
     point.style.top = clickedY + '%';
     uploadImage.appendChild(point);
@@ -235,7 +238,7 @@ function uploadPost() {
 
   // url:/board/upload
   if(Object.keys(photoData).length === 0){
-    alert("링크를 추가해주세요")
+    alert("제품을 선택해주세요")
   }
   else{
     axios({
@@ -248,6 +251,9 @@ function uploadPost() {
       },
     }).then((res) => {
       console.log('res', res.data.result);
+      if(res.data.result){
+        window.location.href = "/board"
+      }
     });
   }
 }

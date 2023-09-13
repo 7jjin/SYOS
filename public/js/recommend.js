@@ -10,18 +10,19 @@ const result = document.querySelectorAll('.result');
 // 웹캠 설정 부분 시작
 
 const per = document.querySelectorAll('.per');
-const URL = 'https://teachablemachine.withgoogle.com/models/Is29DJcYn/';
+const URL = 'https://teachablemachine.withgoogle.com/models/mxuNZiol6/';
+
 
 let model, webcam, labelContainer, maxPredictions, maxIndex;
 let data = [];
 
 // 이미지 모델을 분석 및 웹캠 설정
-
-
+const uploadImageForm = document.querySelector('.upload-image-form');
+uploadImageForm.addEventListener("click", init);
 async function init() {
+  uploadImageForm.removeEventListener("click", init);
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
-  const uploadImageForm = document.querySelector('.upload-image-form');
   const webcamContainer = document.querySelectorAll('#webcam-container')
   const loading = document.createElement('div');
   loading.className = 'loading';
@@ -40,18 +41,6 @@ async function init() {
 
   // 웹캠에 화면 출력
   document.getElementById('webcam-container').appendChild(webcam.canvas);
-
- 
-  for (const element of  webcamContainer) {
-    if (element.classList.contains('webcam.canvas')) {
-      // webcam.canvas 클래스가 있는 경우 아무 작업도 하지 않고 함수를 종료합니다.
-      console.log("A ")
-      return;
-    }
-  }
-  
-  
-  
 
   // 5초 후에 웹캠을 멈추는 함수
   setTimeout(() => {
@@ -88,6 +77,7 @@ async function init() {
       recommendPost.scrollIntoView({ behavior: 'smooth' });
     });
   }, 5000);
+
 }
 
 // 웹캠이 동작 할 동안 계속 화면을 업데이트 시켜주는 함수

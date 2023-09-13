@@ -34,7 +34,7 @@ async function load() {
   nameValue.value = nickname;
   imageValue.style.backgroundImage = `url('${IMG+image}')`;
   imageValue.style.backgroundPosition = 'center';
-  imageValue.style.backgroundSize = 'contain';
+  imageValue.style.backgroundSize = 'cover';
   imageValue.style.backgroundRepeat = 'no-repeat';
   carmeraIcon.style.display = 'none';
   carmeraTitle.style.display = 'none';
@@ -70,6 +70,9 @@ async function load() {
   for(let i=0;i<photoData.length;i++){
     const point = document.createElement('div');
     point.className = `product${number} point`;
+    point.classList.add('circle');
+    point.innerHTML =
+    '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>'; 
     point.style.left = photoData[number].left + '%';
     point.style.top =  photoData[number].top + '%';
     uploadImage.appendChild(point);
@@ -238,6 +241,9 @@ function mousemove() {
     // 클릭한 좌표에 점 표시
     const point = document.createElement('div');
     point.className = `product${number} point`;
+    point.classList.add('circle');
+    point.innerHTML =
+    '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>'; 
     point.style.left = clickedX + '%';
     point.style.top = clickedY + '%';
     uploadImage.appendChild(point);
