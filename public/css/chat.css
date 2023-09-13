@@ -203,3 +203,10 @@
     opacity: 1;
   }
 }
+
+
+@media (max-width: 400px) {
+  #chat-button{
+    display: none;
+  }
+}

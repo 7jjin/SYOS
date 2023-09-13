@@ -133,8 +133,11 @@ ul {
   display: flex; 
   align-items: center; 
   margin-bottom: 5px; 
-  cursor: pointer;
   font-weight: bold;
+}
+
+.github > i {
+  cursor: pointer;
 }
 
 .fa-github {
@@ -171,7 +174,6 @@ ul {
   }
 
   #description {
-    font-size: 16px;
     margin-right: 2rem;
   }
 
@@ -182,4 +184,39 @@ ul {
   .footer-sns {
     margin-right: 1rem;
   }
+}
+
+@media (max-width: 576px) {
+  #main-nav {
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    box-shadow: 0 30px 80px 0 rgba(97, 45, 45, 0.25);
+    transform: translateX(-120%);
+    transition: transform 0.3s ease;
+  }
+  .menu-button {
+    width: 24px;
+    height: 24px;
+    margin: 1rem;
+  }
+  #main-header {
+    margin-bottom: 30px;
+  }
+
+  #logo {
+    font-size: 40px;
+  }
+  #description {
+    margin-right: 1rem;
+    font-size: 8px;
+  }
+  .footer-sns{
+    font-size: 20px;
+  }
+  #footer-logo {
+    height: 30px;
+    font-size: 30px;
+    margin-right: 1rem;
+}
 }
