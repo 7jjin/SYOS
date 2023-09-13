@@ -21,6 +21,7 @@ const uploadImageForm = document.querySelector('.upload-image-form');
 uploadImageForm.addEventListener("click", init);
 async function init() {
   uploadImageForm.removeEventListener("click", init);
+  
   const cameraIcon = document.querySelector('.fa-camera');
   cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
@@ -40,6 +41,7 @@ async function init() {
   await webcam.play();
   uploadImageForm.removeChild(loading);
   window.requestAnimationFrame(loop);
+  document.querySelector(".upload-image-wrapper").style.border = "none"
 
   // 웹캠에 화면 출력
   document.getElementById('webcam-container').appendChild(webcam.canvas);
@@ -100,7 +102,7 @@ async function predict() {
 }
 
 // 추천 post 만들기
-function createPost(post_id, image, category, liked, product_link, title) {
+function createPost(post_id, image, category, liked, product_link, title,comment) {
   const postContainer = document.querySelector('.posts-box');
   const newPost = document.createElement('div');
   newPost.className = `post1 type${category}`;
@@ -109,7 +111,7 @@ function createPost(post_id, image, category, liked, product_link, title) {
         <image src='${IMG + image}'style="height:100%">
         <div class="hidden-box">
             <div class="text-box">
-                <span>title: ${title}</span>
+                <span>${title}</span>
             </div>
             <div class="post-bar">
                 <div class="heart-box">
@@ -121,7 +123,7 @@ function createPost(post_id, image, category, liked, product_link, title) {
                 <div class="review-box">
                     <div class="review">
                         <i class="fa-brands fa-speakap"></i>
-                        <p class="count">123</p>
+                        <p class="count">${comment}</p>
                     </div>
                 </div>
             </div>
@@ -144,7 +146,8 @@ axios({
       item.category,
       item.liked,
       item.product_link,
-      item.title
+      item.title,
+      item.comment
     ); // 모든 포스터를 가져온다.
   });
 });
