@@ -113,6 +113,35 @@ ul {
   color: black;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  align-items: center;
+  padding: 2rem 0 !important;
+  border: none;
+}
+
+#modal-body-header {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.github {
+  width: 100px;
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 5px; 
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.fa-github {
+  margin-right: 10px;
+}
+
+
 /* responsive */
 @media (max-width: 768px) {
   #main-header {

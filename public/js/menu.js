@@ -1,6 +1,7 @@
 const menuButton = document.querySelector(".menu-button");
 const closeButton = document.querySelector(".menu-button.close");
 const nav = document.querySelector("nav");
+const githubIcon = document.querySelectorAll(".fa-github");
 
 window.onload = function () {
   switchMenu();
@@ -54,3 +55,15 @@ const clickMyPage = () => {
     location.href = "/signin";
   }
 };
+
+githubIcon.forEach((icon) => {
+  icon.addEventListener('mouseover', () => {
+    icon.classList.add('fa-bounce');
+  })
+  icon.addEventListener('mouseleave', () => {
+    icon.classList.remove('fa-bounce');
+  })
+  icon.addEventListener('click', (event) => {
+    window.open(`https://github.com/${event.target.id}`, '_blank');
+  });
+});
