@@ -36,6 +36,11 @@ app.use('/admin', admin);
 app.use('/board', board);
 socketRouter(io);
 
+// 404 error
+app.use('*', (req, res) => {
+  res.render('404');
+});
+
 db.sequelize.sync({ force: false }).then(() => {
   server.listen(PORT, () => {
     console.log(`http://localhost:${PORT}`);
