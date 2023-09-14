@@ -1,12 +1,10 @@
-
-
 // S3 이미지
 const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
 
 const post_id = document.querySelector('#post_id').innerHTML;
-const titleValue = document.querySelector("#title");
-const nameValue = document.querySelector("#name");
-const imageValue = document.querySelector(".upload-image label");
+const titleValue = document.querySelector('#title');
+const nameValue = document.querySelector('#name');
+const imageValue = document.querySelector('.upload-image label');
 const carmeraIcon = document.querySelector('.upload-image i');
 const carmeraTitle = document.querySelector('.upload-image p');
 const linkTag = document.querySelector('.add-link-wrapper');
@@ -15,24 +13,22 @@ const imageBox = document.querySelector('.image-box');
 const imageInput = document.getElementById('image');
 const uploadImageLabel = document.querySelector('.upload-image label');
 
-
-let number =0;
+let number = 0;
 let photo = [];
 
 async function load() {
-
   imageInput.disabled = true;
   const res = await axios({
     method: 'POST',
     url: `/board/${post_id}/edit`,
     data: post_id,
   });
-  const {category,comment,content,createAt,image,liked,postid,title,updateAt,user_id} = res.data.postsData;
+  const { category, comment, content, createAt, image, liked, postid, title, updateAt, user_id } = res.data.postsData;
   const nickname = res.data.nickName;
   const photoData = res.data.photo;
   titleValue.value = title;
   nameValue.value = nickname;
-  imageValue.style.backgroundImage = `url('${IMG+image}')`;
+  imageValue.style.backgroundImage = `url('${IMG + image}')`;
   imageValue.style.backgroundPosition = 'center';
   imageValue.style.backgroundSize = 'cover';
   imageValue.style.backgroundRepeat = 'no-repeat';
@@ -42,9 +38,6 @@ async function load() {
 
   nameValue.disabled = true;
 
-  
-
-
   // text-editor 설정
   tinymce.init({
     selector: '#mytextarea',
@@ -52,35 +45,34 @@ async function load() {
       editor.on('init', function (e) {
         editor.setContent(`${content}`);
       });
-    }
+    },
   });
 
-  if(category===0){
-    document.querySelector(".moden-tag").classList.add("selected")
-  }else if(category===1){
-    document.querySelector(".natural-tag").classList.add("selected")
-  }else if(category===2){
-    document.querySelector(".game-tag").classList.add("selected")
-  }else if(category===3){
-    document.querySelector(".study-tag").classList.add("selected")
+  if (category === 0) {
+    document.querySelector('.moden-tag').classList.add('selected');
+  } else if (category === 1) {
+    document.querySelector('.natural-tag').classList.add('selected');
+  } else if (category === 2) {
+    document.querySelector('.game-tag').classList.add('selected');
+  } else if (category === 3) {
+    document.querySelector('.study-tag').classList.add('selected');
   }
 
-
-   // 클릭된 좌표에 점 표시
-  for(let i=0;i<photoData.length;i++){
+  // 클릭된 좌표에 점 표시
+  for (let i = 0; i < photoData.length; i++) {
     const point = document.createElement('div');
     point.className = `product${number} point`;
+    point.setAttribute('id', number);
     point.classList.add('circle');
-    point.innerHTML =
-    '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>'; 
+    point.innerHTML = '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>';
     point.style.left = photoData[number].left + '%';
-    point.style.top =  photoData[number].top + '%';
+    point.style.top = photoData[number].top + '%';
     uploadImage.appendChild(point);
 
     // 제품 정보를 나타내는 div 생성
     const productInfoBox = document.createElement('div');
     productInfoBox.className = 'product-info-box';
-    productInfoBox.setAttribute("id",number);
+    productInfoBox.setAttribute('id', number);
 
     // 제품명과 링크를 표시
     productInfoBox.innerHTML = `
@@ -95,46 +87,42 @@ async function load() {
     `;
 
     //기존 데이터 객체에 추가
+    //photo는 추가된 제품들이 들어있는 배열
     photo[number] = {
       productName: photoData[number].product_name,
-      productLink:photoData[number].product_link,
+      productLink: photoData[number].product_link,
       top: photoData[number].top,
       left: photoData[number].left,
     };
-    console.log(photo)
 
     number++;
     // 이미지 아래에 제품 정보를 추가
     imageBox.appendChild(productInfoBox);
   }
-  
-
 }
 
-
-
-load()
-
+load();
 
 // 제품 삭제 함수
-function deleteProduct(e){
-  let id = e.target.parentNode.parentNode.parentNode.getAttribute("id")
-  let deleteBox = document.querySelector(`.product${id}`)
+function deleteProduct(e) {
+  let id = e.target.parentNode.parentNode.parentNode.getAttribute('id');
+  let deleteBox = document.getElementById(`${id}`);
   imageBox.removeChild(e.target.parentNode.parentNode.parentNode);
-  uploadImage.removeChild(deleteBox)
+  uploadImage.removeChild(deleteBox);
+  const newProductinfobox = document.querySelectorAll('.product-info-box');
+  const newPoint = document.querySelectorAll('.point');
 
   // 선택된 요소를 객체에서 삭제
-  if (id >= 0 && id < photo.length) {
-    photo.splice(id, 1); // 해당 인덱스의 항목을 삭제
-  
-    // 남은 항목들의 키 값을 업데이트
-    for (let i = id; i < photo.length; i++) {
-      const item = photo[i];
-      item.key = i; // 예를 들어, "key"라는 속성에 새로운 키 값을 설정
-    }
-  }
   number--;
-  console.log(photo)
+  photo.splice(number, 1); // 해당 인덱스의 항목을 삭제
+
+  // 남은 항목들의 키 값을 업데이트
+  for (let i = id; i < number; i++) {
+    const item = photo[i];
+    item.key = i; // 예를 들어, "key"라는 속성에 새로운 키 값을 설정
+    newProductinfobox[i].id = i; // productBox의 id값을 재할당
+    newPoint[i].id = i; // point의 id값을 재할당
+  }
 }
 
 let tagNum;
@@ -162,10 +150,6 @@ tags.forEach((tag) => {
     });
   });
 });
-
-
-
-
 
 /////////////////////////////////////////////////////
 
@@ -200,13 +184,13 @@ completeButton.textContent = '완료';
 
 function mousemove() {
   const mouseFollower = uploadImage.querySelector('.mouse-follower'); // uploadImage 내에서 검색
-  
-  uploadImage.addEventListener('mouseenter', () => {
+
+  uploadImageLabel.addEventListener('mouseenter', () => {
     // 마우스가 들어왔을 때
     mouseFollower.style.display = 'block';
   });
 
-  uploadImage.addEventListener('mousemove', (e) => {
+  uploadImageLabel.addEventListener('mousemove', (e) => {
     mouseFollower.style.display = 'block';
     // 마우스가 움직일 때
     const rect = uploadImage.getBoundingClientRect(); // .upload-image 요소의 위치 정보 가져오기
@@ -222,7 +206,7 @@ function mousemove() {
     clickedX = widthPercent;
     clickedY = heightPercent;
   });
-  uploadImage.addEventListener('click', () => {
+  uploadImageLabel.addEventListener('click', () => {
     if (number >= 3) {
       // 최대 3개의 점을 생성했을 경우 무시
       alert('3개까지 가능합니다.');
@@ -241,9 +225,9 @@ function mousemove() {
     // 클릭한 좌표에 점 표시
     const point = document.createElement('div');
     point.className = `product${number} point`;
+    point.setAttribute('id', number);
     point.classList.add('circle');
-    point.innerHTML =
-    '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>'; 
+    point.innerHTML = '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>';
     point.style.left = clickedX + '%';
     point.style.top = clickedY + '%';
     uploadImage.appendChild(point);
@@ -255,8 +239,17 @@ function mousemove() {
     productInfo.appendChild(productLinkInput);
     productInfo.appendChild(completeButton); // 완료 버튼 추가
     uploadImage.appendChild(productInfo);
+    // 모든 div.product-info 안의 자식 요소를 가져옵니다.
 
-  
+    const children = productInfo.children;
+
+    // input 요소와 button 요소를 제외한 요소를 비활성화합니다.
+    for (const child of children) {
+      console.log(child);
+      if (child.tagName !== 'INPUT' && child.tagName !== 'BUTTON') {
+        child.style.pointerEvents = 'none'; // 클릭 비활성화
+      }
+    }
 
     // input 요소를 클릭해도 점이 다시 생기지 않도록 이벤트 제거
     productNameInput.addEventListener('click', stopPropagation);
@@ -266,7 +259,7 @@ function mousemove() {
     points.push({ point, productInfo });
   });
 
-  uploadImage.addEventListener('mouseleave', () => {
+  uploadImageLabel.addEventListener('mouseleave', () => {
     // 마우스가 나갔을 때
     mouseFollower.style.display = 'none';
   });
@@ -292,17 +285,15 @@ function mousemove() {
       top: realclickY,
       left: realclickX,
     };
-    console.log(photo);
-
 
     // 현재의 점에 해당하는 productInfo를 찾음
     const currentPoint = points[points.length - 1];
     const { point, productInfo } = currentPoint;
 
-       // 제품 정보를 나타내는 div 생성
-       const productInfoBox = document.createElement('div');
-       productInfoBox.className = 'product-info-box';
-       productInfoBox.setAttribute("id",number);
+    // 제품 정보를 나타내는 div 생성
+    const productInfoBox = document.createElement('div');
+    productInfoBox.className = 'product-info-box';
+    productInfoBox.setAttribute('id', number);
 
     // 제품명과 링크를 표시
     productInfoBox.innerHTML = `
@@ -335,27 +326,26 @@ async function uploadPost() {
     category: tagNum,
     photo,
   };
-  if(Object.keys(photoData).length === 0){
-    alert("링크를 추가해주세요")
-  }else{
+  if (Object.keys(photo).length === 0) {
+    alert('제품을 추가해주세요');
+  } else {
     // url:/board/upload
-  const dataForm = await axios({
-    method: 'patch',
-    url: `/board/${post_id}/edit`,
-    data: {post_id,data},
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-  const photoForm = await axios({
-    method:"delete",
-    url:`/board/${post_id}/edit`,
-    data:{post_id,data},
-  });
-  console.log(dataForm.data.result_edit,photoForm.data.result_create)
-  // if(dataForm.data.result===true){
-  //   alert("편집이 완료되었습니다.")
-  // }
+    const dataForm = await axios({
+      method: 'patch',
+      url: `/board/${post_id}/edit`,
+      data: { post_id, data },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const photoForm = await axios({
+      method: 'delete',
+      url: `/board/${post_id}/edit`,
+      data: { post_id, data },
+    });
+    if (photoForm.data.result === true) {
+      alert('편집이 완료되었습니다.');
+      window.location.href = `/board/${photoForm.data.data}`;
+    }
   }
-  
 }

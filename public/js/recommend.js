@@ -63,8 +63,7 @@ async function init() {
     // 최댓값의 인덱스를 찾습니다.
     maxIndex = intArr.indexOf(maxValue);
     console.log(maxIndex);
-    result[maxIndex].firstElementChild.style.backgroundColor =
-      'rgb(33, 53, 85)';
+    result[maxIndex].firstElementChild.style.backgroundColor = 'rgb(33, 53, 85)';
 
     // 선택된 카테고리 포스터만 보이게 하기
     const postElements = document.querySelectorAll('.post1');
@@ -175,15 +174,7 @@ axios({
   data,
 }).then((res) => {
   res.data.data.forEach((item) => {
-    createPost(
-      item.post_id,
-      item.image,
-      item.category,
-      item.liked,
-      item.product_link,
-      item.title,
-      item.comment
-    ); // 모든 포스터를 가져온다.
+    createPost(item.post_id, item.image, item.category, item.liked, item.product_link, item.title, item.comment); // 모든 포스터를 가져온다.
   });
 });
 
@@ -267,3 +258,8 @@ function clickColor(clicked) {
   clicked.firstElementChild.style.backgroundColor = '#213555';
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+const gopost = document.querySelector('.move-box-inner');
+gopost.addEventListener('click', function () {
+  window.location.href = '/board';
+});

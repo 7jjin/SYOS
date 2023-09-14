@@ -104,12 +104,12 @@ function mousemove() {
   if (!IsfileUpload) {
     mouseFollower.style.display = 'none';
   }
-  uploadImage.addEventListener('mouseenter', () => {
+  uploadImageLabel.addEventListener('mouseenter', () => {
     // 마우스가 들어왔을 때
     mouseFollower.style.display = 'block';
   });
 
-  uploadImage.addEventListener('mousemove', (e) => {
+  uploadImageLabel.addEventListener('mousemove', (e) => {
     mouseFollower.style.display = 'block';
     // 마우스가 움직일 때
     const rect = uploadImage.getBoundingClientRect(); // .upload-image 요소의 위치 정보 가져오기
@@ -125,7 +125,7 @@ function mousemove() {
     clickedX = widthPercent;
     clickedY = heightPercent;
   });
-  uploadImage.addEventListener('click', () => {
+  uploadImageLabel.addEventListener('click', () => {
     if (points.length >= 3) {
       // 최대 3개의 점을 생성했을 경우 무시
       alert('3개까지 가능합니다.');
@@ -145,8 +145,7 @@ function mousemove() {
     const point = document.createElement('div');
     point.className = `product${index} point`;
     point.classList.add('circle');
-    point.innerHTML =
-    '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>'; 
+    point.innerHTML = '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>';
     point.style.left = clickedX + '%';
     point.style.top = clickedY + '%';
     uploadImage.appendChild(point);
@@ -167,7 +166,7 @@ function mousemove() {
     points.push({ point, productInfo });
   });
 
-  uploadImage.addEventListener('mouseleave', () => {
+  uploadImageLabel.addEventListener('mouseleave', () => {
     // 마우스가 나갔을 때
     mouseFollower.style.display = 'none';
   });
@@ -226,7 +225,7 @@ function uploadPost() {
   const token = localStorage.getItem('token');
   const form = document.forms['upload-post'];
   console.log(photoData);
-  console.log(IsfileUpload)
+  console.log(IsfileUpload);
   const data = {
     title: form.title.value,
     content: tinyMCE.get('mytextarea').getContent(),
@@ -237,10 +236,9 @@ function uploadPost() {
   };
 
   // url:/board/upload
-  if(Object.keys(photoData).length === 0){
-    alert("제품을 선택해주세요")
-  }
-  else{
+  if (Object.keys(photoData).length === 0) {
+    alert('제품을 선택해주세요');
+  } else {
     axios({
       method: 'POST',
       url: '/board/upload',
@@ -251,8 +249,8 @@ function uploadPost() {
       },
     }).then((res) => {
       console.log('res', res.data.result);
-      if(res.data.result){
-        window.location.href = "/board"
+      if (res.data.result) {
+        window.location.href = '/board';
       }
     });
   }

@@ -7,19 +7,24 @@
 .upload-image-wrapper {
   position: relative;
   margin: 0 auto;
-  margin-bottom: 80px;
-  width: 35%;
-  height: 350px;
+  margin-bottom: 20px;
+  width: 30%;
+  height: 300px;
   border: 3px dashed gray;
   border-radius: 20px;
 }
 
+.big-wrapper{
+  margin-top: 40px;
+}
+
 .fa-camera {
-  top: calc(50% - 60px);
-  left: calc(50% - 60px);
+  top: 50%;
+  left: 50%;
   position: absolute;
-  font-size: 120px;
+  font-size: 70px;
   z-index: -1;
+  transform:translate(-50%,-50%);
 }
 
 .upload-image-form {
@@ -81,8 +86,8 @@
 }
 
 .result-box {
-  height: 150px;
-  margin-bottom: 100px;
+  height: 130px;
+  margin: 50px 0px 20px 0px;
 }
 
 .result-box-wrapper {
@@ -94,7 +99,7 @@
 }
 
 .result {
-  width: 190px;
+  width: 150px;
   height: 65px;
 }
 
@@ -105,7 +110,7 @@
   color: #c9c9c9;
   text-align: center;
   text-shadow: 2px 1px 1px rgb(0 0 0 / 90%);
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 700;
   border: 2px solid black;
   padding: 10px 20px;
@@ -121,7 +126,7 @@
 .per {
   text-align: center;
   margin-top: 15px;
-  font-size: 25px;
+  font-size: 22px;
   font-weight: 500;
 }
 
@@ -129,6 +134,7 @@
   width: 80%;
   margin: 0 auto;
   padding-top: 30px;
+  margin-bottom: 30px;
 }
 
 /* recommend-post */
@@ -265,13 +271,15 @@ canvas {
   display: flex !important;
 }
 
-@media (max-width: 1200px) {
-}
-
 /* 반응형 */
 @media (max-width: 768px) {
+  .big-wrapper{
+    margin-bottom:40px;
+  }
   .upload-title {
-    font-size: 24px;
+    font-size: 30px;
+    margin:0;
+    margin-bottom: 15px;
   }
   .big-wrapper {
     width: 100%;
@@ -280,6 +288,7 @@ canvas {
   .upload-image-wrapper {
     width: 35%;
     height: auto;
+    margin: 0px auto;
   }
   .result-box-wrapper {
     flex-direction: column;
@@ -290,6 +299,7 @@ canvas {
     width: 50%;
     height: auto;
     margin-bottom: 0px;
+    margin-top: 0;
   }
   .result {
     display: flex;
@@ -302,14 +312,14 @@ canvas {
   .office-span,
   .study-span,
   .natural-span {
-    font-size: 20px;
+    font-size: 16px;
     border: none;
     display: flex;
     justify-content: center;
     width: 60%;
   }
   .per {
-    font-size: 20px;
+    font-size: 16px;
     display: flex;
     width: 40%;
     align-items: center;
@@ -318,6 +328,7 @@ canvas {
   }
   .post1 {
     height: 50%;
+    margin-bottom: 10px;
   }
   .recommend-posts {
     margin-bottom: 40px;
@@ -325,5 +336,17 @@ canvas {
   .move-box-inner p,
   .move-box-inner i {
     font-size: 24px;
+  }
+  .fa-camera{
+    font-size: 40px;
+  }
+  .loading{
+    top: 39%;
+    left: 42%;
+  }
+}
+@media (max-width: 768px){
+  .upload-image-wrapper{
+    margin:40px auto;
   }
 }
