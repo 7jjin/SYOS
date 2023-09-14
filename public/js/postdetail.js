@@ -31,7 +31,7 @@ const fetchData = async () => {
         login,
       },
     });
-    console.log(res);
+    // console.log(res);
     // 데이터 불러와서 렌더링
     const writerNickname = document.querySelector('.header-nickname');
     const postImage = document.querySelector('.post-img');

@@ -44,7 +44,7 @@ signInBtn.addEventListener("click", async function signin() {
     case "3":
       // jwt 저장
       localStorage.setItem("token", res.data.token);
-      console.log("token : ", res.data.token);
+      // console.log("token : ", res.data.token);
       // welcome 닉네임
       alert(`Welcome ${res.data.nickName}!!`);
       // 메인 페이지로 이동

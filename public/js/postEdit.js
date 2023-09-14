@@ -245,7 +245,7 @@ function mousemove() {
 
     // input 요소와 button 요소를 제외한 요소를 비활성화합니다.
     for (const child of children) {
-      console.log(child);
+      // console.log(child);
       if (child.tagName !== 'INPUT' && child.tagName !== 'BUTTON') {
         child.style.pointerEvents = 'none'; // 클릭 비활성화
       }

@@ -178,7 +178,7 @@ function mousemove() {
   // 완료 버튼을 클릭하면 제품 정보를 표시하고 폼 전송을 막음
   completeButton.addEventListener('click', (event) => {
     displayProductInfo();
-    console.log(photoData);
+    // console.log(photoData);
     stopPropagation(event); // 완료 버튼을 클릭하면 점이 생기지 않게 막음
     index++;
   });
@@ -224,8 +224,8 @@ function mousemove() {
 function uploadPost() {
   const token = localStorage.getItem('token');
   const form = document.forms['upload-post'];
-  console.log(photoData);
-  console.log(IsfileUpload);
+  // console.log(photoData);
+  // console.log(IsfileUpload;
   const data = {
     title: form.title.value,
     content: tinyMCE.get('mytextarea').getContent(),
@@ -248,7 +248,7 @@ function uploadPost() {
         Authorization: `Bearer ${token}`,
       },
     }).then((res) => {
-      console.log('res', res.data.result);
+      // console.log('res', res.data.result);
       if (res.data.result) {
         window.location.href = '/board';
       }

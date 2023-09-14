@@ -61,7 +61,7 @@ async function init() {
 
     // 최댓값의 인덱스를 찾습니다.
     maxIndex = intArr.indexOf(maxValue);
-    console.log(maxIndex);
+    // console.log(maxIndex);
     result[maxIndex].firstElementChild.style.backgroundColor = 'rgb(33, 53, 85)';
 
     // 선택된 카테고리 포스터만 보이게 하기

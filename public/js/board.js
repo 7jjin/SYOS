@@ -22,7 +22,7 @@ const fetchData = async () => {
     method: 'POST',
     url: '/board/all',
   });
-  console.log(res);
+  // console.log(res);
 
   // 게시물 생성
   for (let i = 0; i < res.data.length; i++) {
@@ -76,12 +76,12 @@ filter.forEach((filter) => {
       url: '/board/filter',
       data: { filter: filter.value },
     });
-    console.log(posts);
+    // console.log(posts);
     const container = document.getElementById('mood-itemwrap');
     container.innerHTML = ``;
     // 게시물 생성
     for (let i = 0; i < posts.data.length; i++) {
-      console.log(i);
+      // console.log(i);
       const postCreate = document.createElement('div');
       postCreate.classList.add('item-box');
       // 게시물과 post_id 연결

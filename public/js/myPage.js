@@ -53,7 +53,7 @@ async function getMyPost() {
   });
 
   const { result, myPost } = res.data;
-  console.log(myPost);
+  // console.log(myPost);
 
   switch (result) {
     case '1': // 게시물 없음

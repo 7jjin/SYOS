@@ -46,7 +46,7 @@ async function emailCheck() {
 
     if (res.data.result) {
       // 중복 통과
-      console.log('이메일 유효성 및 중복 체크 통과');
+      // console.log('이메일 유효성 및 중복 체크 통과');
       emailValid.style.opacity = '0'; // 경고 문구 없애기
       emailBool = true;
     } else {
@@ -84,7 +84,7 @@ async function nickNameCheck() {
   });
 
   if (res.data.result) {
-    console.log('닉네임 중복 체크 통과');
+    // console.log('닉네임 중복 체크 통과');
     nickNameValid.style.opacity = '0'; // 경고 문구 없애기
     nickNameBool = true;
   } else {
