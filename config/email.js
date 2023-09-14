@@ -9,8 +9,8 @@ const smtpTransport = nodemailer.createTransport({
   secure: false,
   requireTLS: true,
   auth: {
-    user: env.MAIL_USER,
-    pass: env.MAIL_PASSWORD,
+    user: env.EMAIL_ID,
+    pass: env.EMAIL_PASSWORD,
   },
   tls: {
     rejectUnauthorized: false,
