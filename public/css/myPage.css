@@ -100,7 +100,9 @@ div.carousel-inner img {
 }
 
 div.item-box {
-  display: flex !important;
+  width: 350px;
+  height: 350px;
+  display: flex;
 }
 
 @media screen and (max-width: 1400px) {
