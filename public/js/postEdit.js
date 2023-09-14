@@ -185,12 +185,12 @@ completeButton.textContent = '완료';
 function mousemove() {
   const mouseFollower = uploadImage.querySelector('.mouse-follower'); // uploadImage 내에서 검색
 
-  uploadImage.addEventListener('mouseenter', () => {
+  uploadImageLabel.addEventListener('mouseenter', () => {
     // 마우스가 들어왔을 때
     mouseFollower.style.display = 'block';
   });
 
-  uploadImage.addEventListener('mousemove', (e) => {
+  uploadImageLabel.addEventListener('mousemove', (e) => {
     mouseFollower.style.display = 'block';
     // 마우스가 움직일 때
     const rect = uploadImage.getBoundingClientRect(); // .upload-image 요소의 위치 정보 가져오기
@@ -206,7 +206,7 @@ function mousemove() {
     clickedX = widthPercent;
     clickedY = heightPercent;
   });
-  uploadImage.addEventListener('click', () => {
+  uploadImageLabel.addEventListener('click', () => {
     if (number >= 3) {
       // 최대 3개의 점을 생성했을 경우 무시
       alert('3개까지 가능합니다.');
@@ -239,6 +239,17 @@ function mousemove() {
     productInfo.appendChild(productLinkInput);
     productInfo.appendChild(completeButton); // 완료 버튼 추가
     uploadImage.appendChild(productInfo);
+    // 모든 div.product-info 안의 자식 요소를 가져옵니다.
+
+    const children = productInfo.children;
+
+    // input 요소와 button 요소를 제외한 요소를 비활성화합니다.
+    for (const child of children) {
+      console.log(child);
+      if (child.tagName !== 'INPUT' && child.tagName !== 'BUTTON') {
+        child.style.pointerEvents = 'none'; // 클릭 비활성화
+      }
+    }
 
     // input 요소를 클릭해도 점이 다시 생기지 않도록 이벤트 제거
     productNameInput.addEventListener('click', stopPropagation);
@@ -248,7 +259,7 @@ function mousemove() {
     points.push({ point, productInfo });
   });
 
-  uploadImage.addEventListener('mouseleave', () => {
+  uploadImageLabel.addEventListener('mouseleave', () => {
     // 마우스가 나갔을 때
     mouseFollower.style.display = 'none';
   });
