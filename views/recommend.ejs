@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/Recommend.css" />
+    <link rel="stylesheet" href="../css/board.css" />
     <link rel="stylesheet" href="../css/chat.css" />
     <link
       rel="stylesheet"
@@ -31,238 +32,174 @@
     <title>Recommend</title>
   </head>
 
-  <body>
-    <header id="main-header">
-      <svg
-        class="menu-button"
-        xmlns="http://www.w3.org/2000/svg"
-        x="0px"
-        y="0px"
-        width="36"
-        height="36"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z"
-        ></path>
-      </svg>
-      <span id="logo" onclick="location.href = '/'">SYOS</span>
-    </header>
+<body>
+  <header id="main-header">
+    <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="36" height="36"
+      viewBox="0 0 24 24">
+      <path
+        d="M 3 5 A 1.0001 1.0001 0 1 0 3 7 L 21 7 A 1.0001 1.0001 0 1 0 21 5 L 3 5 z M 3 11 A 1.0001 1.0001 0 1 0 3 13 L 21 13 A 1.0001 1.0001 0 1 0 21 11 L 3 11 z M 3 17 A 1.0001 1.0001 0 1 0 3 19 L 21 19 A 1.0001 1.0001 0 1 0 21 17 L 3 17 z">
+      </path>
+    </svg>
+    <span id="logo" onclick="location.href = '/'">SYOS</span>
+  </header>
 
-    <!-- navBar -->
-    <nav id="main-nav">
-      <svg
-        class="menu-button close"
-        xmlns="http://www.w3.org/2000/svg"
-        width="40px"
-        height="40px"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-        />
-      </svg>
-      <ul class="main-menu">
-        <li onclick="location.href = '/'">Home</li>
-        <li onclick="location.href = '/board'">Board</li>
-        <li onclick="location.href = '/recommend'">Recommend</li>
-        <li onclick="clickMyPage()">MyPage</li>
-        <li class="divider"><div class="under-line"></div></li>
-      </ul>
-      <ul class="sub-menu">
-        <li data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</li>
-        <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
-      </ul>
-    </nav>
+  <!-- navBar -->
+  <nav id="main-nav">
+    <svg class="menu-button close" xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24">
+      <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+    </svg>
+    <ul class="main-menu">
+      <li onclick="location.href = '/'">Home</li>
+      <li onclick="location.href = '/board'">Board</li>
+      <li onclick="location.href = '/recommend'">Recommend</li>
+      <li onclick="clickMyPage()">MyPage</li>
+      <li class="divider">
+        <div class="under-line"></div>
+      </li>
+    </ul>
+    <ul class="sub-menu">
+      <li data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</li>
+      <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
+    </ul>
+  </nav>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-body">
-            <span id="modal-body-header">Made By</span>
-            <span class="github"
-              ><i
-                id="cheolung12"
-                class="fa-brands fa-github"
-                style="color: #000000"
-              ></i>
-              cheolung12</span
-            >
-            <span class="github"
-              ><i
-                id="jaejae990921"
-                class="fa-brands fa-github"
-                style="color: #000000"
-              ></i>
-              jaejae990921</span
-            >
-            <span class="github"
-              ><i
-                id="7jjin"
-                class="fa-brands fa-github"
-                style="color: #000000"
-              ></i>
-              7jjin</span
-            >
-            <span class="github"
-              ><i
-                id="dbals627"
-                class="fa-brands fa-github"
-                style="color: #000000"
-              ></i>
-              dbals627</span
-            >
-          </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <span id="modal-body-header">Made By</span>
+          <span class="github"><i id="cheolung12" class="fa-brands fa-github" style="color: #000000"></i>
+            cheolung12</span>
+          <span class="github"><i id="jaejae990921" class="fa-brands fa-github" style="color: #000000"></i>
+            jaejae990921</span>
+          <span class="github"><i id="7jjin" class="fa-brands fa-github" style="color: #000000"></i>
+            7jjin</span>
+          <span class="github"><i id="dbals627" class="fa-brands fa-github" style="color: #000000"></i>
+            dbals627</span>
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- file-upload-section -->
-    <h2 class="upload-title">Show your desk!</h2>
+  <!-- file-upload-section -->
+  <!-- <h2 class="upload-title">Show your desk!</h2> -->
 
-    <div class="big-wrapper">
-      <section class="upload-image-wrapper">
-        <i class="fa-solid fa-camera" style="color: #6f7785"></i>
-        <div name="upload-image-form" class="upload-image-form">
-          <div id="webcam-container"></div>
-        </div>
-        <div id="label-container"></div>
-      </section>
+  <div class="big-wrapper">
+    <section class="upload-image-wrapper">
+      <i class="fa-solid fa-camera" style="color: #6f7785"></i>
+      <div name="upload-image-form" class="upload-image-form">
+        <div id="webcam-container"></div>
+      </div>
+      <div id="label-container"></div>
+    </section>
 
-      <!-- result-box-section -->
-      <section class="result-box">
-        <div class="result-box-wrapper">
-          <div class="moden-box result">
-            <div class="moden-span" id="exbutton">
-              <span>Modern</span>
-            </div>
-            <div class="moden-per per">
-              <span>0%</span>
-            </div>
+    <!-- result-box-section -->
+    <section class="result-box">
+      <div class="result-box-wrapper">
+        <div class="moden-box result">
+          <div class="moden-span" id="exbutton">
+            <span>Modern</span>
           </div>
-          <div class="office-box result">
-            <div class="office-span">
-              <span>Natural</span>
-            </div>
-            <div class="office-per per">
-              <span>0%</span>
-            </div>
-          </div>
-          <div class="study-box result">
-            <div class="study-span">
-              <span>Game</span>
-            </div>
-            <div class="study-per per">
-              <span>0%</span>
-            </div>
-          </div>
-          <div class="natural-box result">
-            <div class="natural-span">
-              <span>Study&office</span>
-            </div>
-            <div class="natural-per per">
-              <span>0%</span>
-            </div>
+          <div class="moden-per per">
+            <span>0%</span>
           </div>
         </div>
-      </section>
-    </div>
-
-    <!-- recommend-posts-section -->
-
-    <section class="recommend-posts">
-      <h1 class="recommend-title">Recommend</h1>
-      <div class="recommend-post-wrapper">
-        <div class="posts-box"></div>
-        <div class="move-box">
-          <div class="move-box-inner">
-            <p>More posts</p>
-            <i
-              class="fa-solid fa-right-long fa-fade"
-              style="color: #000000"
-            ></i>
+        <div class="office-box result">
+          <div class="office-span">
+            <span>Natural</span>
+          </div>
+          <div class="office-per per">
+            <span>0%</span>
+          </div>
+        </div>
+        <div class="study-box result">
+          <div class="study-span">
+            <span>Game</span>
+          </div>
+          <div class="study-per per">
+            <span>0%</span>
+          </div>
+        </div>
+        <div class="natural-box result">
+          <div class="natural-span">
+            <span>Study&office</span>
+          </div>
+          <div class="natural-per per">
+            <span>0%</span>
           </div>
         </div>
       </div>
     </section>
+  </div>
 
-    <!-- chat -->
-    <div id="chat-wrapper">
-      <div id="chat-content">
-        <div id="chat-header">
-          <div id="chat-header-logo">SYOS</div>
-          <div id="chat-header-text">문의하기</div>
+  <!-- recommend-posts-section -->
+
+  <section class="recommend-posts">
+    <h1 class="recommend-title">Recommend</h1>
+    <div class="recommend-post-wrapper">
+      <div class="posts-box"></div>
+      <div class="move-box">
+        <div class="move-box-inner">
+          <p>More posts</p>
+          <i class="fa-solid fa-right-long fa-fade" style="color: #000000"></i>
         </div>
-        <div id="chat-box-wrapper">
-          <div id="chat-box">
-            <div class="chat other-chat">
-              안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
-              궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
-            </div>
-            <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
-              데스크 셋업 추천? 💻
-            </div>
-            <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
-              SYOS에게 바라는 점 📝
-            </div>
-            <div
-              id="connect"
-              class="chat chat-button"
-              onclick="clickConnectButton()"
-            >
-              상담원 연결하기 👨‍👩‍👧‍👦
-            </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- chat -->
+  <div id="chat-wrapper">
+    <div id="chat-content">
+      <div id="chat-header">
+        <div id="chat-header-logo">SYOS</div>
+        <div id="chat-header-text">문의하기</div>
+      </div>
+      <div id="chat-box-wrapper">
+        <div id="chat-box">
+          <div class="chat other-chat">
+            안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+            궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+          </div>
+          <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+            데스크 셋업 추천? 💻
+          </div>
+          <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+            SYOS에게 바라는 점 📝
+          </div>
+          <div id="connect" class="chat chat-button" onclick="clickConnectButton()">
+            상담원 연결하기 👨‍👩‍👧‍👦
           </div>
         </div>
       </div>
-      <form id="chat-form">
-        <input
-          type="text"
-          id="reply"
-          placeholder="메세지를 입력하세요..."
-          disabled
-          autocomplete="off"
-        />
-        <button id="reply-btn">입력</button>
-      </form>
     </div>
+    <form id="chat-form">
+      <input type="text" id="reply" placeholder="메세지를 입력하세요..." disabled autocomplete="off" />
+      <button id="reply-btn">입력</button>
+    </form>
+  </div>
 
-    <div id="chat-button">
-      <i
-        class="fa-regular fa-comment-dots fa-flip-horizontal"
-        style="color: #ffffff"
-      ></i>
+  <div id="chat-button">
+    <i class="fa-regular fa-comment-dots fa-flip-horizontal" style="color: #ffffff"></i>
+  </div>
+
+  <footer id="main-footer">
+    <div id="footer-logo">SYOS</div>
+    <div id="description">
+      <div class="desc-text">@2023 SYOS</div>
+      <div>Desktop Setup Sharing Platform</div>
     </div>
+    <div id="footer-icon-wrapper">
+      <a href="https://github.com/cheolung12/SYOS" target="_blank"><i class="fa-brands fa-twitter footer-sns"></i></a>
+      <a href="https://github.com/cheolung12/SYOS" target="_blank"><i class="fa-brands fa-instagram footer-sns"></i></a>
+      <a href="https://github.com/cheolung12/SYOS" target="_blank"><i class="fa-brands fa-facebook footer-sns"></i></a>
+    </div>
+  </footer>
 
-    <footer id="main-footer">
-      <div id="footer-logo">SYOS</div>
-      <div id="description">
-        <div class="desc-text">@2023 SYOS</div>
-        <div>Desktop Setup Sharing Platform</div>
-      </div>
-      <div id="footer-icon-wrapper">
-        <a href="https://github.com/cheolung12/SYOS" target="_blank"
-          ><i class="fa-brands fa-twitter footer-sns"></i
-        ></a>
-        <a href="https://github.com/cheolung12/SYOS" target="_blank"
-          ><i class="fa-brands fa-instagram footer-sns"></i
-        ></a>
-        <a href="https://github.com/cheolung12/SYOS" target="_blank"
-          ><i class="fa-brands fa-facebook footer-sns"></i
-        ></a>
-      </div>
-    </footer>
+  <script src="../js/menu.js"></script>
+  <script src="../js/recommend.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="../js/chat.js"></script>
+</body>
 
-    <script src="../js/menu.js"></script>
-    <script src="../js/recommend.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="../js/chat.js"></script>
-  </body>
 </html>

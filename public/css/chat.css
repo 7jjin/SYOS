@@ -205,8 +205,9 @@
 }
 
 
-@media (max-width: 400px) {
-  #chat-button{
+@media screen and (max-width: 450px) {
+  #chat-button {
     display: none;
   }
 }
+
