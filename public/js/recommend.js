@@ -19,8 +19,7 @@ let data = [];
 const uploadImageForm = document.querySelector('.upload-image-form');
 uploadImageForm.addEventListener('click', init);
 async function init() {
-  uploadImageForm.removeEventListener('click', init);
-
+  uploadImageForm.removeEventListener("click", init);
   const cameraIcon = document.querySelector('.fa-camera');
   cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
@@ -110,7 +109,6 @@ function createPost(
 ) {
   const postContainer = document.querySelector('.posts-box'); // 부모
   const newPost = document.createElement('div'); // div 생성
-
   newPost.className = `post1 type${category}`;
   newPost.classList.add('item-box');
 
