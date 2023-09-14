@@ -1,5 +1,5 @@
 .main-text-wrapper {
-  margin: 4rem 0;
+  margin: 3rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,14 +13,15 @@
 }
 
 #board-button {
+  box-sizing: border-box;
   background-color: black;
   color: white;
   width: fit-content;
-  font-size: 20px;
-  border-radius: 99999px;
-  padding: 1.3rem 3rem;
-  margin: 3rem 0 4rem 0;
-  cursor: pointer
+  font-size: 22px;
+  border-radius: 24px;
+  padding: 1rem 3rem;
+  margin: 2rem 0 3rem 0;
+  cursor: pointer;
 }
 
 .swiper {
@@ -65,7 +66,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
 }
 
 #tag-wrapper {
@@ -254,7 +254,7 @@
   }
   #recommend-wrapper {
     height: 350px;
-    margin-bottom: 80px
+    margin-bottom: 80px;
   }
   .recommend-text {
     font-size: 45px;
@@ -271,6 +271,60 @@
   .best-title {
     font-size: 30px;
     font-weight: bold;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-text {
+    font-size: 30px;
+  }
+  #board-button {
+    font-size: 12px;
+    padding: 0.6rem 1.5rem;
+    margin: 1rem 0 2rem 0;
+  }
+  .swiper {
+    height: 100px;
+  }
+  .swiper-slide {
+    height: 100px !important;
+  }
+  #tag-wrapper {
+    margin: 30px 5vw 60px 5vw;
+  }
+  .tag {
+    font-size: 18px;
+  }
+  #recommend-wrapper {
+    height: 200px;
+    margin-bottom: 50px;
+  }
+  .recommend-text {
+    font-size: 24px;
+  }
+  #recommend-button {
+    font-size: 14px;
+    padding: 0.6rem 1rem;
+    border: 0.8px solid #000;
+  }
+  #best-wrapper {
+    flex-direction: column;
+    margin: 0 1rem 30px 1rem;
+  }
+  .best-box {
+    width: 300px;
+    height: 300px;
+    margin-bottom: 40px;
+  }
+  .best-title {
+    font-size: 25px;
+  }
+  .best-icon {
+    width: 20px;
+    height: 20px;
+  }
+  .best-text {
+    font-size: 16px;
   }
 }
 

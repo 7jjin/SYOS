@@ -33,9 +33,6 @@ router.post('/all', controller.post_all);
 // 게시물 필터
 router.post('/filter', controller.post_board_filter);
 
-// 게시물 상세
-router.get('/:post_id', controller.post_detail);
-
 // 게시물 수정
 router.get('/:postid/edit', controller.edit);
 
@@ -44,6 +41,9 @@ router.post('/:postid/edit', controller.post_edit);
 
 // 게시물 수정 (patch)
 router.patch('/:postid/edit', controller.patch_post_edit);
+
+// 게시물 수정 (delete)
+router.delete('/:postid/edit', controller.delete_post_delt);
 
 // 게시물 삭제
 router.delete('/:postid/delete', controller.post_delete);

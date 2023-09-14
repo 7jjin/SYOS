@@ -24,17 +24,17 @@ db.Post.belongsTo(db.User, { foreignKey: 'user_id' });
 db.User.hasMany(db.Like, { foreignKey: 'user_id' });
 db.Like.belongsTo(db.User, { foreignKey: 'user_id' });
 
-db.Post.hasMany(db.Like, { foreignKey: 'post_id' });
-db.Like.belongsTo(db.Post, { foreignKey: 'post_id' });
+db.Post.hasMany(db.Like, { foreignKey: 'post_id', onDelete: 'CASCADE' });
+db.Like.belongsTo(db.Post, { foreignKey: 'post_id', onDelete: 'CASCADE' });
 
 db.User.hasMany(db.Comment, { foreignKey: 'user_id' });
 db.Comment.belongsTo(db.User, { foreignKey: 'user_id' });
 
-db.Post.hasMany(db.Comment, { foreignKey: 'post_id' });
-db.Comment.belongsTo(db.Post, { foreignKey: 'post_id' });
+db.Post.hasMany(db.Comment, { foreignKey: 'post_id', onDelete: 'CASCADE' });
+db.Comment.belongsTo(db.Post, { foreignKey: 'post_id', onDelete: 'CASCADE' });
 
-db.Post.hasMany(db.Product, { foreignKey: 'post_id' });
-db.Product.belongsTo(db.Post, { foreignKey: 'post_id' });
+db.Post.hasMany(db.Product, { foreignKey: 'post_id', onDelete: 'CASCADE' });
+db.Product.belongsTo(db.Post, { foreignKey: 'post_id', onDelete: 'CASCADE' });
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

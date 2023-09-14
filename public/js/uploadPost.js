@@ -37,7 +37,7 @@ const carmeraTitle = document.querySelector('.upload-image p');
 const linkTag = document.querySelector('.add-link-wrapper');
 const uploadImage = document.querySelector('.upload-image');
 
-let IsfileUpload = true;
+let IsfileUpload = false;
 
 imageInput.addEventListener('change', function (event) {
   // 파일을 경로
@@ -45,13 +45,12 @@ imageInput.addEventListener('change', function (event) {
 
   // 경로가 있다면 (사진을 올렸을 경우) 실행
   if (file) {
-    console.log(IsfileUpload);
     const reader = new FileReader();
     reader.onload = function (e) {
       const imageUrl = e.target.result;
       uploadImageLabel.style.backgroundImage = `url('${imageUrl}')`;
       uploadImageLabel.style.backgroundPosition = 'center';
-      uploadImageLabel.style.backgroundSize = 'contain';
+      uploadImageLabel.style.backgroundSize = 'cover';
       uploadImageLabel.style.backgroundRepeat = 'no-repeat';
       carmeraIcon.style.display = 'none';
       carmeraTitle.style.display = 'none';
@@ -64,7 +63,6 @@ imageInput.addEventListener('change', function (event) {
   } else {
     // 경로가 없을 경우 (사진이 없을 경우)
     IsfileUpload = false;
-    console.log(IsfileUpload);
     uploadImageLabel.style.backgroundImage = 'none';
     carmeraIcon.style.display = 'block';
     carmeraTitle.style.display = 'block';
@@ -106,12 +104,12 @@ function mousemove() {
   if (!IsfileUpload) {
     mouseFollower.style.display = 'none';
   }
-  uploadImage.addEventListener('mouseenter', () => {
+  uploadImageLabel.addEventListener('mouseenter', () => {
     // 마우스가 들어왔을 때
     mouseFollower.style.display = 'block';
   });
 
-  uploadImage.addEventListener('mousemove', (e) => {
+  uploadImageLabel.addEventListener('mousemove', (e) => {
     mouseFollower.style.display = 'block';
     // 마우스가 움직일 때
     const rect = uploadImage.getBoundingClientRect(); // .upload-image 요소의 위치 정보 가져오기
@@ -127,7 +125,7 @@ function mousemove() {
     clickedX = widthPercent;
     clickedY = heightPercent;
   });
-  uploadImage.addEventListener('click', () => {
+  uploadImageLabel.addEventListener('click', () => {
     if (points.length >= 3) {
       // 최대 3개의 점을 생성했을 경우 무시
       alert('3개까지 가능합니다.');
@@ -136,7 +134,6 @@ function mousemove() {
     }
     realclickX = clickedX;
     realclickY = clickedY;
-    console.log('Clicked at (top, left):', clickedY, clickedX);
     mouseFollower.style.display = 'none';
 
     // product-info 박스 초기화 시켜주기
@@ -147,9 +144,10 @@ function mousemove() {
     // 클릭한 좌표에 점 표시
     const point = document.createElement('div');
     point.className = `product${index} point`;
+    point.classList.add('circle');
+    point.innerHTML = '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>';
     point.style.left = clickedX + '%';
     point.style.top = clickedY + '%';
-    point.innerHTML = index + 1;
     uploadImage.appendChild(point);
 
     // 제품 정보 입력하는 div 박스 생성 및 위치 설정
@@ -168,7 +166,7 @@ function mousemove() {
     points.push({ point, productInfo });
   });
 
-  uploadImage.addEventListener('mouseleave', () => {
+  uploadImageLabel.addEventListener('mouseleave', () => {
     // 마우스가 나갔을 때
     mouseFollower.style.display = 'none';
   });
@@ -195,8 +193,6 @@ function mousemove() {
       top: realclickY,
       left: realclickX,
     };
-    console.log(productName);
-    console.log(productLink);
 
     // 현재의 점에 해당하는 productInfo를 찾음
     const currentPoint = points[points.length - 1];
@@ -209,7 +205,7 @@ function mousemove() {
     // 제품명과 링크를 표시
     productInfoBox.innerHTML = `
     <div class="product-innerbox"> 
-    <h4>⚫ 제품 ${index + 1}</h4>
+    <h4>⚫ 제품</h4>
     <p>제품명: ${productName}</p>
     <p>링크: ${productLink}</p>
     </div>
@@ -227,10 +223,9 @@ function mousemove() {
 
 function uploadPost() {
   const token = localStorage.getItem('token');
-  const content = document.querySelector('#tinymce p');
-  // console.log(tinyMCE.get('mytextarea').getContent());
   const form = document.forms['upload-post'];
-  console.log(form.image.files[0]);
+  console.log(photoData);
+  console.log(IsfileUpload);
   const data = {
     title: form.title.value,
     content: tinyMCE.get('mytextarea').getContent(),
@@ -241,16 +236,22 @@ function uploadPost() {
   };
 
   // url:/board/upload
-
-  axios({
-    method: 'POST',
-    url: '/board/upload',
-    data,
-    headers: {
-      'Content-Type': 'multipart/form-data',
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((res) => {
-    console.log('res', res);
-  });
+  if (Object.keys(photoData).length === 0) {
+    alert('제품을 선택해주세요');
+  } else {
+    axios({
+      method: 'POST',
+      url: '/board/upload',
+      data,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      console.log('res', res.data.result);
+      if (res.data.result) {
+        window.location.href = '/board';
+      }
+    });
+  }
 }

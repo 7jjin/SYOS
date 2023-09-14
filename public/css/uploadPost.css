@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+body form *{
+  font-family: 'Pretendard-Regular';
+}
+
+
 p{
     margin:0;
 }
@@ -24,7 +35,7 @@ p{
 }
 
 .upload-form{
-    width: 50%;
+    width: 40%;
     margin:80px auto;
 }
 
@@ -42,6 +53,7 @@ input{
     background-color: white;
     display: none;
 }
+
 
 .upload-image label{
 
@@ -64,7 +76,7 @@ label p {
 .add-link-wrapper{
     display: none;
     position: absolute;
-    bottom: 5%;
+    bottom: 10%;
     padding: 5px 10px;
     border: 1px solid black;
     border-radius: 15px;
@@ -105,7 +117,7 @@ label p {
     position: absolute;
     width: 20px; /* 원의 크기 조절 */
     height: 18px; /* 원의 크기 조절 */
-    background-color: black; /* 원의 색상을 원하는 색상으로 변경하세요 */
+    background-color: #333; /* 원의 색상을 원하는 색상으로 변경하세요 */
     border-radius: 50%;
     transform: translate(-50%, -50%);
     display: flex;
@@ -113,7 +125,8 @@ label p {
     align-items: center;
     font-weight: bold; /* 텍스트 굵기 조절 */
     color: white; /* 텍스트 색상 설정 */
-    font-size: 14px; /* 텍스트 크기 설정 */
+    font-size: 10px; /* 텍스트 크기 설정 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   } 
   
 
@@ -154,6 +167,14 @@ label p {
   .product-innerbox h4 {
     margin: 0;
     margin-bottom: 10px;
+    font-size: 16px;
+  }
+  .product-innerbox button {
+    font-size: 14px;
+  }
+  .product-innerbox p{
+    margin-bottom: 5px;
+    word-wrap: break-word;
   }
   .product-innerbox p:last-child{
     margin-bottom: 10px;
@@ -165,11 +186,12 @@ label p {
   .tag-box .tag{
     margin-right: 10px;
     font-size: 20px;
-    color: #a6a6a6;
+    color: #b3b3b37d;
     cursor: pointer;
   }
   .tag.selected {
-    background-color: beige;
+    color: black;
+    font-weight: 600;
     border-radius: 20%;
 }
 
@@ -186,4 +208,66 @@ label p {
     border: 1px solid black;
     border-radius: 10px;
     background-color: black;
+}
+
+
+/* 반응형 */
+@media (max-width: 768px){
+  .upload-form{
+    width: 60%;
+  }
+  .wrapper-bottom{
+    margin-bottom: 15px;
+  }
+  .upload-image label{
+    height: 250px;
+  }
+  .add-link{
+    font-size: 12px;
+  }
+  .point{
+    width: 13px;
+    height: 13px;
+  }
+  .fa-plus:before{
+    font-size: 11px;
+  }
+  .product-top h4{
+    font-size: 16px;
+  }
+  .product-top button{
+    font-size: 11px;
+  }
+  .product-innerbox h4{
+    font-size: 16px;
+  }
+  .product-innerbox p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .mce-content-body{
+    font-size: 14px !important;
+  }
+  .tag-box .tag{
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  .product-info{
+    width: 160px;
+    padding:6px;
+  }
+  .product-name,.product-link{
+    font-size: 12px;
+  }
+  .product-info button{
+    font-size: 11px;
+    border-radius: 10%;
+  }
+  .mouse-follower {
+    width: 15px; /* 원의 너비 */
+    height: 15px; /* 원의 높이 */
+  }
+  .add-link-wrapper{
+    bottom:3%;
+  }
 }

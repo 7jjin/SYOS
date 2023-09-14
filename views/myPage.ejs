@@ -5,12 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <title>MyPage</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/myPage.css" />
+    <link rel="stylesheet" href="../css/chat.css" />
+    <link rel="stylesheet" href="../css/board.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
     />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header id="main-header">
@@ -31,7 +53,6 @@
     </header>
 
     <!-- navBar -->
-
     <nav id="main-nav">
       <svg
         class="menu-button close"
@@ -46,18 +67,65 @@
       </svg>
       <ul class="main-menu">
         <li onclick="location.href = '/'">Home</li>
-        <li onclick="location.href = '/posts'">Board</li>
+        <li onclick="location.href = '/board'">Board</li>
         <li onclick="location.href = '/recommend'">Recommend</li>
-        <!-- mypage 엔드포인트에 param 추가해야함-->
-        <li onclick="location.href = '/mypage'">MyPage</li>
+        <li onclick="clickMyPage()">MyPage</li>
         <li class="divider"><div class="under-line"></div></li>
       </ul>
       <ul class="sub-menu">
-        <li>About</li>
-        <li>Contact</li>
+        <li data-bs-toggle="modal" data-bs-target="#exampleModal">Contact</li>
         <li id="login-button" onclick="toggleLoginLogout()">LogIn</li>
       </ul>
     </nav>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-body">
+            <span id="modal-body-header">Made By</span>
+            <span class="github"
+              ><i
+                id="cheolung12"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              cheolung12</span
+            >
+            <span class="github"
+              ><i
+                id="jaejae990921"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              jaejae990921</span
+            >
+            <span class="github"
+              ><i
+                id="7jjin"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              7jjin</span
+            >
+            <span class="github"
+              ><i
+                id="dbals627"
+                class="fa-brands fa-github"
+                style="color: #000000"
+              ></i>
+              dbals627</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- myPage -->
 
@@ -76,33 +144,96 @@
       <div class="three">
         <div class="myPost">
           <div class="myWord">My Post</div>
-          <div class="swiper-container swiper">
-            <div class="swiper-wrapper">
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination swiper-pagination"></div>
+          <div id="myPostCarousel" class="carousel slide">
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#myPostCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#myPostCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
 
         <!-- 내가 댓글 단 게시물 -->
         <div class="myComment">
           <div class="myWord">My Comment</div>
-          <!-- <div class="swiper-container swiper">
-            <div class="swiper-wrapper">
-              <div class="swiper-slide">1</div>
-              <div class="swiper-slide">2</div>
-              <div class="swiper-slide">3</div>
-            </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination swiper-pagination1"></div> -->
+          <div id="myCommentCarousel" class="carousel slide">
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#myCommentCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#myCommentCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
 
         <!-- 내가 좋아요 누른 게시물 -->
         <div class="myLiked">
           <div class="myWord">My Liked</div>
+          <div id="myLikedCarousel" class="carousel slide">
+            <div class="carousel-inner"></div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#myLikedCarousel"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#myLikedCarousel"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
@@ -110,16 +241,53 @@
 
     <!-- myPage -->
 
-    <!-- footer -->
+    <!-- chat -->
+    <div id="chat-wrapper">
+      <div id="chat-content">
+        <div id="chat-header">
+          <div id="chat-header-logo">SYOS</div>
+          <div id="chat-header-text">문의하기</div>
+        </div>
+        <div id="chat-box-wrapper">
+          <div id="chat-box">
+            <div class="chat other-chat">
+              안녕하세요! SYOS에 방문해주셔서 감사합니다 ☺️<br />
+              궁금한 점이나 개선 사항이 있으시면 말씀해주세요!
+            </div>
+            <div id="btn1" class="chat chat-button" onclick="clickBtn1()">
+              데스크 셋업 추천? 💻
+            </div>
+            <div id="btn2" class="chat chat-button" onclick="clickBtn2()">
+              SYOS에게 바라는 점 📝
+            </div>
+            <div
+              id="connect"
+              class="chat chat-button"
+              onclick="clickConnectButton()"
+            >
+              상담원 연결하기 👨‍👩‍👧‍👦
+            </div>
+          </div>
+        </div>
+      </div>
+      <form id="chat-form">
+        <input
+          type="text"
+          id="reply"
+          placeholder="메세지를 입력하세요..."
+          disabled
+          autocomplete="off"
+        />
+        <button id="reply-btn">입력</button>
+      </form>
+    </div>
 
-    <link rel="stylesheet" href="../css/global.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-      integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <div id="chat-button">
+      <i
+        class="fa-regular fa-comment-dots fa-flip-horizontal"
+        style="color: #ffffff"
+      ></i>
+    </div>
 
     <footer id="main-footer">
       <div id="footer-logo">SYOS</div>
@@ -128,15 +296,22 @@
         <div>Desktop Setup Sharing Platform</div>
       </div>
       <div id="footer-icon-wrapper">
-        <i class="fa-brands fa-twitter footer-sns"></i>
-        <i class="fa-brands fa-instagram footer-sns"></i>
-        <i class="fa-brands fa-facebook footer-sns"></i>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-twitter footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-instagram footer-sns"></i
+        ></a>
+        <a href="https://github.com/cheolung12/SYOS" target="_blank"
+          ><i class="fa-brands fa-facebook footer-sns"></i
+        ></a>
       </div>
     </footer>
-
-    <!-- footer -->
-
-    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
     <script src="../js/menu.js"></script>
     <script src="../js/myPage.js"></script>
     <script>
@@ -151,7 +326,11 @@
       ready();
       async function ready() {
         await getMyPost();
+        await getMyComment();
+        await getMyLiked();
       }
     </script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="../js/chat.js"></script>
   </body>
 </html>

@@ -1,20 +1,37 @@
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff')
+    format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+}
+
+.board-Page {
+  width: 80%;
+}
+
+.board-text {
+  display: flex;
+  margin-top: 1.5rem;
+}
+
+.board-text > span {
+  font-size: 80px;
+}
+
 .mood-container {
-  margin-top: 5rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.mood-header-1 {
+.mood-header {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 1rem 30vw;
-  font-size: 21px;
-  font-weight: 500;
-}
-
-.mood-header-2 {
-  display: flex;
-  justify-content: space-evenly;
-  margin: 1rem 20vw;
+  justify-content: space-between;
   font-size: 21px;
   font-weight: 500;
 }
@@ -27,62 +44,56 @@ label {
   cursor: pointer;
 }
 
+.filter-box {
+  display: flex;
+}
+
+.filter-1 {
+  display: flex;
+}
+
+.filter-2 {
+  display: flex;
+}
+
 .filter {
   display: flex;
   align-items: center;
   height: 39px;
-  border: 1px solid #000000;
   border-radius: 20px;
   padding: 0px 18px;
-  color: black;
-  font-size: 16px;
+  color: #595959;
+  font-size: 21px;
+}
+
+.write-box {
+  cursor: pointer;
+}
+
+.filter.write {
+  font-size: 26px;
+}
+
+.filter.write > i {
+  cursor: pointer;
+  font-size: 15px;
+  margin-top: 0.3rem;
+  margin-right: 0.2rem;
+}
+
+.filter.active label {
+  font-weight: 600;
+  color: #3b3b3b;
 }
 
 .mood-box {
-  margin-top: 5rem;
   margin-bottom: 9.3em;
-}
-
-.button.active {
-  color: white;
-  background-color: black;
-  border: 1px solid #4d4d4d;
-  cursor: pointer;
-}
-
-.mood-write {
-  display: inline-block;
-  position: relative;
-  height: 39px;
-  /* border: 1px solid #000000; */
-  border-radius: 20px;
-  padding-left: 18px;
-  padding-right: 18px;
-  margin: 0px 30px;
-  line-height: 0;
-  color: black;
-  background-color: white;
-  cursor: pointer;
-  font-size: 25px;
-  line-height: 35px;
-  vertical-align: middle;
-  cursor: pointer;
-  text-decoration: underline;
 }
 
 .mood-itemwrap {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 0px 10.6em;
-}
-
-.mood-itemwrap .active {
-  display: block;
-}
-
-.mood-itemwrap .hide {
-  display: none;
 }
 
 .item-box {
@@ -102,24 +113,6 @@ label {
   cursor: pointer;
 }
 
-.post-box {
-  text-align: center;
-  position: relative;
-  z-index: 9999;
-}
-
-.text-box {
-  font-size: 1.9em;
-  font-weight: 600;
-}
-
-.res-box {
-  display: flex;
-  justify-content: space-evenly;
-  font-size: 1.13em;
-  font-weight: 600;
-}
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -130,18 +123,53 @@ label {
   }
 }
 
-.post-box {
+.text-box {
+  /* display: none; */
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+}
+
+/* 한줄 말줄임 */
+.title {
+  font-family: 'Pretendard-Regular';
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.res-container,
+.text-container {
+  width: 70%;
   display: none;
 }
 
-.item-box:hover .post-box {
+/* none */
+
+.res-box {
+  justify-content: space-evenly;
+  font-size: 1.3em;
+  font-weight: 600;
+  text-align: center;
+  position: relative;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.item-box:hover .text-container,
+.item-box:hover .res-container {
   display: block;
 }
 
 .item-box:hover img {
   transform: scale(1.1);
-  -webkit-filter: blur(3px);
-  filter: blur(3px);
+  -webkit-filter: blur(10px);
+  filter: blur(10px);
 }
 
 .item-box > img {
@@ -153,26 +181,42 @@ label {
   transition: transform 0.3s ease-in-out;
 }
 
+.heart-box > p,
+.comment-box > p {
+  margin: 0px;
+}
+
 @media screen and (max-width: 1200px) {
-  .mood-header {
+  .board-container {
     display: flex;
     justify-content: center;
-    margin: 0px 25em;
   }
 
-  .dropdown {
-    margin: 1.7em 11.25em;
+  .board-Page {
+    width: 80%;
   }
 
-  .modern,
-  .natural,
-  .game,
-  .studyoffice {
-    margin: 0em 0.6em;
+  .board-text {
+    display: flex;
+    margin-top: 1.5rem;
+    justify-content: flex-start;
+  }
+
+  .board-text > span {
+    font-size: 56px;
+  }
+
+  .mood-header {
+    display: flex;
+  }
+
+  .filter-box {
+    display: flex;
+    flex-direction: column;
   }
 
   .mood-box {
-    margin: 3.25em 3.5em 9.375em 3.5em;
+    margin: 3.25em 0em 9.375em;
   }
 
   .mood-itemwrap {
@@ -181,8 +225,6 @@ label {
   }
 
   .item-box {
-    /* width: 14.4em;
-    height: 14.4em; */
     margin: 0.0625em;
   }
 
@@ -192,19 +234,31 @@ label {
     margin-top: 1.25em;
     text-align: left;
   }
+
+  .filter-box {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 @media screen and (max-width: 768px) {
+  .board-page {
+    width: 80%;
+  }
+
+  .board-text {
+    justify-content: center;
+  }
+
+  .board-text > span {
+    font-size: 56px;
+  }
+
   .mood-header {
-    margin: 0px 2.5em;
     justify-content: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .mood-li {
-    margin: 0.625em 0em;
   }
 
   .modern,
@@ -214,7 +268,8 @@ label {
     margin: 0em 0.375em;
   }
 
-  .dropdown {
+  .mood-container {
+    display: flex;
     justify-content: center;
   }
 
@@ -227,23 +282,49 @@ label {
     margin: 0px;
   }
 
-  /* .item-box {
-    width: 8.4375em;
-    height: 8.4375em;
-    margin: 1px;
-  } */
+  #post-content > p {
+    font-size: 14px;
+  }
+
+  .board-text {
+    margin-top: 0em;
+  }
 
   .board-text > div {
     font-size: 2.875em;
     text-align: center;
     margin-top: 1.25em;
   }
+
+  .filter-box {
+    align-items: center;
+  }
+
+  .filter.write {
+    padding-top: 1.2rem;
+  }
 }
 
 @media screen and (max-width: 450px) {
+  .board-text {
+    margin-top: -1em;
+  }
+
+  .board-text > span {
+    font-size: 34px;
+  }
+
   .mood-header {
     margin: 0em 2.5em;
     justify-content: center;
+  }
+
+  .filter {
+    font-size: 14px;
+  }
+
+  .filter.write {
+    font-size: 21px;
   }
 
   .mood-modern,
@@ -257,12 +338,6 @@ label {
     display: flex;
     margin: 0px;
   }
-
-  /* .item-box {
-    width: 8.125em;
-    height: 8.125em;
-    margin: 1px;
-  } */
 
   .board-text > div {
     font-size: 2.7em;

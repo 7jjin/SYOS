@@ -6,6 +6,7 @@ const idBox = document.getElementById('post_id');
 const post_id = idBox.textContent;
 const modifyPost = document.getElementById('modify');
 const deletePost = document.getElementById('delete');
+const imgWrapper = document.querySelector('.post-img-wrapper ');
 
 let user_id;
 let nickName;
@@ -13,7 +14,11 @@ let postUserId;
 
 // axios로 필요한 데이터 요청
 const token = localStorage.getItem('token');
+let login = true;
 const fetchData = async () => {
+  if(!token) {
+    login = false;
+  }
   try {
     const res = await axios({
       method: 'POST',
@@ -23,6 +28,7 @@ const fetchData = async () => {
       },
       data: {
         post_id,
+        login,
       },
     });
     console.log(res);
@@ -52,31 +58,34 @@ const fetchData = async () => {
             method: 'DELETE',
             url: `/board/${post_id}/delete`,
             data: { post_id },
-          })
-          alert('삭제되었습니다.'); 
-        } 
+          });
+          alert('삭제되었습니다.');
+          location.href = '/board';
+        }
       });
     } else {
       // 안 보이고 링크 설정 x
       modifyPost.style.display = 'none';
       deletePost.style.display = 'none';
     }
-
-    if (res.data.isHeart.length !== 0) {
-      heart.classList.remove('fa-regular');
-      heart.classList.add('fa-solid');
-      heart.style.color = '#ec4141';
+    if(login){
+      if (res.data.isHeart.length !== 0) {
+        heart.classList.remove('fa-regular');
+        heart.classList.add('fa-solid');
+        heart.style.color = '#ec4141';
+      }  
     }
 
     heartNum.textContent = res.data.postData.liked;
     commentNum.textContent = res.data.postData.comment;
-    postContent.textContent = res.data.postData.content;
+    postContent.innerHTML = res.data.postData.content;
 
     // 댓글 렌더링
     for (let i = 0; i < res.data.comments.length; i++) {
       const commentBox = document.createElement('li');
       const commentWriter = document.createElement('div');
       const commentText = document.createElement('div');
+      commentBox.dataset.commentId = res.data.comments[i].comment_id;
       commentBox.classList.add('comment-box');
       commentWriter.classList.add('user-name');
       commentText.classList.add('user-comment');
@@ -84,7 +93,31 @@ const fetchData = async () => {
       commentText.textContent = `${res.data.comments[i].content}`;
       commentBox.appendChild(commentWriter);
       commentBox.appendChild(commentText);
+      if (res.data.commentNickname[i] === nickName) {
+        const deleteButton = document.createElement('span');
+        deleteButton.classList.add('comment-delete');
+        deleteButton.textContent = 'delete';
+        deleteButton.addEventListener('click', deleteComment);
+        commentText.appendChild(deleteButton);
+      }
       commentList.appendChild(commentBox);
+    }
+    if (res.data.productInfo) {
+      res.data.productInfo.forEach((product) => {
+        const circle = document.createElement('div');
+        const infoBubble = document.createElement('div');
+        circle.classList.add('circle');
+        infoBubble.classList.add('infoBubble');
+        circle.innerHTML =
+          '<i class="fa-solid fa-plus" style="color: #ffffff;"></i>';
+        infoBubble.innerHTML = `<a href="${product.product_link}" target="blank">${product.product_name}</a>`;
+        imgWrapper.appendChild(circle);
+        imgWrapper.appendChild(infoBubble);
+        circle.style.top = `${product.top}%`;
+        circle.style.left = `${product.left}%`;
+        infoBubble.style.top = `${product.top - 8}%`;
+        infoBubble.style.left = `${product.left + 3}%`;
+      });
     }
   } catch (error) {
     console.error(error);
@@ -95,27 +128,34 @@ const fetchData = async () => {
 fetchData();
 
 // 좋아요 누를 때 UI 변경 및 DB 업데이트
-heart.addEventListener('click', async () => {
-  let isHeart;
-  if (heart.classList.contains('fa-solid')) {
-    heart.classList.remove('fa-solid');
-    heart.classList.add('fa-regular');
-    heart.style.color = '';
-    isHeart = false;
-  } else {
-    heart.classList.remove('fa-regular');
-    heart.classList.add('fa-solid');
-    heart.style.color = '#ec4141';
-    isHeart = true;
-  }
-  const res = await axios({
-    method: 'PATCH',
-    url: '/board/detail/heart',
-    data: { post_id, isHeart, user_id },
+if(login){
+  heart.addEventListener('click', async () => {
+    let isHeart;
+    if (heart.classList.contains('fa-solid')) {
+      heart.classList.remove('fa-solid');
+      heart.classList.add('fa-regular');
+      heart.style.color = '';
+      isHeart = false;
+    } else {
+      heart.classList.remove('fa-regular');
+      heart.classList.add('fa-solid');
+      heart.style.color = '#ec4141';
+      isHeart = true;
+    }
+    const res = await axios({
+      method: 'PATCH',
+      url: '/board/detail/heart',
+      data: { post_id, isHeart, user_id },
+    });
+    const number = res.data.heartNum;
+    heartNum.textContent = `${number}`;
+  });  
+}
+else {
+  heart.addEventListener('click', () => {
+    alert('로그인이 필요합니다!');
   });
-  const number = res.data.heartNum;
-  heartNum.textContent = `${number}`;
-});
+}
 
 // 댓글 입력
 const addComment = async (e) => {
@@ -129,7 +169,7 @@ const addComment = async (e) => {
     return;
   }
   if (content.trim() === '') {
-    alert('Please enter comments.');
+    alert('내용을 입력해주세요.');
     return;
   }
 
@@ -142,19 +182,42 @@ const addComment = async (e) => {
       content,
     },
   });
-  if (result.data.result) {
+  if (result.data) {
     const commentList = document.getElementById('comment-list');
     const commentBox = document.createElement('li');
     const commentWriter = document.createElement('div');
     const commentText = document.createElement('div');
+    const deleteButton = document.createElement('span');
+    commentBox.dataset.commentId = result.data.comment_id;
     commentBox.classList.add('comment-box');
     commentWriter.classList.add('user-name');
     commentText.classList.add('user-comment');
     commentWriter.textContent = `@${nickName}`;
     commentText.textContent = content;
+    deleteButton.classList.add('comment-delete');
+    deleteButton.textContent = 'delete';
+    deleteButton.addEventListener('click', deleteComment);
     commentBox.appendChild(commentWriter);
     commentBox.appendChild(commentText);
+    commentText.appendChild(deleteButton);
     commentList.appendChild(commentBox);
     comments.value = '';
+    commentNum.textContent = parseInt(commentNum.textContent) + 1;
   }
+};
+
+// 댓글 삭제
+const deleteComment = async (event) => {
+  const commentBox = event.target.closest('.comment-box');
+  const comment_id = commentBox.dataset.commentId;
+  const result = await axios({
+    method: 'DELETE',
+    url: '/board/detail/comment/delete',
+    data: {
+      post_id,
+      comment_id,
+    },
+  });
+  commentBox.remove();
+  commentNum.textContent = parseInt(commentNum.textContent) - 1;
 };

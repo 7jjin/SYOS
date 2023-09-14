@@ -45,7 +45,7 @@ exports.post_detail = (req, res) => {
 // 게시물 상세 (post)
 exports.post_data = async (req, res) => {
   // 일단 고정 게시물
-  const { post_id } = req.body;
+  const { post_id, login} = req.body;
   try {
     const postData = await Post.findOne({
       where: { post_id },
@@ -70,25 +70,36 @@ exports.post_data = async (req, res) => {
       });
       commentNickname.push(result.nickname);
     }
+
+     // 이미지 안에 있는 링크 가져오기
+     const productInfo = await Product.findAll({
+      where: {post_id}
+    })
+    console.log(productInfo);
+
     // 현재 사용자의 좋아요 여부 확인
     const [bearer, token] = req.headers.authorization.split(' ');
     let currentUserId;
     let currentUserNickname;
-    if (bearer === 'Bearer') {
+    if (login) {
       const decoded = jwt.verify(token, SECRET);
       currentUserId = decoded.user_id;
       currentUserNickname = decoded.nickName;
+    } else{
+      return res.json({
+        postData,
+        user_id,
+        nickName,
+        comments,
+        commentNickname,
+        productInfo,
+      });
     }
     const isHeart = await Like.findAll({
       where: { post_id, user_id: currentUserId },
     });
 
-    // 이미지 안에 있는 링크 가져오기
-    const productInfo = await Product.findAll({
-      where: {post_id}
-    })
-    console.log(productInfo);
-    
+   
     return res.json({
       postData,
       user_id,
@@ -98,6 +109,7 @@ exports.post_data = async (req, res) => {
       isHeart,
       currentUserId,
       currentUserNickname,
+      productInfo,
     });
   } catch (error) {
     console.error(error);
@@ -155,6 +167,7 @@ exports.post_post_comment = async (req, res) => {
 // 댓글 삭제
 exports.delete_post_comment = async (req, res) => { 
   const {post_id, comment_id} = req.body;
+  console.log(comment_id);
   const post = await Post.findOne({ where: { post_id } });
   if (post) {
     await post.update({ comment: post.comment - 1 });
@@ -168,7 +181,8 @@ exports.delete_post_comment = async (req, res) => {
 // 게시물 삭제
 exports.post_delete = async (req, res) => {
   const { post_id } = req.body;
-  await Post.destroy({ where: post_id });
+  console.log(post_id);
+  await Post.destroy({ where:  {post_id} });
   res.send({ result: true });
 };
 
@@ -180,6 +194,7 @@ exports.uploadPost = (req, res) => {
 // 게시물 업로드  (post)
 exports.post_uploadPost = async (req, res) => {
   const { title, name, content, category, imageName, photoData } = req.body;
+  console.log(photoData)
   const [bearer, token] = req.headers.authorization.split(' ');
   let currentUserId;
   if (bearer === 'Bearer') {
@@ -199,17 +214,18 @@ exports.post_uploadPost = async (req, res) => {
     order: [['createdAt', 'DESC']],
     limit: 1,
   });
-
-  for (let i = 0; i < photoData.length; i++) {
+  if(photoData){
+    for (let i = 0; i < photoData.length; i++) {
     Product.create({
       post_id: result.post_id,
       product_name: photoData[i].productName,
       product_link: photoData[i].productLink,
       top: photoData[i].top,
       left: photoData[i].left,
-    });
+      });
+    }
+    res.json({result:true});  
   }
-  res.send(true);
 };
 
 //All 게시물 (처음 한 번)
@@ -265,6 +281,10 @@ exports.post_board_filter = async (req, res) => {
       attributes: ['post_id', 'title', 'image','liked', 'comment'],
       order: [['liked', 'DESC']],
     });
+  }else if (filter === 'all'){
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+    });
   }
   res.json(data);
 };
@@ -287,11 +307,40 @@ exports.post_edit = async (req, res) => {
     where: { post_id },
     include: [{ model: User, attributes: ['nickname'] }],
   });
+  const photo = await Product.findAll({
+    where: { post_id },
+    
+  })
   const nickName = result.user.nickname;
-  res.json({ postsData,nickName });
+  res.json({ postsData,nickName,photo });
+};
+
+// 게시글 수정(posts 테이블)
+exports.patch_post_edit = async (req, res) => {
+  const {title,content,category,photo} = req.body.data;
+  await Post.update({
+    title,content,category
+  },{
+    where:{post_id:req.body.post_id}
+  });
+
+  res.json({result_edit:true})
 };
 
 
-exports.patch_post_edit = (req, res) => {
-  console.log('a');
+// 게시글 수정(product 테이블)
+exports.delete_post_delt = async (req, res) => {
+  const {title,content,category,photo} = req.body.data;
+  await Product.destroy({where:{post_id:req.body.post_id}});
+  for (let i = 0; i < photo.length; i++) {
+    Product.create({
+      post_id: req.body.post_id,
+      product_name: photo[i].productName,
+      product_link: photo[i].productLink,
+      top: photo[i].top,
+      left: photo[i].left,
+    });
+  }
+  
+  res.json({result:true,data:req.body.post_id})
 };

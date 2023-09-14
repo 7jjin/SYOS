@@ -3,30 +3,9 @@ main.myPage {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 650px;
+  height: 620px;
   background-color: white;
   margin-top: 50px;
-}
-
-/* 스와이퍼 */
-.swiper-container {
-  width: 300px;
-  height: 300px;
-  border: 1px solid black;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  height: 100px;
-  width: 100px;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
 }
 
 /* 프로필 div */
@@ -43,11 +22,11 @@ main.myPage > div.profileDiv {
 
 /* 프로필 img div 크기 */
 main.myPage > div.profileDiv > div.profileImg {
-  width: 150px;
-  height: 150px;
+  width: 130px;
+  height: 130px;
 }
 
-/* img 크기 */
+/* 프로필 img 크기 */
 main.myPage > div.profileDiv > div.profileImg > img {
   width: 100%;
   height: 100%;
@@ -62,7 +41,7 @@ main.myPage > div.profileDiv > div.profileInfo {
   font-size: 25px;
 }
 
-/* 스와이퍼 감싼 div */
+/* 3개 감싼 div */
 main.myPage > div.three {
   display: flex;
   flex-direction: row;
@@ -71,7 +50,7 @@ main.myPage > div.three {
   margin-top: 60px;
 }
 
-/* 각 스와이퍼 워딩 글씨 */
+/* 각 워딩 글씨 */
 main.myPage div.myWord {
   font-size: 30px;
   font-weight: bold;
@@ -80,20 +59,20 @@ main.myPage div.myWord {
   padding: 5px;
 }
 
-/* 내가 쓴 글 */
-main.myPage div.myPost {
-  background-color: white;
-}
-
-/* 내가 쓴 글이 없을 때 문구 */
+/* No 문구 */
 main.myPage div.no {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
   font-size: 30px;
   font-weight: bold;
+}
+
+/* 내가 쓴 글 */
+main.myPage div.myPost {
+  background-color: white;
 }
 
 /* 내가 댓글 단 글 */
@@ -104,4 +83,33 @@ main.myPage div.myComment {
 /* 내가 좋아요 누른 게시물 */
 main.myPage div.myLiked {
   background-color: white;
+}
+
+/* myPost 캐러셀 */
+div#myPostCarousel,
+div#myCommentCarousel,
+div#myLikedCarousel {
+  width: 350px;
+  height: 350px;
+}
+
+div.carousel-inner img {
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
+}
+
+div.item-box {
+  display: flex !important;
+}
+
+@media screen and (max-width: 1400px) {
+  main.myPage {
+    height: 1500px;
+  }
+
+  main.myPage > div.three {
+    flex-direction: column;
+    align-items: center;
+  }
 }

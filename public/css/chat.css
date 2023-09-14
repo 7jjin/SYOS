@@ -68,8 +68,8 @@
   position: fixed;
   right: 30px;
   bottom: 40px;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   color: white;
   background-color: black;
@@ -80,6 +80,8 @@
   align-items: center;
   box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
     rgba(0, 0, 0, 0.1) 0px 4px 6px, rgba(0, 0, 0, 0.15) 0px 8px 30px;
+  background: linear-gradient(to right bottom, #333, #000);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #chat-form {
@@ -126,7 +128,6 @@
 #reply:focus {
   outline: none;
 }
-
 
 #reply-btn {
   display: none;
@@ -202,3 +203,11 @@
     opacity: 1;
   }
 }
+
+
+@media screen and (max-width: 450px) {
+  #chat-button {
+    display: none;
+  }
+}
+

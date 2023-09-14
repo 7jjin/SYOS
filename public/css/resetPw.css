@@ -52,6 +52,12 @@ main > .allDiv > div > button {
 }
 
 main > .allDiv > .authDiv,
-main > .allDiv > .pwDiv {
+main > .allDiv > .pwDiv,
+main > .allDiv > .pwValid {
   visibility: hidden;
+}
+
+/* 인풋 포커스 테두리 삭제 */
+main.resetPw input:focus {
+  outline: none;
 }
