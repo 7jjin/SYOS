@@ -86,6 +86,7 @@ exports.post_data = async (req, res) => {
       currentUserId = decoded.user_id;
       currentUserNickname = decoded.nickName;
     } else{
+      console.log('excute!');
       return res.json({
         postData,
         user_id,

@@ -56,7 +56,7 @@ const clickBtn1 = () => {
   div.innerText =
     '내 방 또는 책상의 사진을 찍은 후 분위기에 맞는 데스크 셋업을 추천 받는 서비스입니다.';
   div2.innerHTML =
-    '<a href="https://localhost8080/recommend">바로가기 링크</a>';
+    '<a href="http://54.180.172.70//recommend">바로가기 링크</a>';
   chatBox.appendChild(div);
   chatBox.appendChild(div2);
 };
