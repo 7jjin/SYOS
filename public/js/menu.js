@@ -2,7 +2,6 @@ const menuButton = document.querySelector(".menu-button");
 const closeButton = document.querySelector(".menu-button.close");
 const nav = document.querySelector("nav");
 const githubIcon = document.querySelectorAll(".fa-github");
-
 window.onload = function () {
   switchMenu();
 };
@@ -67,3 +66,4 @@ githubIcon.forEach((icon) => {
     window.open(`https://github.com/${event.target.id}`, '_blank');
   });
 });
+
