@@ -203,3 +203,9 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 450px) {
+  #chat-button {
+    display: none;
+  }
+}

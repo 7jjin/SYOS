@@ -21,7 +21,7 @@ const uploadImageForm = document.querySelector('.upload-image-form');
 uploadImageForm.addEventListener("click", init);
 async function init() {
   uploadImageForm.removeEventListener("click", init);
-  
+
   const cameraIcon = document.querySelector('.fa-camera');
   cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
@@ -102,7 +102,7 @@ async function predict() {
 }
 
 // 추천 post 만들기
-function createPost(post_id, image, category, liked, product_link, title,comment) {
+function createPost(post_id, image, category, liked, product_link, title, comment) {
   const postContainer = document.querySelector('.posts-box');
   const newPost = document.createElement('div');
   newPost.className = `post1 type${category}`;
