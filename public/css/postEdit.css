@@ -169,6 +169,7 @@ label p {
     font-size: 14px;
   }
   .product-innerbox p{
+    word-wrap: break-word;
     margin-bottom: 5px;
   }
   .product-innerbox p:last-child{

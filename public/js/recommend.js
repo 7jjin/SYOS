@@ -12,21 +12,20 @@ const result = document.querySelectorAll('.result');
 const per = document.querySelectorAll('.per');
 const URL = 'https://teachablemachine.withgoogle.com/models/mxuNZiol6/';
 
-
 let model, webcam, labelContainer, maxPredictions, maxIndex;
 let data = [];
 
 // 이미지 모델을 분석 및 웹캠 설정
 const uploadImageForm = document.querySelector('.upload-image-form');
-uploadImageForm.addEventListener("click", init);
+uploadImageForm.addEventListener('click', init);
 async function init() {
-  uploadImageForm.removeEventListener("click", init);
-  
+  uploadImageForm.removeEventListener('click', init);
+
   const cameraIcon = document.querySelector('.fa-camera');
   cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
-  const webcamContainer = document.querySelectorAll('#webcam-container')
+  const webcamContainer = document.querySelectorAll('#webcam-container');
   const loading = document.createElement('div');
   loading.className = 'loading';
   uploadImageForm.appendChild(loading);
@@ -41,7 +40,7 @@ async function init() {
   await webcam.play();
   uploadImageForm.removeChild(loading);
   window.requestAnimationFrame(loop);
-  document.querySelector(".upload-image-wrapper").style.border = "none"
+  document.querySelector('.upload-image-wrapper').style.border = 'none';
 
   // 웹캠에 화면 출력
   document.getElementById('webcam-container').appendChild(webcam.canvas);
@@ -64,8 +63,7 @@ async function init() {
     // 최댓값의 인덱스를 찾습니다.
     maxIndex = intArr.indexOf(maxValue);
     console.log(maxIndex);
-    result[maxIndex].firstElementChild.style.backgroundColor =
-      'rgb(33, 53, 85)';
+    result[maxIndex].firstElementChild.style.backgroundColor = 'rgb(33, 53, 85)';
 
     // 선택된 카테고리 포스터만 보이게 하기
     const postElements = document.querySelectorAll('.post1');
@@ -81,7 +79,6 @@ async function init() {
       recommendPost.scrollIntoView({ behavior: 'smooth' });
     });
   }, 5000);
-
 }
 
 // 웹캠이 동작 할 동안 계속 화면을 업데이트 시켜주는 함수
@@ -102,7 +99,7 @@ async function predict() {
 }
 
 // 추천 post 만들기
-function createPost(post_id, image, category, liked, product_link, title,comment) {
+function createPost(post_id, image, category, liked, product_link, title, comment) {
   const postContainer = document.querySelector('.posts-box');
   const newPost = document.createElement('div');
   newPost.className = `post1 type${category}`;
@@ -140,15 +137,7 @@ axios({
   data,
 }).then((res) => {
   res.data.data.forEach((item) => {
-    createPost(
-      item.post_id,
-      item.image,
-      item.category,
-      item.liked,
-      item.product_link,
-      item.title,
-      item.comment
-    ); // 모든 포스터를 가져온다.
+    createPost(item.post_id, item.image, item.category, item.liked, item.product_link, item.title, item.comment); // 모든 포스터를 가져온다.
   });
 });
 
@@ -232,3 +221,8 @@ function clickColor(clicked) {
   clicked.firstElementChild.style.backgroundColor = '#213555';
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+const gopost = document.querySelector('.move-box-inner');
+gopost.addEventListener('click', function () {
+  window.location.href = '/board';
+});
