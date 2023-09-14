@@ -54,7 +54,6 @@ input{
 }
 
 .upload-image label{
-
     height: 300px;
     display: flex;
     flex-direction: column;
@@ -163,8 +162,15 @@ label p {
     border-bottom: 1px solid black;
   }
   .product-innerbox h4 {
+    font-size: 16px;
     margin: 0;
-   
+  }
+  .product-innerbox button {
+    font-size: 14px;
+  }
+  .product-innerbox p{
+    word-wrap: break-word;
+    margin-bottom: 5px;
   }
   .product-innerbox p:last-child{
     margin-bottom: 10px;
@@ -210,4 +216,69 @@ label p {
     border: 1px solid black;
     border-radius: 10px;
     background-color: black;
+}
+
+/* 반응형 */
+@media (max-width: 768px){
+  .upload-form{
+    width: 60%;
+  }
+  .wrapper-bottom{
+    margin-bottom: 15px;
+  }
+  .upload-image label{
+    height: 250px;
+  }
+  .add-link{
+    font-size: 12px;
+  }
+  .point{
+    width: 13px;
+    height: 13px;
+  }
+  .fa-plus:before{
+    font-size: 11px;
+  }
+  .product-top h4{
+    font-size: 16px;
+  }
+  .product-top button{
+    font-size: 11px;
+  }
+  .product-innerbox p {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  .mce-content-body{
+    font-size: 14px !important;
+  }
+  .tag-box .tag{
+    font-size: 12px;
+    margin-right: 6px;
+  }
+  .mouse-follower {
+    width: 15px; /* 원의 너비 */
+    height: 15px; /* 원의 높이 */
+  }
+  .add-link-wrapper{
+    bottom:3%;
+  }
+  .product-info{
+    width: 160px;
+    padding:6px;
+  }
+  .product-name,.product-link{
+    font-size: 12px;
+  }
+  .product-info button{
+    font-size: 11px;
+    border-radius: 10%;
+  }
+  .mouse-follower {
+    width: 15px; /* 원의 너비 */
+    height: 15px; /* 원의 높이 */
+  }
+  .add-link-wrapper{
+    bottom:3%;
+  }
 }

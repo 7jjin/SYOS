@@ -327,7 +327,6 @@ exports.patch_post_edit = async (req, res) => {
 // 게시글 수정(product 테이블)
 exports.delete_post_delt = async (req, res) => {
   const {title,content,category,photo} = req.body.data;
-  console.log(photo)
   await Product.destroy({where:{post_id:req.body.post_id}});
   for (let i = 0; i < photo.length; i++) {
     Product.create({
@@ -339,13 +338,5 @@ exports.delete_post_delt = async (req, res) => {
     });
   }
   
-  res.json({result_create:true})
+  res.json({result:true,data:req.body.post_id})
 };
-
-exports.patch_post_edit = (req, res) => {
-  console.log('a');
-
-};
-
-
-//모두 destory 후 다시 생성

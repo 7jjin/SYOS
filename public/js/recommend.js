@@ -12,21 +12,19 @@ const result = document.querySelectorAll('.result');
 const per = document.querySelectorAll('.per');
 const URL = 'https://teachablemachine.withgoogle.com/models/mxuNZiol6/';
 
-
 let model, webcam, labelContainer, maxPredictions, maxIndex;
 let data = [];
 
 // 이미지 모델을 분석 및 웹캠 설정
 const uploadImageForm = document.querySelector('.upload-image-form');
-uploadImageForm.addEventListener("click", init);
+uploadImageForm.addEventListener('click', init);
 async function init() {
   uploadImageForm.removeEventListener("click", init);
-
   const cameraIcon = document.querySelector('.fa-camera');
   cameraIcon.style.display = 'none';
   const modelURL = URL + 'model.json';
   const metadataURL = URL + 'metadata.json';
-  const webcamContainer = document.querySelectorAll('#webcam-container')
+  const webcamContainer = document.querySelectorAll('#webcam-container');
   const loading = document.createElement('div');
   loading.className = 'loading';
   uploadImageForm.appendChild(loading);
@@ -41,7 +39,7 @@ async function init() {
   await webcam.play();
   uploadImageForm.removeChild(loading);
   window.requestAnimationFrame(loop);
-  document.querySelector(".upload-image-wrapper").style.border = "none"
+  document.querySelector('.upload-image-wrapper').style.border = 'none';
 
   // 웹캠에 화면 출력
   document.getElementById('webcam-container').appendChild(webcam.canvas);
@@ -64,8 +62,7 @@ async function init() {
     // 최댓값의 인덱스를 찾습니다.
     maxIndex = intArr.indexOf(maxValue);
     console.log(maxIndex);
-    result[maxIndex].firstElementChild.style.backgroundColor =
-      'rgb(33, 53, 85)';
+    result[maxIndex].firstElementChild.style.backgroundColor = 'rgb(33, 53, 85)';
 
     // 선택된 카테고리 포스터만 보이게 하기
     const postElements = document.querySelectorAll('.post1');
@@ -81,7 +78,6 @@ async function init() {
       recommendPost.scrollIntoView({ behavior: 'smooth' });
     });
   }, 5000);
-
 }
 
 // 웹캠이 동작 할 동안 계속 화면을 업데이트 시켜주는 함수
@@ -102,34 +98,70 @@ async function predict() {
 }
 
 // 추천 post 만들기
-function createPost(post_id, image, category, liked, product_link, title, comment) {
-  const postContainer = document.querySelector('.posts-box');
-  const newPost = document.createElement('div');
+function createPost(
+  post_id,
+  image,
+  category,
+  liked,
+  product_link,
+  title,
+  comment
+) {
+  const postContainer = document.querySelector('.posts-box'); // 부모
+  const newPost = document.createElement('div'); // div 생성
   newPost.className = `post1 type${category}`;
+  newPost.classList.add('item-box');
+
+  newPost.addEventListener('click', () => {
+    // 클릭 이벤트 리스너 생성
+    location.href = `/board/${post_id}`;
+  });
+
   newPost.innerHTML = `
-    <div class="post-text" >
-        <image src='${IMG + image}'style="height:100%">
-        <div class="hidden-box">
-            <div class="text-box">
-                <span>${title}</span>
+    <img src="${IMG + image}" />
+
+      <div class="text-container">
+        <div class="text-box">
+            <div class="title"> ${title}</div>
+        </div>
+      </div>
+
+      <div class="res-container">
+        <div class="res-box">
+            <div class="heart-box">
+                <i class="fa-solid fa-heart" style="color: #000000;"></i>
+                <p class="liked">${liked}</p>
             </div>
-            <div class="post-bar">
-                <div class="heart-box">
-                    <div class="heart">
-                        <i class="fa-solid fa-heart"></i>
-                        <p class="count">${liked}</p>
-                    </div>
-                </div>
-                <div class="review-box">
-                    <div class="review">
-                        <i class="fa-brands fa-speakap"></i>
-                        <p class="count">${comment}</p>
-                    </div>
-                </div>
+            <div class="comment-box">
+                <i class="fa-solid fa-comment fa-flip-horizontal" style="color: #000000;"></i>
+                <p class="comment">${comment}</p>
             </div>
         </div>
-    </div>
-      `;
+      </div>`;
+  // newPost.innerHTML = `
+  //   <div class="post-text" >
+  //       <image src='${IMG + image}'style="height:100%">
+  //       <div class="hidden-box">
+  //           <div class="text-box">
+  //               <span>${title}</span>
+  //           </div>
+  //           <div class="post-bar">
+  //               <div class="heart-box">
+  //                   <div class="heart">
+  //                       <i class="fa-solid fa-heart"></i>
+  //                       <p class="count">${liked}</p>
+  //                   </div>
+  //               </div>
+  //               <div class="review-box">
+  //                   <div class="review">
+  //                       <i class="fa-brands fa-speakap"></i>
+  //                       <p class="count">${comment}</p>
+  //                   </div>
+  //               </div>
+  //           </div>
+  //       </div>
+  //   </div>`;
+
   postContainer.appendChild(newPost);
 }
 
@@ -140,15 +172,7 @@ axios({
   data,
 }).then((res) => {
   res.data.data.forEach((item) => {
-    createPost(
-      item.post_id,
-      item.image,
-      item.category,
-      item.liked,
-      item.product_link,
-      item.title,
-      item.comment
-    ); // 모든 포스터를 가져온다.
+    createPost(item.post_id, item.image, item.category, item.liked, item.product_link, item.title, item.comment); // 모든 포스터를 가져온다.
   });
 });
 
@@ -232,3 +256,8 @@ function clickColor(clicked) {
   clicked.firstElementChild.style.backgroundColor = '#213555';
 }
 /////////////////////////////////////////////////////////////////////////////////////////////
+
+const gopost = document.querySelector('.move-box-inner');
+gopost.addEventListener('click', function () {
+  window.location.href = '/board';
+});
