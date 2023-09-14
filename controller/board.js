@@ -281,6 +281,10 @@ exports.post_board_filter = async (req, res) => {
       attributes: ['post_id', 'title', 'image','liked', 'comment'],
       order: [['liked', 'DESC']],
     });
+  }else if (filter === 'all'){
+    data = await Post.findAll({
+      attributes: ['post_id', 'title', 'image','liked', 'comment'],
+    });
   }
   res.json(data);
 };
