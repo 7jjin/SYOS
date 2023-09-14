@@ -10,4 +10,4 @@ const production = {
 };
  
 
-module.exports = { production, test };
+module.exports = { production};
