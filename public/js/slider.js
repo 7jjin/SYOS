@@ -1,16 +1,16 @@
 // 슬라이더 설정
 const swiper = new Swiper('.swiper', {
   slidesPerView: 3,
-  slidesPerGroup: 3,
+  slidesPerGroup: 4,
   spaceBetween: 30,
   direction: 'horizontal',
-  loop: false,
+  loop: true,
   autoplay: {
     delay: 0,
     disableOnInteraction: false,
     waitForTransition: true,
   },
-  speed: 50000,
+  speed: 30000,
   allowTouchMove: false,
 });
 
