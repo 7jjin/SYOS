@@ -64,8 +64,8 @@ main.myPage div.no {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
   font-size: 30px;
   font-weight: bold;
 }
@@ -89,18 +89,23 @@ main.myPage div.myLiked {
 div#myPostCarousel,
 div#myCommentCarousel,
 div#myLikedCarousel {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
 }
 
 div.carousel-inner img {
-  width: 300px;
-  height: 300px;
+  width: 350px;
+  height: 350px;
+  object-fit: cover;
 }
 
-@media screen and (max-width: 1200px) {
+div.item-box {
+  display: flex !important;
+}
+
+@media screen and (max-width: 1400px) {
   main.myPage {
-    height: 1400px;
+    height: 1500px;
   }
 
   main.myPage > div.three {
