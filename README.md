@@ -13,19 +13,19 @@ npm run start:prod
 ## 목차
 <ul>
   <li>
-    <a href='naver.com'>1. 프로젝트 소개😎</a>
+    <a href='#1-프로젝트-소개-'>1. 프로젝트 소개😎</a>
   </li>
   <li>
-    <a href='naver.com'>2. 기술 스택📊</a>
+    <a href='#2-기술-스택-'>2. 기술 스택📊</a>
   </li>
   <li>
-    <a href='naver.com'>2. 팀원 소개👨‍👩‍👦‍👦</a>
+    <a href='#3-팀원-소개-'>3. 팀원 소개👨‍👩‍👦‍👦</a>
   </li>
   <li>
-    <a href='naver.com'>3. 기획 단계📋</a>
+    <a href='#4-기획-단계-'>4. 기획 단계📋</a>
   </li>
   <li>
-    <a href=''>4. 기능 소개✨</a>
+    <a href='#5-기능-소개-'>5. 기능 소개✨</a>
   </li>
 </ul>
 <br/>
