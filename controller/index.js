@@ -1,5 +1,5 @@
 const { User, Post, Comment, Like } = require('../models'); // index.js 생략
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 
 const jwt = require('jsonwebtoken');
 const SECRET = process.env.SECRET;

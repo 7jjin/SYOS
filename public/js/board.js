@@ -1,5 +1,5 @@
 //S3 이미지 경로
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 //카테고리 버튼
 document.addEventListener("DOMContentLoaded", function () {
   const filter = document.querySelectorAll(".filter");

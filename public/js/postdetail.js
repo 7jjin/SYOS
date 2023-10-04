@@ -1,4 +1,4 @@
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 const heart = document.querySelector('.fa-heart');
 const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');

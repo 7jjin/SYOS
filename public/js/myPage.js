@@ -5,7 +5,7 @@ let created_at;
 const profileSince = document.querySelector('.profileSince');
 
 //S3 이미지 경로
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 
 // ejs에서 saveId 함수에 user_id를 넘겨주면 user_id에 저장
 function saveId(userId) {
