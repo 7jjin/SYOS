@@ -1,5 +1,5 @@
 // S3 이미지
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 
 const post_id = document.querySelector('#post_id').innerHTML;
 const titleValue = document.querySelector('#title');

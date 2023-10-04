@@ -1,5 +1,5 @@
 //S3 이미지 경로
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 
 // 추천에 맞는 포스트 추가 함수
 

@@ -1,7 +1,7 @@
 // 슬라이더 설정
 const swiper = new Swiper('.swiper', {
   slidesPerView: 3,
-  slidesPerGroup: 3,
+  slidesPerGroup: 2,
   spaceBetween: 30,
   direction: 'horizontal',
   loop: true,

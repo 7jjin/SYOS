@@ -142,6 +142,7 @@
         Get Started
       </div>
     </div>
+    
     <div id="best-wrapper">
       <div class="best-box left" onclick="location.href='/board/<%= likeId %>'">
         <div class="best-title">Most Liked</div>
@@ -301,7 +302,6 @@
     <script>
       const bestImage1 = document.querySelector('#best-img1');
       const bestImage2 = document.querySelector('#best-img2');
-      const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
       imageUrl1 = '<%= likeImage %>';
       imageUrl2 = '<%= commentImage %>';
       bestImage1.style.backgroundImage = `url(${imageUrl1})`;
