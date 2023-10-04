@@ -7,8 +7,8 @@
 node index.js
 npm run start:prod
 ```
-### <a href='https://port-0-syos-2rrqq2blmiwyaxo.sel5.cloudtype.app/' target='_blank'>🔗 Demo Link</a>
-### <a href='https://www.canva.com/design/DAFuUlWJcX8/Lpm6Oe-yWn70vlIARtwp5w/edit?utm_content=DAFuUlWJcX8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton' target='_blank'> 📣 Presentation </a> 
+### <a href='https://port-0-syos-2rrqq2blmiwyaxo.sel5.cloudtype.app/' target="_blank">🔗 Demo Link</a>
+### <a href='https://www.canva.com/design/DAFuUlWJcX8/Lpm6Oe-yWn70vlIARtwp5w/edit?utm_content=DAFuUlWJcX8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton' target="_blank"> 📣 Presentation </a> 
 <br />
 
 ## 목차
