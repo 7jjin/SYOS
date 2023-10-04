@@ -1,4 +1,4 @@
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 const heart = document.querySelector('.fa-heart');
 const heartNum = document.querySelector('#heart-number');
 const commentNum = document.querySelector('#comment-number');
@@ -31,7 +31,7 @@ const fetchData = async () => {
         login,
       },
     });
-    console.log(res);
+    // console.log(res);
     // 데이터 불러와서 렌더링
     const writerNickname = document.querySelector('.header-nickname');
     const postImage = document.querySelector('.post-img');

@@ -1,5 +1,5 @@
 // S3 이미지
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`;
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 
 const post_id = document.querySelector('#post_id').innerHTML;
 const titleValue = document.querySelector('#title');
@@ -245,7 +245,7 @@ function mousemove() {
 
     // input 요소와 button 요소를 제외한 요소를 비활성화합니다.
     for (const child of children) {
-      console.log(child);
+      // console.log(child);
       if (child.tagName !== 'INPUT' && child.tagName !== 'BUTTON') {
         child.style.pointerEvents = 'none'; // 클릭 비활성화
       }

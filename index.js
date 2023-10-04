@@ -8,7 +8,6 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
-app.use('../public/uploads', express.static(__dirname + '/uploads'));
 
 require('dotenv').config(); // .env 파일 사용
 
@@ -16,12 +15,6 @@ const http = require('http');
 const SocketIO = require('socket.io');
 const server = http.createServer(app);
 const io = SocketIO(server);
-
-app.set('view engine', 'ejs');
-
-app.use(express.static(__dirname + '/public'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 //router
 const router = require('./routes');

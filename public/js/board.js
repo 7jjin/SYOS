@@ -1,5 +1,5 @@
 //S3 이미지 경로
-const IMG = `https://syos-test2.s3.ap-northeast-2.amazonaws.com/`
+const IMG = 'https://syos-bucket.s3.ap-northeast-2.amazonaws.com/'
 //카테고리 버튼
 document.addEventListener("DOMContentLoaded", function () {
   const filter = document.querySelectorAll(".filter");
@@ -22,7 +22,7 @@ const fetchData = async () => {
     method: 'POST',
     url: '/board/all',
   });
-  console.log(res);
+  // console.log(res);
 
   // 게시물 생성
   for (let i = 0; i < res.data.length; i++) {
@@ -76,12 +76,12 @@ filter.forEach((filter) => {
       url: '/board/filter',
       data: { filter: filter.value },
     });
-    console.log(posts);
+    // console.log(posts);
     const container = document.getElementById('mood-itemwrap');
     container.innerHTML = ``;
     // 게시물 생성
     for (let i = 0; i < posts.data.length; i++) {
-      console.log(i);
+      // console.log(i);
       const postCreate = document.createElement('div');
       postCreate.classList.add('item-box');
       // 게시물과 post_id 연결

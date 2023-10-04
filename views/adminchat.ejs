@@ -40,7 +40,7 @@
 
       // 새로운 사람 들어올거나 나갈 때마다 룸리스트 최신화
       socket.on('roomList', (roomLists) => {
-        console.log(roomLists);
+        // console.log(roomLists);
         const lists = document.querySelector('#lists');
         lists.textContent = '';
         roomLists.forEach((roomList) => {
